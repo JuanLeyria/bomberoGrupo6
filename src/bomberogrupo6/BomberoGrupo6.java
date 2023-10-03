@@ -6,7 +6,9 @@
 package bomberogrupo6;
 
 import AccesoADatos.BomberoData;
+import AccesoADatos.BrigadaData;
 import Entidades.Bombero;
+import Entidades.Brigada;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -25,10 +27,15 @@ public class BomberoGrupo6 {
 //        Alumno alum2 = new Alumno( 32422425, "veliz", "juana", LocalDate.of(2023, Month.MARCH, 23), true);
 //        Alumno alum3 = new Alumno( 5353355, "Perez", "juan", LocalDate.of(2045, Month.MARCH, 12), true);
 //        //alum.guardarAlumno(alum2);
-
-    Bombero bom = new Bombero("12345", "Ramiro Perez",  LocalDate.of(2023, Month.MARCH, 23), "266425", 1, "A+", true);
+    
+    Brigada br=new Brigada();
+    BrigadaData bd=new BrigadaData();
+    br.setCodigo(2);
+    Bombero bom = new Bombero(4,"1233425", "Ramiros","Perezz",  LocalDate.of(2023, Month.MARCH, 23), "266425", br, "A+", true);
     BomberoData  bombdt = new BomberoData();
-    bombdt.guardarBombero(bom);
+    //bombdt.BuscarBombero(1);
+    //bombdt.DarDeBajaBombero(4);
+    bombdt.modificarBombero(bom);
     }
     
 }

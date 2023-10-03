@@ -15,37 +15,40 @@ public class Bombero {
     
     private int idBombero;
     private String dni; // (Chequear en la vista que sea solo numero)
-    private String nombreApe;
+    private String nombre;
+    private String apellido;
     private LocalDate fechaNac;
     private String celular; // (Chequear en la vista que sea solo numero)
-    private int codBrigada;
+    private Brigada brigada;
     private String grupoSanguineo; // Se agrego a la bace de datos
     private boolean estado;     //Se agregar estado a bd
                                 
     public Bombero() {
     }
 
-    public Bombero(int idBombero, String dni, String nombreApe, LocalDate fechaNac, String celular, int codBrigada, String grupoSanguineo, boolean estado) {
+    public Bombero(int idBombero, String dni, String nombre, String apellido, LocalDate fechaNac, String celular, Brigada brigada, String grupoSanguineo, boolean estado) {
         this.idBombero = idBombero;
         this.dni = dni;
-        this.nombreApe = nombreApe;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.fechaNac = fechaNac;
         this.celular = celular;
-        this.codBrigada = codBrigada;
+        this.brigada = brigada;
         this.grupoSanguineo = grupoSanguineo;
         this.estado = estado;
     }
 
-    public Bombero(String dni, String nombreApe, LocalDate fechaNac, String celular, int codBrigada, String grupoSanguineo, boolean estado) {
+    public Bombero(String dni, String nombre, String apellido, LocalDate fechaNac, String celular, Brigada brigada, String grupoSanguineo, boolean estado) {
         this.dni = dni;
-        this.nombreApe = nombreApe;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.fechaNac = fechaNac;
         this.celular = celular;
-        this.codBrigada = codBrigada;
+        this.brigada = brigada;
         this.grupoSanguineo = grupoSanguineo;
         this.estado = estado;
     }
-
+    
 
     public int getIdBombero() {
         return idBombero;
@@ -63,14 +66,22 @@ public class Bombero {
         this.dni = dni;
     }
 
-    public String getNombreApe() {
-        return nombreApe;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreApe(String nombreApe) {
-        this.nombreApe = nombreApe;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+  
     public LocalDate getFechaNac() {
         return fechaNac;
     }
@@ -87,13 +98,13 @@ public class Bombero {
         this.celular = celular;
     }
 
-    public int getCodBrigada() {
-        return codBrigada;
+    public Brigada getBrigada() {
+        return brigada;
     }
 
-    public void setCodBrigada(int codBrigada) {
-        this.codBrigada = codBrigada;
-    }
+    public void setBrigada(Brigada brigada) {
+        this.brigada = brigada;
+    } 
 
     public String getGrupoSanguineo() {
         return grupoSanguineo;
@@ -113,7 +124,9 @@ public class Bombero {
 
     @Override
     public String toString() {
-        return "Bombero{" + "dni=" + dni + ", nombreApe=" + nombreApe + '}';
+        return "Bombero{" + "idBombero=" + idBombero + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNac=" + fechaNac + ", celular=" + celular + ", brigada=" + brigada + ", grupoSanguineo=" + grupoSanguineo + ", estado=" + estado + '}';
     }
+
     
+ 
 }

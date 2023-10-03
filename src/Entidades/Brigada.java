@@ -10,42 +10,40 @@ package Entidades;
  * @author Juan
  */
 public class Brigada {
-    private int codBrigada;
+    private int codigo;
     private String nombre;
     private String especialidad;
     private boolean libre;
-    private int nroCuartel;
+    private Cuartel cuartel;
     private boolean estado;
 
     public Brigada() {
     }
 
-    public Brigada(int codBrigada, String nombre, String especialidad, boolean libre, int nroCuartel, boolean estado) {
-        this.codBrigada = codBrigada;
+    public Brigada(int codigo, String nombre, String especialidad, boolean libre, Cuartel cuartel, boolean estado) {
+        this.codigo = codigo;
         this.nombre = nombre;
         this.especialidad = especialidad;
         this.libre = libre;
-        this.nroCuartel = nroCuartel;
+        this.cuartel = cuartel;
         this.estado = estado;
     }
 
-    public Brigada(String nombre, String especialidad, boolean libre, int nroCuartel, boolean estado) {
+    public Brigada(String nombre, String especialidad, boolean libre, Cuartel cuartel, boolean estado) {
         this.nombre = nombre;
         this.especialidad = especialidad;
         this.libre = libre;
-        this.nroCuartel = nroCuartel;
+        this.cuartel = cuartel;
         this.estado = estado;
     }
 
-
-
-    public int getCodBrigada() {
-        return codBrigada;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodBrigada(int codBrigada) {
-        this.codBrigada = codBrigada;
-    }
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }   
 
     public String getNombre() {
         return nombre;
@@ -71,12 +69,12 @@ public class Brigada {
         this.libre = libre;
     }
 
-    public int getNroCuartel() {
-        return nroCuartel;
+    public Cuartel getCuartel() {
+        return cuartel;
     }
 
-    public void setNroCuartel(int nroCuartel) {
-        this.nroCuartel = nroCuartel;
+    public void setCuartel(Cuartel cuartel) {
+        this.cuartel = cuartel;
     }
 
     public boolean isEstado() {
@@ -89,7 +87,9 @@ public class Brigada {
 
     @Override
     public String toString() {
-        return "Brigada{" + "nombre=" + nombre + ", especialidad=" + especialidad + ", libre=" + libre + ", nroCuartel=" + nroCuartel + ", estado=" + estado + '}';
+        return "Brigada{" + "codigo=" + codigo + ", nombre=" + nombre + ", especialidad=" + especialidad + ", libre=" + libre + ", cuartel=" + cuartel + ", estado=" + estado + '}';
     }
+
     
+   
 }
