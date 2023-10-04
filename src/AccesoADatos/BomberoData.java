@@ -55,7 +55,7 @@ public class BomberoData {
            }
     }
     
-    public Bombero BuscarBombero(int id){
+    public Bombero buscarBombero(int id){
             Bombero b= new Bombero();
             Brigada br= new Brigada();
            try {               
@@ -85,7 +85,7 @@ public class BomberoData {
         return b;
     }
   
-    public void DarDeBajaBombero(int id) {        
+    public void darDeBajaBombero(int id) {        
         try {
             String sql = "UPDATE bombero SET estado=0 WHERE id_bombero=" + id;
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
