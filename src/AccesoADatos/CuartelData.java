@@ -5,15 +5,13 @@
  */
 package AccesoADatos;
 
-import Entidades.Bombero;
-import Entidades.Brigada;
 import Entidades.Cuartel;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -124,6 +122,36 @@ public class CuartelData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al querer modificar el cuartel");
         }
+    }
+    
+      public ArrayList listarCuartel(){
+        ArrayList<Cuartel>cuarteles=new ArrayList<>();        
+        try {
+            String sql = "SELECT * FROM cuartel";
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);            
+            ResultSet rs = ps.executeQuery(); 
+            int cont=0;
+            while (rs.next()) {
+               Cuartel ct = new Cuartel();
+                cont++;
+               ct.setCodigo(rs.getInt("cod_cuartel"));
+               ct.setNombre(rs.getString("nombre_cuartel"));
+               ct.setDireccion(rs.getString("direccion"));
+               ct.setCoordX(rs.getDouble("coord_X"));
+               ct.setCoordY(rs.getDouble("coord_Y")); 
+               ct.setTelefono(rs.getString("telefono"));
+               ct.setCorreo(rs.getString("correo"));
+               ct.setEstado(rs.getBoolean("estado"));
+                cuarteles.add(ct);
+            }
+            if (cont==0) {
+                JOptionPane.showMessageDialog(null, "No se encontro ningun cuartel");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer buscar un cuartel" + ex.getMessage());
+        }
+        return cuarteles;
     }
 }
 

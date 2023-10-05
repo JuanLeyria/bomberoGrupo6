@@ -8,11 +8,8 @@ package bomberogrupo6;
 import AccesoADatos.BomberoData;
 import AccesoADatos.BrigadaData;
 import AccesoADatos.CuartelData;
-import Entidades.Bombero;
 import Entidades.Brigada;
-import Entidades.Cuartel;
-import java.time.LocalDate;
-import java.time.Month;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,41 +21,66 @@ public class BomberoGrupo6 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       //Alumno alum1 = new Alumno(24542425,"Viltez", "Peron", LocalDate.of(2003, Month.MARCH, 21),true);
-//        AlumnoData alum = new AlumnoData();
-//        Alumno alum2 = new Alumno( 32422425, "veliz", "juana", LocalDate.of(2023, Month.MARCH, 23), true);
-//        Alumno alum3 = new Alumno( 5353355, "Perez", "juan", LocalDate.of(2045, Month.MARCH, 12), true);
-//        //alum.guardarAlumno(alum2);
-    //Cuartel cuartel= new Cuartel("Cuartel 2", "Avenida2", 2, 4, "1828282", "hqwyuqh@hjauya.kkd", true);
-    ///Cuartel cuartel= new Cuartel("Cuartel Los fueguitos Córdoba", "Avenida Siempre Viva", -31.31279191675567, -64.30560243068217,
-     ///       "3518524568", "cuartellosfueguitos@gmail.com", true);
-     Cuartel c1= new Cuartel(); 
-    c1.setCodigo(1);
-    CuartelData cd = new CuartelData(); 
-     ///cd.guardarCuartel(cuartel);
-    Brigada br=new Brigada();
-    BrigadaData bd=new BrigadaData();
-    //bd.guardarBrigada(br);
-   ///Cuartel cuartel2= new Cuartel(1, "Cuartel Los fueguitos Córdoba", "Avenida Siempre Viva 1200", -31.31279191675567, -64.30560243068217,
-      ///     "3518524569", "cuartellosfueguitos@gmail.com", true);
-    br.setCodigo(2);
 
-    
-    Bombero bom = new Bombero("1233425", "Ramiros","Perezz",  LocalDate.of(2023, Month.MARCH, 23), "266425", br, "A+", true);
-    
-    BomberoData  bombdt = new BomberoData();
-    bombdt.guardarBombero(bom);
-    
-    
-    ///bombdt.buscarBombero(1);
-    
-    //bombdt.DarDeBajaBombero(4);
-    //bombdt.modificarBombero(bom);
-       /// System.out.println("CUARTEL: " + cd.buscarCuartel(5).toString()); 
-    
-    ///cd.darDeBajaCuartel(1);
-    ///cd.modificarCuartel(cuartel2);
-        ///System.out.println("BRIGADA: "+bd.buscarBrigada(2).toString());
-      ///  System.out.println("BOMBREO: "+ );
-    }   
-}
+        CuartelData cd = new CuartelData();
+        BrigadaData bd = new BrigadaData();
+        BomberoData bomd = new BomberoData();
+
+// CREACION DE BRIGADA
+
+//        Brigada br1 = new Brigada(1,"FUEGITOS DEL SUR", "Incendios en viviendas e industrias", true, cd.buscarCuartel(1), true);
+//        Brigada br2 = new Brigada("DERRUMBES DEL SUR", "Salvamento en derrumbes", true, cd.buscarCuartel(2), true);
+//        bd.modificarBrigada(br1);
+//        bd.guardarBrigada(br2);
+
+// CREACION DE BOMBEROS
+
+//        Bombero bom1 = new Bombero("20147835", "Marcos Fernado", "Leyria", LocalDate.of(1982, Month.NOVEMBER, 1), "2612243222", bd.buscarBrigada(1), "a+", true);
+//        Bombero bom2 = new Bombero("35045789", "Maria Jose", "Orellano", LocalDate.of(1992, Month.JUNE, 21), "3511478655", bd.buscarBrigada(2), "b+", true);
+//        bomd.guardarBombero(bom1);
+//        bomd.guardarBombero(bom2);
+        
+// CUARTEL LISTAR
+
+//        for (Cuartel cuartel : (ArrayList<Cuartel>) cd.listarCuartel()) {
+//            System.out.println(cuartel.toString());
+//        }
+
+// BRIGADA LISTAR
+
+//  >>>>>>>> PRIMERO ESPANDIR LA CANTIDAD (A 100) LOS VARCHAR EN LA BACE DE DATOS <<<<<<<<<<<
+
+//        for (Brigada brigada : (ArrayList<Brigada>) bd.listarBrigada()) {
+//            System.out.println(brigada.toString());
+//        }
+
+// BOMBERO LISTAR
+
+//      for(Bombero bombero:(ArrayList<Bombero>) bomd.listarBombero()){
+//             System.out.println(bombero.toString());            
+//          }
+
+// LISTAR BOMBERO POR BRIGADA
+
+//      for(Bombero bombero:(ArrayList<Bombero>) bomd.listarBomberosPorBrigadas(2)){
+//             System.out.println(bombero.toString());            
+//          }
+
+// LISTAR BOMBERO POR CUARTEL
+
+//      for(Bombero bombero:(ArrayList<Bombero>) bomd.listarBomberosPorCuartel(1)){
+//             System.out.println(bombero.toString());            
+//          }
+//
+
+// LISTAR BRIGADAS POR CUARTEL
+
+      for(Brigada brigada:(ArrayList<Brigada>) bd.listarBrigadasPorCuartel(2)){
+             System.out.println(brigada.toString());            
+          }
+
+    }
+
+  }
+
+

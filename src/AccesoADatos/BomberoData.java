@@ -13,8 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -83,7 +82,6 @@ public class BomberoData {
            }
         return b;
     }
- 
 
     public void darDeBajaBombero(int id) {        
         try {
@@ -129,7 +127,62 @@ public class BomberoData {
         }
     }
     
+    public ArrayList listarBombero() {
+        ArrayList<Bombero> bomberos = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM bombero";
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            int cont = 0;
+            while (rs.next()) {
+                Bombero b = new Bombero();
+                cont++;
+                b.setIdBombero(rs.getInt("id_bombero"));
+                b.setDni(rs.getString("dni"));
+                b.setNombre(rs.getString("nombre"));
+                b.setApellido(rs.getString("apellido"));
+                b.setFechaNac(rs.getDate("fecha_nac").toLocalDate());
+                b.setCelular(rs.getString("celular"));
+                b.setBrigada(bd.buscarBrigada(rs.getInt("cod_brigada")));
+                b.setGrupoSanguineo(rs.getString("grupo_sanguineo"));
+                b.setEstado(rs.getBoolean("estado"));
+                bomberos.add(b);
+            }
+            if (cont == 0) {
+                JOptionPane.showMessageDialog(null, "No se encontro ningun bombero");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer listar los bomberos" + ex.getMessage());
+        }
+        return  bomberos;
+    }
     
+    public ArrayList listarBomberosPorBrigadas(int idBrigada){
+      ArrayList<Bombero> aux = listarBombero();
+       ArrayList<Bombero> bomberosPorBrigadas= new ArrayList<>();
+       
+            for(Bombero bombero:aux){
+             if (bombero.getBrigada().getCodigo() == idBrigada){
+               
+             bomberosPorBrigadas.add(bombero);
+             
+             }
+          }
+    return bomberosPorBrigadas;
+    }
     
-    
+    public ArrayList listarBomberosPorCuartel(int idCuartel){
+      ArrayList<Bombero> aux = listarBombero();
+       ArrayList<Bombero> bomberosPorCuartel= new ArrayList<>();
+       
+            for(Bombero bombero:aux){
+             if (bombero.getBrigada().getCuartel().getCodigo() == idCuartel){
+               
+             bomberosPorCuartel.add(bombero);
+             
+             }
+          }
+    return bomberosPorCuartel;
+    }
 }
