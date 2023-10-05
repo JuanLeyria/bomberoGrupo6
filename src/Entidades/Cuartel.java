@@ -13,8 +13,8 @@ public class Cuartel {
     private int codigo;
     private String nombre;
     private String direccion;
-    private int coordX;
-    private int coordY;
+    private double coordX;
+    private double coordY;
     private String telefono;
     private String correo;
     private boolean estado;
@@ -22,7 +22,7 @@ public class Cuartel {
     public Cuartel() {
     }
 
-    public Cuartel(int codigo, String nombre, String direccion, int coordX, int coordY, String telefono, String correo, boolean estado) {
+    public Cuartel(int codigo, String nombre, String direccion, double coordX, double coordY, String telefono, String correo, boolean estado) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -32,9 +32,8 @@ public class Cuartel {
         this.correo = correo;
         this.estado = estado;
     }
-    
-    
-    public Cuartel(String nombre, String direccion, int coordX, int coordY, String telefono, String correo, boolean estado) {
+
+    public Cuartel(String nombre, String direccion, double coordX, double coordY, String telefono, String correo, boolean estado) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.coordX = coordX;
@@ -44,13 +43,7 @@ public class Cuartel {
         this.estado = estado;
     }
 
-    public int getCodCuartel() {
-        return codigo;
-    }
-
-    public void setCodCuartel(int codCuartel) {
-        this.codigo = codCuartel;
-    }
+ 
 
     public String getNombre() {
         return nombre;
@@ -68,21 +61,31 @@ public class Cuartel {
         this.direccion = direccion;
     }
 
-    public int getCoordX() {
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public double getCoordX() {
         return coordX;
     }
 
-    public void setCoordX(int coordX) {
+    public void setCoordX(double coordX) {
         this.coordX = coordX;
     }
 
-    public int getCoordY() {
+    public double getCoordY() {
         return coordY;
     }
 
-    public void setCoordY(int coordY) {
+    public void setCoordY(double coordY) {
         this.coordY = coordY;
     }
+
+   
 
     public String getTelefono() {
         return telefono;
@@ -110,8 +113,10 @@ public class Cuartel {
 
     @Override
     public String toString() {
-        return "Cuartel{" + "codCuartel=" + codigo + ", nombre=" + nombre + ", direccion=" + direccion + ", coordX=" + coordX + ", coordY=" + coordY + ", telefono=" + telefono + ", correo=" + correo + ", estado=" + estado + '}';
+        return "Cuartel{" + "codigo=" + codigo + ", nombre=" + nombre + ", direccion=" + direccion + ", coordX=" + coordX + ", coordY=" + coordY + ", telefono=" + telefono + ", correo=" + correo + ", estado=" + estado + '}';
     }
+
+   
     
     
     

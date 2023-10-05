@@ -5,10 +5,125 @@
  */
 package AccesoADatos;
 
+import Entidades.Bombero;
+import Entidades.Brigada;
+import Entidades.Cuartel;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hernan
  */
 public class CuartelData {
     
+     private Connection con = null;
+    
+    public CuartelData() {
+       con = Conexion.getConexion();
+    }
+    
+    
+    public void guardarCuartel(Cuartel cuartel) {
+        String sql = "INSERT INTO cuartel(nombre_cuartel, direccion, coord_X, coord_Y, telefono, correo, estado) VALUES (?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, cuartel.getNombre());
+            ps.setString(2, cuartel.getDireccion());
+            ps.setDouble(3, cuartel.getCoordX());
+            ps.setDouble(4, cuartel.getCoordY());
+            ps.setString(5, cuartel.getTelefono());
+            ps.setString(6, cuartel.getCorreo());
+            ps.setBoolean(7, cuartel.isEstado());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Cuartel guardado con exito.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo crear el cuartel.");
+        }
+    }
+
+    public Cuartel buscarCuartel(int id) {
+        Cuartel cuartel = new Cuartel();
+
+        try {
+            String query = "SELECT * FROM cuartel WHERE cod_cuartel=?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                cuartel.setCodigo(id);
+                cuartel.setNombre(rs.getString("nombre_cuartel"));
+                cuartel.setDireccion(rs.getString("direccion"));
+                cuartel.setCoordX(rs.getDouble("coord_X"));
+                cuartel.setCoordY(rs.getDouble("coord_Y"));
+                cuartel.setTelefono(rs.getString("telefono"));
+                cuartel.setCorreo(rs.getString("correo"));
+                cuartel.setEstado(rs.getBoolean("estado"));
+
+                JOptionPane.showMessageDialog(null, "Cuartel encontrado.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro el cuartel con el id:" + id);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar el cuartel.");
+        }
+        return cuartel;
+    }
+
+    public void darDeBajaCuartel(int id) {
+        try {
+            String sql = "UPDATE cuartel SET estado=0 WHERE cod_cuartel=" + id;
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            int resultado = ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (resultado == 1) {
+                JOptionPane.showMessageDialog(null, "Cuartel dado de baja.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Cuartel no encontrado.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo dar de baja el cuartel.");
+        }
+    }
+
+    public void modificarCuartel(Cuartel cuartel) {
+
+        String sql = "UPDATE cuartel SET nombre_cuartel=?, direccion=?, coord_X=?, coord_Y=?, telefono=?, correo=?, estado=? WHERE cod_cuartel=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, cuartel.getNombre());
+            ps.setString(2, cuartel.getDireccion());
+            ps.setDouble(3, cuartel.getCoordX());
+            ps.setDouble(4, cuartel.getCoordY());
+            ps.setString(5, cuartel.getTelefono());
+            ps.setString(6, cuartel.getCorreo());
+            ps.setBoolean(7, cuartel.isEstado());
+            ps.setInt(8, cuartel.getCodigo());
+
+            int resultado = ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (resultado == 1) {
+                JOptionPane.showMessageDialog(null, "Cuartel modificado.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El cuartel no se pudo modificar.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer modificar el cuartel");
+        }
+    }
 }
+

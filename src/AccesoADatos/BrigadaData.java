@@ -22,9 +22,13 @@ import javax.swing.JOptionPane;
  */
 public class BrigadaData {    
     private Connection con = null;
+    private CuartelData cd;
+    
     
     public BrigadaData() {
        con = Conexion.getConexion();
+       cd=new CuartelData();
+       
     }
     
     public void guardarBrigada(Brigada brigada){    
@@ -34,7 +38,7 @@ public class BrigadaData {
                ps.setString(1, brigada.getNombre());
                ps.setString(2, brigada.getEspecialidad());
                ps.setBoolean(3, brigada.isLibre());                
-               ps.setInt(4, brigada.getCuartel().getCodCuartel());           
+               ps.setInt(4, brigada.getCuartel().getCodigo());           
                ps.setBoolean(5, brigada.isEstado());
                ps.executeUpdate();
                ResultSet rs = ps.getGeneratedKeys();
@@ -50,26 +54,25 @@ public class BrigadaData {
      public Brigada buscarBrigada(int id){            
             Brigada br= new Brigada();
             Cuartel cuartel =new Cuartel();
+            
            try {               
-               String query= "SELECT * FROM brigada WHERE cod_brigada=?";
+               String query= "SELECT * FROM brigada WHERE cod_brigada="+id;
                PreparedStatement ps = con.prepareStatement(query);
-               ps.setInt(1, id);
                ResultSet rs= ps.executeQuery();
-               if(rs.next()){                    
+               if(rs.next()){                 
                    br.setCodigo(id);
                    br.setNombre(rs.getString("nombre_br"));
                    br.setEspecialidad(rs.getString("especialidad"));
                    br.setLibre(rs.getBoolean("libre"));
-                   cuartel.setCodCuartel(rs.getInt("nro_cuartel"));
-                   br.setCuartel(cuartel);                   
+                   br.setCuartel(cd.buscarCuartel(rs.getInt("nro_cuartel")));  
                    br.setLibre(rs.getBoolean("estado"));                       
-                   JOptionPane.showMessageDialog(null, "Bombero encontrado.");
+                   JOptionPane.showMessageDialog(null, "Brigada encontrada.");
                }else{
-                   JOptionPane.showMessageDialog(null, "No se encontro al bombero con el id:"+id);
+                   JOptionPane.showMessageDialog(null, "No se encontro la brigada con el id:"+id);
                 }                 
                ps.close();  
            } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, "No se encontro al bombero.");
+               JOptionPane.showMessageDialog(null, "Error al buscar la brigada.");
            }
         return br;
     }

@@ -31,7 +31,7 @@ public class BomberoData {
     }
     
     public void guardarBombero(Bombero bombero){    
-    String sql = "INSERT INTO bombero(dni,nombre_ape, fecha_nac, celular, cod_brigada, grupo_sanguineo, estado) VALUES (?,?,?,?,?,?,?,?)";
+    String sql = "INSERT INTO bombero(dni,nombre, apellido, fecha_nac, celular, cod_brigada, grupo_sanguineo, estado) VALUES (?,?,?,?,?,?,?,?)";
            try {
                PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
                // ps.setInt(1, alumno.getDni());    ps.setDate(4, Date.valueOf(alumno.getFechaNacimento()));
@@ -70,8 +70,7 @@ public class BomberoData {
                    b.setApellido(rs.getString("apellido"));
                    b.setFechaNac(rs.getDate("fecha_nac").toLocalDate());                   
                    b.setCelular(rs.getString("celular"));                   
-                   br.setCodigo(rs.getInt("cod_brigada"));                   
-                   b.setBrigada(br);
+                   b.setBrigada(bd.buscarBrigada(rs.getInt("cod_brigada")));
                    b.setGrupoSanguineo(rs.getString("grupo_sanguineo"));
                    b.setEstado(rs.getBoolean("estado"));                   
                    JOptionPane.showMessageDialog(null, "Bombero encontrado.");
@@ -84,7 +83,8 @@ public class BomberoData {
            }
         return b;
     }
-  
+ 
+
     public void darDeBajaBombero(int id) {        
         try {
             String sql = "UPDATE bombero SET estado=0 WHERE id_bombero=" + id;
@@ -128,5 +128,8 @@ public class BomberoData {
             JOptionPane.showMessageDialog(null, "Error al querer modificar bombero");
         }
     }
+    
+    
+    
     
 }
