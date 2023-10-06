@@ -8,7 +8,12 @@ package bomberogrupo6;
 import AccesoADatos.BomberoData;
 import AccesoADatos.BrigadaData;
 import AccesoADatos.CuartelData;
+import AccesoADatos.SiniestroData;
 import Entidades.Brigada;
+import Entidades.Siniestro;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
@@ -25,6 +30,7 @@ public class BomberoGrupo6 {
         CuartelData cd = new CuartelData();
         BrigadaData bd = new BrigadaData();
         BomberoData bomd = new BomberoData();
+        SiniestroData sd= new SiniestroData();
 
 // CREACION DE BRIGADA
 
@@ -75,12 +81,22 @@ public class BomberoGrupo6 {
 
 // LISTAR BRIGADAS POR CUARTEL
 
-      for(Brigada brigada:(ArrayList<Brigada>) bd.listarBrigadasPorCuartel(2)){
-             System.out.println(brigada.toString());            
-          }
+//      for(Brigada brigada:(ArrayList<Brigada>) bd.listarBrigadasPorCuartel(2)){
+//             System.out.println(brigada.toString());            
+//          }
+//
+//GUARDAR SINIESTRO
+//    Siniestro sin= new Siniestro(2,"Incendio", LocalDate.now(), Time.valueOf(LocalTime.now())
+//            , 3, 3, "fefwefw", LocalDate.now(), Time.valueOf(LocalTime.now()), 8, null, true);
+//    //sd.guardarSiniestro(sin);
+//    sd.resolverSiniestro(sin);
+// LISTAR SINIESTROS
+        for(Siniestro siniestro:(ArrayList<Siniestro>) sd.listarSiniestros()){
+            
+            System.out.println(siniestro.toString());            
+         }
 
-    }
-
-  }
+ }
+}
 
 

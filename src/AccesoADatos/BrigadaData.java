@@ -144,5 +144,30 @@ public class BrigadaData {
           }
     return  brigadasPorCuartel;
     }
-
+    public ArrayList listarBrigadasLibres(){
+      ArrayList<Brigada> aux = listarBrigada();
+       ArrayList<Brigada> brigadasLibres= new ArrayList<>();
+       
+            for(Brigada brigada:aux){
+             if (brigada.isLibre()){
+               
+             brigadasLibres.add(brigada);
+             
+             }
+          }
+    return  brigadasLibres;
+    }
+    public ArrayList listarBrigadasOcupadas(){
+      ArrayList<Brigada> aux = listarBrigada();
+       ArrayList<Brigada> brigadasOcupadas= new ArrayList<>();
+       
+            for(Brigada brigada:aux){
+             if (brigada.isLibre()==false){
+               
+             brigadasOcupadas.add(brigada);
+             
+             }
+          }
+    return  brigadasOcupadas;
+    }
 }

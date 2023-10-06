@@ -5,6 +5,7 @@
  */
 package Entidades;
 
+import java.sql.Time;
 import java.time.LocalDate;
 
 /**
@@ -16,10 +17,12 @@ public class Siniestro {
     private int codigo;
     private String tipo;
     private LocalDate fechaSiniestro;
-    private int coordX;
-    private int coordY;
+    private Time horaSiniestro;
+    private double coordX;
+    private double coordY;
     private String detalles;
     private LocalDate fechaResolucion;
+    private Time horaResolucion;
     private int puntuacion;
     private Brigada brigada;
     private boolean estado;
@@ -27,31 +30,54 @@ public class Siniestro {
     public Siniestro() {
     }
 
-    public Siniestro(int codigo, String tipo, LocalDate fechaSiniestro, int coordX, int coordY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada brigada, boolean estado) {
+    public Siniestro(int codigo, String tipo, LocalDate fechaSiniestro, Time horaSiniestro, double coordX, double coordY, String detalles, LocalDate fechaResolucion, Time horaResolucion, int puntuacion, Brigada brigada, boolean estado) {
         this.codigo = codigo;
         this.tipo = tipo;
         this.fechaSiniestro = fechaSiniestro;
+        this.horaSiniestro = horaSiniestro;
         this.coordX = coordX;
         this.coordY = coordY;
         this.detalles = detalles;
         this.fechaResolucion = fechaResolucion;
+        this.horaResolucion = horaResolucion;
         this.puntuacion = puntuacion;
         this.brigada = brigada;
         this.estado = estado;
     }
 
-    public Siniestro(String tipo, LocalDate fechaSiniestro, int coordX, int coordY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada brigada, boolean estado) {
+    public Siniestro(String tipo, LocalDate fechaSiniestro, Time horaSiniestro, double coordX, double coordY, String detalles, LocalDate fechaResolucion, Time horaResolucion, int puntuacion, Brigada brigada, boolean estado) {
         this.tipo = tipo;
         this.fechaSiniestro = fechaSiniestro;
+        this.horaSiniestro = horaSiniestro;
         this.coordX = coordX;
         this.coordY = coordY;
         this.detalles = detalles;
         this.fechaResolucion = fechaResolucion;
+        this.horaResolucion = horaResolucion;
         this.puntuacion = puntuacion;
         this.brigada = brigada;
         this.estado = estado;
     }
 
+    
+
+    public Time getHoraSiniestro() {
+        return horaSiniestro;
+    }
+
+    public void setHoraSiniestro(Time horaSiniestro) {
+        this.horaSiniestro = horaSiniestro;
+    }
+
+    public Time getHoraResolucion() {
+        return horaResolucion;
+    }
+
+    public void setHoraResolucion(Time horaResolucion) {
+        this.horaResolucion = horaResolucion;
+    }
+
+   
     public int getCodigo() {
         return codigo;
     }
@@ -76,21 +102,23 @@ public class Siniestro {
         this.fechaSiniestro = fechaSiniestro;
     }
 
-    public int getCoordX() {
+    public double getCoordX() {
         return coordX;
     }
 
-    public void setCoordX(int coordX) {
+    public void setCoordX(double coordX) {
         this.coordX = coordX;
     }
 
-    public int getCoordY() {
+    public double getCoordY() {
         return coordY;
     }
 
-    public void setCoordY(int coordY) {
+    public void setCoordY(double coordY) {
         this.coordY = coordY;
     }
+
+
 
     public String getDetalles() {
         return detalles;
@@ -134,10 +162,9 @@ public class Siniestro {
 
     @Override
     public String toString() {
-        return "Siniestro{" + "codigo=" + codigo + ", tipo=" + tipo + ", fechaSiniestro=" + fechaSiniestro + ", coordX=" + coordX + ", coordY=" + coordY + ", detalles=" + detalles + ", fechaResolucion=" + fechaResolucion + ", puntuacion=" + puntuacion + ", brigada=" + brigada + ", estado=" + estado + '}';
+        return "Siniestro{" + "codigo=" + codigo + ", tipo=" + tipo + ", fechaSiniestro=" + fechaSiniestro + ", horaSiniestro=" + horaSiniestro + ", coordX=" + coordX + ", coordY=" + coordY + ", detalles=" + detalles + ", fechaResolucion=" + fechaResolucion + ", horaResolucion=" + horaResolucion + ", puntuacion=" + puntuacion + ", brigada=" + brigada + ", estado=" + estado + '}';
     }
 
-    
     
   
     
