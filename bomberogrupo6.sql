@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 23:26:18
+-- Tiempo de generación: 06-10-2023 a las 23:38:45
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -105,10 +105,12 @@ CREATE TABLE `siniestro` (
   `codigo` int(11) NOT NULL,
   `tipo` varchar(20) NOT NULL,
   `fecha_siniestro` date NOT NULL,
+  `hora_siniestro` time NOT NULL,
   `coord_X` int(11) NOT NULL,
   `coord_Y` int(11) NOT NULL,
   `detalles` text NOT NULL,
   `fecha_resol` date DEFAULT NULL,
+  `hora_resol` time NOT NULL,
   `puntuacion` int(11) DEFAULT NULL,
   `cod_brigada` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL
