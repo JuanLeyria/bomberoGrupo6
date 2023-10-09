@@ -172,6 +172,36 @@ public class SiniestroData {
         
     return distancia;
     }
+    
+       public ArrayList<Cuartel> cuartelesMasCercanos(Siniestro siniestro) {
+        ArrayList<Cuartel> cuarteles = cd.listarCuartel();
+        ArrayList<Cuartel>cuartelesMasCercanos = new ArrayList<>();
+   
+        double aux = 1000000000;
+
+        for (Cuartel cuartel : cuarteles) {
+            //coordenadas del cuartel
+            double x1 = cuartel.getCoordX();
+            double y1 = cuartel.getCoordY();
+            //coordenadas del siniestro
+            double x2 = siniestro.getCoordX();
+            double y2 = siniestro.getCoordY();
+            double dis = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            ///Tendríamos que ir agregando los cuarteles y ordenarlos de menor a mayor
+//            if (dis < aux) {
+//                cuartelesMasCercano = cuartel;
+//                aux = dis;
+//            }
+
+
+        }
+        
+        
+      ///  double aux1 = (aux/1)*95;
+   
+        return cuartelesMasCercanos;
+    }
+    
  }
         
     
