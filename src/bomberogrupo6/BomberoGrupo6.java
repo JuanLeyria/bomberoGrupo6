@@ -9,12 +9,10 @@ import AccesoADatos.BomberoData;
 import AccesoADatos.BrigadaData;
 import AccesoADatos.CuartelData;
 import AccesoADatos.SiniestroData;
-import Entidades.Brigada;
 import Entidades.Siniestro;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 /**
  *
@@ -45,6 +43,23 @@ public class BomberoGrupo6 {
 //        Bombero bom2 = new Bombero("35045789", "Maria Jose", "Orellano", LocalDate.of(1992, Month.JUNE, 21), "3511478655", bd.buscarBrigada(2), "b+", true);
 //        bomd.guardarBombero(bom1);
 //        bomd.guardarBombero(bom2);
+
+// CREACION DE CUARTELES
+
+//        Cuartel cuartel1 = new Cuartel("Santa Teresa", "Rt. Los Pescadores", -33.29498919318194, -66.34584462106838, "2664525497", "SantateresaSL@gmail.com", true);
+//        Cuartel cuartel2 = new Cuartel("El Colibri", "AV. Presidente Peron", -33.29996967022411, -66.32757794978103, "2665294835", "CuartelcolibriesSL@gmail.com", true); 
+//        
+//        cd.guardarCuartel(cuartel1);
+//        cd.guardarCuartel(cuartel2);
+
+//GUARDAR SINIESTRO
+// -31.31543484449304, -64.21539722294976
+    Siniestro sin= new Siniestro("Incendios en viviendas e industrias", LocalDate.now(), Time.valueOf(LocalTime.now())
+            , -31.31543484449304, -64.21539722294976, "Incendio en la torre de control", null, null, 8, null, true);
+//    sd.guardarSiniestro(sin);
+   // sd.resolverSiniestro(sin);
+   // sd.calcularDistancia(sin);
+   //    System.out.println("El cuartel Mas cercano es: "+sd.calcularDistancia(sin).toString());
         
 // CUARTEL LISTAR
 
@@ -85,16 +100,14 @@ public class BomberoGrupo6 {
 //             System.out.println(brigada.toString());            
 //          }
 //
-//GUARDAR SINIESTRO
-//    Siniestro sin= new Siniestro(2,"Incendio", LocalDate.now(), Time.valueOf(LocalTime.now())
-//            , 3, 3, "fefwefw", LocalDate.now(), Time.valueOf(LocalTime.now()), 8, null, true);
-//    //sd.guardarSiniestro(sin);
-//    sd.resolverSiniestro(sin);
+
 // LISTAR SINIESTROS
-        for(Siniestro siniestro:(ArrayList<Siniestro>) sd.listarSiniestros()){
-            
-            System.out.println(siniestro.toString());            
-         }
+
+//        for (Siniestro siniestro : (ArrayList<Siniestro>) sd.listarSiniestros()) {
+//            System.out.println(siniestro.toString());
+//        }
+
+
 
  }
 }

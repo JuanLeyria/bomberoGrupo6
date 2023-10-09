@@ -5,7 +5,7 @@
  */
 package AccesoADatos;
 
-import Entidades.Brigada;
+import Entidades.Cuartel;
 import Entidades.Siniestro;
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -24,10 +23,12 @@ import javax.swing.JOptionPane;
 public class SiniestroData {
     private Connection con = null;
     private BrigadaData bd;
+    private CuartelData cd;
     
     public SiniestroData() {
         con = Conexion.getConexion();
         bd= new BrigadaData();
+        cd= new CuartelData();
     }
     
     public void guardarSiniestro(Siniestro siniestro){
@@ -138,6 +139,39 @@ public class SiniestroData {
         return siniestros;
     }
             
+    public Cuartel calcularDistanciaDelCuartel(Siniestro siniestro) {
+        ArrayList<Cuartel> cuarteles = cd.listarCuartel();
+        Cuartel cuartelesMasCercano = new Cuartel();
+        double aux = 1000000000;
+
+        for (Cuartel cuartel : cuarteles) {
+            //coordenadas del cuartel
+            double x1 = cuartel.getCoordX();
+            double y1 = cuartel.getCoordY();
+            //coordenadas del siniestro
+            double x2 = siniestro.getCoordX();
+            double y2 = siniestro.getCoordY();
+            double dis = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            
+            if (dis < aux) {
+                cuartelesMasCercano = cuartel;
+                aux = dis;
+            }
+        }
+        double aux1 = (aux/1)*95;
+        
+        System.out.println("La distancia entre ambos puntos es : "+ aux1+ " km");
+        return cuartelesMasCercano;
+    }
+    
+    
+    public double calcularDistancia(double x1, double y1, double x2, double y2){
+     
+        double dis = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        double distancia = (dis/1)*95;
+        
+    return distancia;
+    }
  }
         
     

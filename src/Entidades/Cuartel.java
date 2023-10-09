@@ -113,8 +113,10 @@ public class Cuartel {
 
     @Override
     public String toString() {
-        return "Cuartel{" + "codigo=" + codigo + ", nombre=" + nombre + ", direccion=" + direccion + ", coordX=" + coordX + ", coordY=" + coordY + ", telefono=" + telefono + ", correo=" + correo + ", estado=" + estado + '}';
+        return "Cuartel{" + "nombre=" + nombre + '}';
     }
+
+   
 
    
     
