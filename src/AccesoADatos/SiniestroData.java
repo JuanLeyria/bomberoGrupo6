@@ -7,13 +7,19 @@ package AccesoADatos;
 
 import Entidades.Cuartel;
 import Entidades.Siniestro;
+import com.oracle.net.Sdp;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -173,45 +179,90 @@ public class SiniestroData {
     return distancia;
     }
     
-       public ArrayList<Cuartel> cuartelesMasCercanos(Siniestro siniestro) {
+    public TreeMap cuartelesMasCercanos(Siniestro siniestro) {
         ArrayList<Cuartel> cuarteles = cd.listarCuartel();
-        ArrayList<Cuartel>cuartelesMasCercanos = new ArrayList<>();
-   
-        double aux = 1000000000;
+        HashMap<Double, Cuartel> cuartelesMasCercanos = new HashMap<>();
+        HashMap<Double, Cuartel> c = new HashMap <>();
 
         for (Cuartel cuartel : cuarteles) {
             //coordenadas del cuartel
             double x1 = cuartel.getCoordX();
             double y1 = cuartel.getCoordY();
+            
             //coordenadas del siniestro
             double x2 = siniestro.getCoordX();
             double y2 = siniestro.getCoordY();
+            
             double dis = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-            ///Tendríamos que ir agregando los cuarteles y ordenarlos de menor a mayor
-//            if (dis < aux) {
-//                cuartelesMasCercano = cuartel;
-//                aux = dis;
-//            }
+         dis = calcularDistancia(x1, y1, x2, y2);
+            c.put(dis, cuartel);
 
-
+        }
+        TreeMap<Double, Cuartel> tree = new TreeMap<>(new OrdenarCuartelesAsc());
+        tree.putAll(c);
+        
+        for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
+            Double key = entry.getKey();
+            Cuartel value = entry.getValue();
+          
+          
+           /// cuartelesMasCercanos.add(value);
         }
         
         
-      ///  double aux1 = (aux/1)*95;
-   
-        return cuartelesMasCercanos;
+        return tree;
+    }
+
+     public TreeMap cuartelesDisponiblesCompleto(Siniestro siniestro) {
+        ArrayList<Cuartel> cuarteles = cd.listarCuartel();
+        HashMap<Double, Cuartel> cuartelesMasCercanos = new HashMap<>();
+        HashMap<Double, Cuartel> c = new HashMap <>();
+ 
+        for (Cuartel cuartel : cuarteles) {
+            //coordenadas del cuartel
+            double x1 = cuartel.getCoordX();
+            double y1 = cuartel.getCoordY();   
+            //coordenadas del siniestro
+            double x2 = siniestro.getCoordX();
+            double y2 = siniestro.getCoordY();
+
+            double dis = calcularDistancia(x1, y1, x2, y2);
+            
+            
+            c.put(dis, cuartel);
+
+        }
+        TreeMap<Double, Cuartel> tree = new TreeMap<>(new OrdenarCuartelesAsc());
+        tree.putAll(c);
+        
+        for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
+            Double key = entry.getKey();
+            Cuartel value = entry.getValue();
+          
+          
+           /// cuartelesMasCercanos.add(value);
+        }
+        
+        
+        return tree;
     }
     
+   /// SELECT a.nombre_br, a.nro_cuartel,  a.especialidad, b.tipo, b.codigo FROM brigada a JOIN siniestro b ON a.especialidad = b.tipo WHERE a.libre=true AND b.tipo LIKE "Incendios en viviendas e industrias" and a.estado=1;
+       public ArrayList mostrarIncidenteEntreAyerYHoy(){
+        ArrayList<Siniestro> siniestrosAyeryHoy= new ArrayList<>();
+        LocalDate fechaActual= LocalDate.now();
+        ArrayList<Siniestro> siniestros= listarSiniestros(); 
+        
+           for (int i = 0; i < siniestros.size(); i++) {
+              
+           }
+        
+        return siniestrosAyeryHoy;
+    }
  }
         
     
-    //Mostrar todos los incidentes o siniestros que han ocurrido entre ayer y hoy
-//    public ArrayList mostrarIncidenteEntreAyerYHoy(){
-//        LocalDate fechaActual= LocalDate.now();
-//        ArrayList<Siniestro> siniestros= new ArrayList();
-//        
-//        
-//    }
+ 
 
     
     
