@@ -27,12 +27,29 @@ public class MenuView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         Escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmBombero = new javax.swing.JMenu();
         jmFormularioBombero = new javax.swing.JMenuItem();
         jBrigadas = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenu1.setText("File");
+        jMenuBar2.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar2.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,7 +100,35 @@ public class MenuView extends javax.swing.JFrame {
         jBrigadas.setBackground(new java.awt.Color(255, 255, 255));
         jBrigadas.setForeground(new java.awt.Color(0, 51, 51));
         jBrigadas.setText("Brigadas");
+
+        jMenuItem2.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuItem2.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuItem2.setText("Formulario Brigadas");
+        jBrigadas.add(jMenuItem2);
+
         jMenuBar1.add(jBrigadas);
+
+        jMenu3.setBackground(new java.awt.Color(255, 255, 255));
+        jMenu3.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu3.setText("Cuarteles");
+
+        jMenuItem3.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuItem3.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuItem3.setText("Formulario Cuarteles");
+        jMenu3.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setBackground(new java.awt.Color(255, 255, 255));
+        jMenu4.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu4.setText("Siniestros");
+
+        jMenuItem4.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuItem4.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuItem4.setText("Formulario Siniestro");
+        jMenu4.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -151,7 +196,16 @@ public class MenuView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenu jBrigadas;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu jmBombero;
     private javax.swing.JMenuItem jmFormularioBombero;
