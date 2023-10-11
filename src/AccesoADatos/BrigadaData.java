@@ -159,13 +159,10 @@ public class BrigadaData {
     }
     public ArrayList listarBrigadasOcupadas(){
       ArrayList<Brigada> aux = listarBrigada();
-       ArrayList<Brigada> brigadasOcupadas= new ArrayList<>();
-       
+       ArrayList<Brigada> brigadasOcupadas= new ArrayList<>();       
             for(Brigada brigada:aux){
-             if (brigada.isLibre()==false){
-               
-             brigadasOcupadas.add(brigada);
-             
+             if (brigada.isLibre()==false){               
+             brigadasOcupadas.add(brigada);             
              }
           }
     return  brigadasOcupadas;

@@ -29,7 +29,6 @@ public class CuartelData {
     
     public void guardarCuartel(Cuartel cuartel) {
         String sql = "INSERT INTO cuartel(nombre_cuartel, direccion, coord_X, coord_Y, telefono, correo, estado) VALUES (?,?,?,?,?,?,?)";
-
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, cuartel.getNombre());
@@ -52,7 +51,6 @@ public class CuartelData {
 
     public Cuartel buscarCuartel(int id) {
         Cuartel cuartel = new Cuartel();
-
         try {
             String query = "SELECT * FROM cuartel WHERE cod_cuartel=?";
             PreparedStatement ps = con.prepareStatement(query);
@@ -67,7 +65,6 @@ public class CuartelData {
                 cuartel.setTelefono(rs.getString("telefono"));
                 cuartel.setCorreo(rs.getString("correo"));
                 cuartel.setEstado(rs.getBoolean("estado"));
-
                 JOptionPane.showMessageDialog(null, "Cuartel encontrado.");
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro el cuartel con el id:" + id);
@@ -110,7 +107,6 @@ public class CuartelData {
             ps.setString(6, cuartel.getCorreo());
             ps.setBoolean(7, cuartel.isEstado());
             ps.setInt(8, cuartel.getCodigo());
-
             int resultado = ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (resultado == 1) {
