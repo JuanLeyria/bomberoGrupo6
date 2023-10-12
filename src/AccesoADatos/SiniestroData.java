@@ -7,7 +7,6 @@ package AccesoADatos;
 
 import Entidades.Cuartel;
 import Entidades.Siniestro;
-import com.oracle.net.Sdp;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.TreeSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -168,8 +166,7 @@ public class SiniestroData {
         
         System.out.println("La distancia entre ambos puntos es : "+ aux1+ " km");
         return cuartelesMasCercano;
-    }
-    
+    }    
     
     public double calcularDistancia(double x1, double y1, double x2, double y2){
      
@@ -183,41 +180,31 @@ public class SiniestroData {
         ArrayList<Cuartel> cuarteles = cd.listarCuartel();
         HashMap<Double, Cuartel> cuartelesMasCercanos = new HashMap<>();
         HashMap<Double, Cuartel> c = new HashMap <>();
-
         for (Cuartel cuartel : cuarteles) {
             //coordenadas del cuartel
             double x1 = cuartel.getCoordX();
-            double y1 = cuartel.getCoordY();
-            
+            double y1 = cuartel.getCoordY();            
             //coordenadas del siniestro
             double x2 = siniestro.getCoordX();
-            double y2 = siniestro.getCoordY();
-            
+            double y2 = siniestro.getCoordY();            
             double dis = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
          dis = calcularDistancia(x1, y1, x2, y2);
             c.put(dis, cuartel);
-
         }
         TreeMap<Double, Cuartel> tree = new TreeMap<>(new OrdenarCuartelesAsc());
-        tree.putAll(c);
-        
+        tree.putAll(c);        
         for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
             Double key = entry.getKey();
-            Cuartel value = entry.getValue();
-          
-          
+            Cuartel value = entry.getValue();          
            /// cuartelesMasCercanos.add(value);
-        }
-        
-        
+        }  
         return tree;
     }
 
-     public TreeMap cuartelesDisponiblesCompleto(Siniestro siniestro) {
+    public TreeMap cuartelesDisponiblesCompleto(Siniestro siniestro) {
         ArrayList<Cuartel> cuarteles = cd.listarCuartel();
         HashMap<Double, Cuartel> cuartelesMasCercanos = new HashMap<>();
-        HashMap<Double, Cuartel> c = new HashMap <>();
- 
+        HashMap<Double, Cuartel> c = new HashMap <>(); 
         for (Cuartel cuartel : cuarteles) {
             //coordenadas del cuartel
             double x1 = cuartel.getCoordX();
@@ -225,40 +212,34 @@ public class SiniestroData {
             //coordenadas del siniestro
             double x2 = siniestro.getCoordX();
             double y2 = siniestro.getCoordY();
-
-            double dis = calcularDistancia(x1, y1, x2, y2);
-            
-            
+            double dis = calcularDistancia(x1, y1, x2, y2);            
             c.put(dis, cuartel);
-
         }
         TreeMap<Double, Cuartel> tree = new TreeMap<>(new OrdenarCuartelesAsc());
-        tree.putAll(c);
-        
+        tree.putAll(c);        
         for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
             Double key = entry.getKey();
-            Cuartel value = entry.getValue();
-          
-          
+            Cuartel value = entry.getValue();          
            /// cuartelesMasCercanos.add(value);
-        }
-        
-        
+        }        
         return tree;
     }
     
    /// SELECT a.nombre_br, a.nro_cuartel,  a.especialidad, b.tipo, b.codigo FROM brigada a JOIN siniestro b ON a.especialidad = b.tipo WHERE a.libre=true AND b.tipo LIKE "Incendios en viviendas e industrias" and a.estado=1;
-       public ArrayList mostrarIncidenteEntreAyerYHoy(){
+    public ArrayList mostrarIncidenteEntreAyerYHoy(){
         ArrayList<Siniestro> siniestrosAyeryHoy= new ArrayList<>();
-        LocalDate fechaActual= LocalDate.now();
-        ArrayList<Siniestro> siniestros= listarSiniestros(); 
-        
-           for (int i = 0; i < siniestros.size(); i++) {
-              
-           }
-        
+        LocalDate fechaAyer= LocalDate.now().minusDays(1);        
+        ArrayList<Siniestro> siniestros= listarSiniestros();         
+           for (Siniestro siniestro : siniestros) {
+               if (siniestro.getFechaSiniestro()==fechaAyer || siniestro.getFechaSiniestro()==LocalDate.now()) {
+                   siniestrosAyeryHoy.add(siniestro);
+               }            
+        }
         return siniestrosAyeryHoy;
     }
+     
+    
+       
  }
         
     
