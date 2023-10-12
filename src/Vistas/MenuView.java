@@ -37,11 +37,11 @@ public class MenuView extends javax.swing.JFrame {
         jmBombero = new javax.swing.JMenu();
         jmFormularioBombero = new javax.swing.JMenuItem();
         jBrigadas = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jmFormularioBrigadas = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jmFormularioCuarteles = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jmFormularioSiniestro = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -101,10 +101,15 @@ public class MenuView extends javax.swing.JFrame {
         jBrigadas.setForeground(new java.awt.Color(0, 51, 51));
         jBrigadas.setText("Brigadas");
 
-        jMenuItem2.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuItem2.setForeground(new java.awt.Color(0, 0, 0));
-        jMenuItem2.setText("Formulario Brigadas");
-        jBrigadas.add(jMenuItem2);
+        jmFormularioBrigadas.setBackground(new java.awt.Color(255, 255, 255));
+        jmFormularioBrigadas.setForeground(new java.awt.Color(0, 0, 0));
+        jmFormularioBrigadas.setText("Formulario Brigadas");
+        jmFormularioBrigadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmFormularioBrigadasActionPerformed(evt);
+            }
+        });
+        jBrigadas.add(jmFormularioBrigadas);
 
         jMenuBar1.add(jBrigadas);
 
@@ -112,10 +117,15 @@ public class MenuView extends javax.swing.JFrame {
         jMenu3.setForeground(new java.awt.Color(0, 0, 0));
         jMenu3.setText("Cuarteles");
 
-        jMenuItem3.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuItem3.setForeground(new java.awt.Color(0, 0, 0));
-        jMenuItem3.setText("Formulario Cuarteles");
-        jMenu3.add(jMenuItem3);
+        jmFormularioCuarteles.setBackground(new java.awt.Color(255, 255, 255));
+        jmFormularioCuarteles.setForeground(new java.awt.Color(0, 0, 0));
+        jmFormularioCuarteles.setText("Formulario Cuarteles");
+        jmFormularioCuarteles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmFormularioCuartelesActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmFormularioCuarteles);
 
         jMenuBar1.add(jMenu3);
 
@@ -123,10 +133,15 @@ public class MenuView extends javax.swing.JFrame {
         jMenu4.setForeground(new java.awt.Color(0, 0, 0));
         jMenu4.setText("Siniestros");
 
-        jMenuItem4.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuItem4.setForeground(new java.awt.Color(0, 0, 0));
-        jMenuItem4.setText("Formulario Siniestro");
-        jMenu4.add(jMenuItem4);
+        jmFormularioSiniestro.setBackground(new java.awt.Color(255, 255, 255));
+        jmFormularioSiniestro.setForeground(new java.awt.Color(0, 0, 0));
+        jmFormularioSiniestro.setText("Formulario Siniestro");
+        jmFormularioSiniestro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmFormularioSiniestroActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jmFormularioSiniestro);
 
         jMenuBar1.add(jMenu4);
 
@@ -157,6 +172,34 @@ public class MenuView extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_jmFormularioBomberoActionPerformed
+
+    private void jmFormularioCuartelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFormularioCuartelesActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        CuartelView cv = new CuartelView();
+        cv.setVisible(true);
+        Escritorio.add(cv);
+        Escritorio.moveToFront(cv);
+
+    }//GEN-LAST:event_jmFormularioCuartelesActionPerformed
+
+    private void jmFormularioBrigadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFormularioBrigadasActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        BrigadasView brv = new BrigadasView();
+        brv.setVisible(true);
+        Escritorio.add(brv);
+        Escritorio.moveToFront(brv);
+    }//GEN-LAST:event_jmFormularioBrigadasActionPerformed
+
+    private void jmFormularioSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFormularioSiniestroActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        SiniestroView sv = new SiniestroView();
+        sv.setVisible(true);
+        Escritorio.add(sv);
+        Escritorio.moveToFront(sv);
+    }//GEN-LAST:event_jmFormularioSiniestroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,11 +246,11 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu jmBombero;
     private javax.swing.JMenuItem jmFormularioBombero;
+    private javax.swing.JMenuItem jmFormularioBrigadas;
+    private javax.swing.JMenuItem jmFormularioCuarteles;
+    private javax.swing.JMenuItem jmFormularioSiniestro;
     // End of variables declaration//GEN-END:variables
 }
