@@ -7,12 +7,11 @@ package bomberogrupo6;
 
 import AccesoADatos.BomberoData;
 import AccesoADatos.BrigadaData;
+import AccesoADatos.Conexion;
 import AccesoADatos.CuartelData;
 import AccesoADatos.SiniestroData;
-import Entidades.Siniestro;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import Vistas.MenuView;
+import java.sql.Connection;
 
 /**
  *
@@ -30,6 +29,11 @@ public class BomberoGrupo6 {
         BomberoData bomd = new BomberoData();
         SiniestroData sd= new SiniestroData();
 
+        MenuView escr = new MenuView();
+        escr.setVisible(true);
+        Connection con = Conexion.getConexion();
+        
+        
 // CREACION DE BRIGADA
 
 //        Brigada br1 = new Brigada(1,"FUEGITOS DEL SUR", "Incendios en viviendas e industrias", true, cd.buscarCuartel(1), true);
@@ -54,8 +58,8 @@ public class BomberoGrupo6 {
 
 //GUARDAR SINIESTRO
 // -31.31543484449304, -64.21539722294976
-    Siniestro sin= new Siniestro("Incendios en viviendas e industrias", LocalDate.now(), Time.valueOf(LocalTime.now())
-            , -31.31543484449304, -64.21539722294976, "Incendio en la torre de control", null, null, 8, null, true);
+//    Siniestro sin= new Siniestro("Incendios en viviendas e industrias", LocalDate.now(), Time.valueOf(LocalTime.now())
+//            , -31.31543484449304, -64.21539722294976, "Incendio en la torre de control", null, null, 8, null, true);
 //    sd.guardarSiniestro(sin);
    // sd.resolverSiniestro(sin);
    // sd.calcularDistancia(sin);
