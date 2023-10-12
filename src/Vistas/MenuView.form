@@ -84,6 +84,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmFormularioBrigadasActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmListadoBrigadas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listado de Brigadas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmListadoBrigadasActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
@@ -137,6 +145,32 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmFormularioSiniestroActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmAgregarBrigadas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Asignar Brigadas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmAgregarBrigadasActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmResolverSiniestro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Resolver Siniestro"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmMostrarSiniestro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mostrar Siniestros"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmMostrarSiniestroActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmHistoriaSiniestro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Historial siniestros"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>

@@ -38,10 +38,15 @@ public class MenuView extends javax.swing.JFrame {
         jmFormularioBombero = new javax.swing.JMenuItem();
         jBrigadas = new javax.swing.JMenu();
         jmFormularioBrigadas = new javax.swing.JMenuItem();
+        jmListadoBrigadas = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jmFormularioCuarteles = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jmFormularioSiniestro = new javax.swing.JMenuItem();
+        jmAgregarBrigadas = new javax.swing.JMenuItem();
+        jmResolverSiniestro = new javax.swing.JMenuItem();
+        jmMostrarSiniestro = new javax.swing.JMenuItem();
+        jmHistoriaSiniestro = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -111,6 +116,14 @@ public class MenuView extends javax.swing.JFrame {
         });
         jBrigadas.add(jmFormularioBrigadas);
 
+        jmListadoBrigadas.setText("Listado de Brigadas");
+        jmListadoBrigadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmListadoBrigadasActionPerformed(evt);
+            }
+        });
+        jBrigadas.add(jmListadoBrigadas);
+
         jMenuBar1.add(jBrigadas);
 
         jMenu3.setBackground(new java.awt.Color(255, 255, 255));
@@ -142,6 +155,28 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jmFormularioSiniestro);
+
+        jmAgregarBrigadas.setText("Asignar Brigadas");
+        jmAgregarBrigadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAgregarBrigadasActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jmAgregarBrigadas);
+
+        jmResolverSiniestro.setText("Resolver Siniestro");
+        jMenu4.add(jmResolverSiniestro);
+
+        jmMostrarSiniestro.setText("Mostrar Siniestros");
+        jmMostrarSiniestro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmMostrarSiniestroActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jmMostrarSiniestro);
+
+        jmHistoriaSiniestro.setText("Historial siniestros");
+        jMenu4.add(jmHistoriaSiniestro);
 
         jMenuBar1.add(jMenu4);
 
@@ -201,6 +236,29 @@ public class MenuView extends javax.swing.JFrame {
         Escritorio.moveToFront(sv);
     }//GEN-LAST:event_jmFormularioSiniestroActionPerformed
 
+    private void jmListadoBrigadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListadoBrigadasActionPerformed
+       
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        ListadoDeBrigadaView lbv = new ListadoDeBrigadaView();
+        lbv.setVisible(true);
+        Escritorio.add(lbv);
+        Escritorio.moveToFront(lbv);
+    }//GEN-LAST:event_jmListadoBrigadasActionPerformed
+
+    private void jmMostrarSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMostrarSiniestroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmMostrarSiniestroActionPerformed
+
+    private void jmAgregarBrigadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarBrigadasActionPerformed
+               Escritorio.removeAll();
+        Escritorio.repaint();
+        AsignarBrigadasView abv= new AsignarBrigadasView();
+        abv.setVisible(true);
+        Escritorio.add(abv);
+        Escritorio.moveToFront(abv);
+    }//GEN-LAST:event_jmAgregarBrigadasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -247,10 +305,15 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jmAgregarBrigadas;
     private javax.swing.JMenu jmBombero;
     private javax.swing.JMenuItem jmFormularioBombero;
     private javax.swing.JMenuItem jmFormularioBrigadas;
     private javax.swing.JMenuItem jmFormularioCuarteles;
     private javax.swing.JMenuItem jmFormularioSiniestro;
+    private javax.swing.JMenuItem jmHistoriaSiniestro;
+    private javax.swing.JMenuItem jmListadoBrigadas;
+    private javax.swing.JMenuItem jmMostrarSiniestro;
+    private javax.swing.JMenuItem jmResolverSiniestro;
     // End of variables declaration//GEN-END:variables
 }
