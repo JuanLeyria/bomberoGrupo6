@@ -5,10 +5,17 @@
  */
 package AccesoADatos;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Juan
  */
-public class OrdenarCuartelesAsc {
+public class OrdenarCuartelesAsc implements Comparator<Double>{
+
+    @Override
+    public int compare(Double t, Double t1) {
+     return t.compareTo(t1);
+    }
     
 }
