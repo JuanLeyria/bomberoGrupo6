@@ -53,7 +53,6 @@ public class BrigadaData {
     public Brigada buscarBrigada(int id) {
         Brigada br = new Brigada();
         Cuartel cuartel = new Cuartel();
-
         try {
             String query = "SELECT * FROM brigada WHERE cod_brigada=" + id;
             PreparedStatement ps = con.prepareStatement(query);
@@ -74,7 +73,7 @@ public class BrigadaData {
             JOptionPane.showMessageDialog(null, "Error al buscar la brigada.");
         }
         return br;
-    }
+    }   
 
     public void modificarBrigada(Brigada brigada) {
 

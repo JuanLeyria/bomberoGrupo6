@@ -83,6 +83,35 @@ public class BomberoData {
         return b;
     }
 
+    public Bombero buscarBomberoPorDni(String dni) {
+        Bombero b = new Bombero();
+        Brigada br = new Brigada();
+        try {
+            String query = "SELECT * FROM bombero WHERE dni=" + dni;
+            PreparedStatement ps = con.prepareStatement(query);
+            //ps.setString(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                b.setIdBombero(rs.getInt("id_bombero"));
+                b.setDni(dni);
+                b.setNombre(rs.getString("nombre"));
+                b.setApellido(rs.getString("apellido"));
+                b.setFechaNac(rs.getDate("fecha_nac").toLocalDate());
+                b.setCelular(rs.getString("celular"));
+                b.setBrigada(bd.buscarBrigada(rs.getInt("cod_brigada")));
+                b.setGrupoSanguineo(rs.getString("grupo_sanguineo"));
+                b.setEstado(rs.getBoolean("estado"));
+                JOptionPane.showMessageDialog(null, "Bombero encontrado.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro al bombero con el DNI:" + dni);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se encontro al bombero.");
+        }
+        return b;
+    }
+
     public void darDeBajaBombero(int id) {        
         try {
             String sql = "UPDATE bombero SET estado=0 WHERE id_bombero=" + id;

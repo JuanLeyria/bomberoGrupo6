@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Juan
@@ -16,6 +18,9 @@ public class MenuView extends javax.swing.JFrame {
      */
     public MenuView() {
         initComponents();
+        this.setTitle("Bomberos");
+        this.setLocationRelativeTo(null);
+        //this.setIconImage(new ImageIcon(this.getClass().getResource("/universidadgrupo6/Imagenes/icon.jpg")).getImage()); 
     }
 
     /**

@@ -113,7 +113,7 @@ public class Cuartel {
 
     @Override
     public String toString() {
-        return "Cuartel{" + "nombre=" + nombre + '}';
+        return  nombre;
     }
 
    

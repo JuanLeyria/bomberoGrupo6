@@ -10,6 +10,7 @@ import AccesoADatos.BrigadaData;
 import AccesoADatos.Conexion;
 import AccesoADatos.CuartelData;
 import AccesoADatos.SiniestroData;
+import Entidades.Cuartel;
 import Vistas.MenuView;
 import java.sql.Connection;
 
@@ -49,7 +50,7 @@ public class BomberoGrupo6 {
 //        bomd.guardarBombero(bom2);
 
 // CREACION DE CUARTELES
-
+//
 //        Cuartel cuartel1 = new Cuartel("Santa Teresa", "Rt. Los Pescadores", -33.29498919318194, -66.34584462106838, "2664525497", "SantateresaSL@gmail.com", true);
 //        Cuartel cuartel2 = new Cuartel("El Colibri", "AV. Presidente Peron", -33.29996967022411, -66.32757794978103, "2665294835", "CuartelcolibriesSL@gmail.com", true); 
 //        
@@ -110,7 +111,6 @@ public class BomberoGrupo6 {
 //        for (Siniestro siniestro : (ArrayList<Siniestro>) sd.listarSiniestros()) {
 //            System.out.println(siniestro.toString());
 //        }
-
 
 
  }

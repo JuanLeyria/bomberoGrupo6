@@ -124,8 +124,10 @@ public class Bombero {
 
     @Override
     public String toString() {
-        return "Bombero{" + "idBombero=" + idBombero + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNac=" + fechaNac + ", celular=" + celular + ", brigada=" + brigada.getNombre() + ", cuartel= " +  brigada.getCuartel().getNombre() + ", grupoSanguineo=" + grupoSanguineo + ", estado=" + estado + '}';
+        return "Bombero{" + "idBombero=" + idBombero + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNac=" + fechaNac + ", celular=" + celular + ", brigada=" + brigada + ", grupoSanguineo=" + grupoSanguineo + ", estado=" + estado + '}';
     }
+
+  
 
     
  
