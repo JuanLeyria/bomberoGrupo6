@@ -72,7 +72,7 @@ public class BomberoData {
                    b.setBrigada(bd.buscarBrigada(rs.getInt("cod_brigada")));
                    b.setGrupoSanguineo(rs.getString("grupo_sanguineo"));
                    b.setEstado(rs.getBoolean("estado"));                   
-                   JOptionPane.showMessageDialog(null, "Bombero encontrado.");
+               ///    JOptionPane.showMessageDialog(null, "Bombero encontrado.");
                }else{
                    JOptionPane.showMessageDialog(null, "No se encontro al bombero con el id:"+id);
                 }                 
@@ -101,7 +101,7 @@ public class BomberoData {
                 b.setBrigada(bd.buscarBrigada(rs.getInt("cod_brigada")));
                 b.setGrupoSanguineo(rs.getString("grupo_sanguineo"));
                 b.setEstado(rs.getBoolean("estado"));
-                JOptionPane.showMessageDialog(null, "Bombero encontrado.");
+              ///  JOptionPane.showMessageDialog(null, "Bombero encontrado.");
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro al bombero con el DNI:" + dni);
             }

@@ -64,7 +64,7 @@ public class BrigadaData {
                 br.setLibre(rs.getBoolean("libre"));
                 br.setCuartel(cd.buscarCuartel(rs.getInt("nro_cuartel")));
                 br.setLibre(rs.getBoolean("estado"));
-                JOptionPane.showMessageDialog(null, "Brigada encontrada.");
+            ///    JOptionPane.showMessageDialog(null, "Brigada encontrada.");
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro la brigada con el id:" + id);
             }

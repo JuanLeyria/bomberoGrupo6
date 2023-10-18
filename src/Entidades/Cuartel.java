@@ -22,6 +22,11 @@ public class Cuartel {
     public Cuartel() {
     }
 
+    public Cuartel(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
     public Cuartel(int codigo, String nombre, String direccion, double coordX, double coordY, String telefono, String correo, boolean estado) {
         this.codigo = codigo;
         this.nombre = nombre;

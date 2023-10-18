@@ -20,6 +20,12 @@ public class Brigada {
     public Brigada() {
     }
 
+    public Brigada(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
+    
     public Brigada(int codigo, String nombre, String especialidad, boolean libre, Cuartel cuartel, boolean estado) {
         this.codigo = codigo;
         this.nombre = nombre;

@@ -10,6 +10,7 @@ import AccesoADatos.BrigadaData;
 import AccesoADatos.Conexion;
 import AccesoADatos.CuartelData;
 import AccesoADatos.SiniestroData;
+import Entidades.Brigada;
 import Entidades.Cuartel;
 import Vistas.MenuView;
 import java.sql.Connection;
@@ -36,7 +37,7 @@ public class BomberoGrupo6 {
         
         
 // CREACION DE BRIGADA
-
+//
 //        Brigada br1 = new Brigada(1,"FUEGITOS DEL SUR", "Incendios en viviendas e industrias", true, cd.buscarCuartel(1), true);
 //        Brigada br2 = new Brigada("DERRUMBES DEL SUR", "Salvamento en derrumbes", true, cd.buscarCuartel(2), true);
 //        bd.modificarBrigada(br1);
