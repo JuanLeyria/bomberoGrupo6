@@ -65,7 +65,7 @@ public class CuartelData {
                 cuartel.setTelefono(rs.getString("telefono"));
                 cuartel.setCorreo(rs.getString("correo"));
                 cuartel.setEstado(rs.getBoolean("estado"));
-                JOptionPane.showMessageDialog(null, "Cuartel encontrado.");
+                //JOptionPane.showMessageDialog(null, "Cuartel encontrado.");
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro el cuartel con el id:" + id);
             }

@@ -11,8 +11,10 @@ import AccesoADatos.CuartelData;
 import Entidades.Bombero;
 import Entidades.Brigada;
 import Entidades.Cuartel;
+import java.awt.event.ItemEvent;
 import java.sql.Date;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -300,7 +302,9 @@ public class BomberoView extends javax.swing.JInternalFrame {
             jtCelular.setText(b.getCelular());
             jcGrupoSanguinio.setSelectedItem(b.getGrupoSanguineo()+"");
             jdFechaNacimiento.setDate(Date.valueOf(b.getFechaNac()));            
-            if (b.getBrigada()!=null) {                
+            if (b.getBrigada()!=null) {
+                cbCuartel.removeAllItems();
+                LlenarCBCuarteles();
                 cbCuartel.setSelectedItem(b.getBrigada().getCuartel()); 
                 LlenarCBBrigadas(b.getBrigada().getCuartel());
                 cbBrigada.setSelectedItem(b.getBrigada());                
@@ -320,12 +324,16 @@ public class BomberoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtDNIKeyTyped
 
     private void cbCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCuartelActionPerformed
-        // Ver evento
-        //LlenarCBBrigadas((Cuartel)cbCuartel.getSelectedItem());
+        
     }//GEN-LAST:event_cbCuartelActionPerformed
 
     private void cbCuartelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCuartelItemStateChanged
-     
+        if (evt.getStateChange()== ItemEvent.SELECTED) {
+            Cuartel cuartel= (Cuartel)cbCuartel.getSelectedItem();
+            BrigadaData bd= new BrigadaData();
+            cbBrigada.removeAllItems();
+            LlenarCBBrigadas(cuartel);            
+        }
     }//GEN-LAST:event_cbCuartelItemStateChanged
     
     private void LlenarCBCuarteles(){
@@ -333,6 +341,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
         ArrayList<Cuartel> cuarteles = new ArrayList<>();        
         CuartelData cd= new CuartelData();
         cuarteles = cd.listarCuartel();
+        cbCuartel.addItem(null);
         for (Cuartel cuartel : cuarteles) {
             cbCuartel.addItem(cuartel);
         }
@@ -342,6 +351,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
         ArrayList<Brigada> brigadas = new ArrayList<>();        
         BrigadaData bd= new BrigadaData();
         brigadas = bd.listarBrigadasPorCuartel(cuartel.getCodigo());
+        
         for (Brigada brigada : brigadas) {
             cbBrigada.addItem(brigada);
         }
