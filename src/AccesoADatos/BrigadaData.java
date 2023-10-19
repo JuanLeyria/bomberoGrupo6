@@ -5,6 +5,7 @@
  */
 package AccesoADatos;
 
+import Entidades.Bombero;
 import Entidades.Brigada;
 import Entidades.Cuartel;
 import java.sql.Connection;
@@ -166,4 +167,42 @@ public class BrigadaData {
           }
     return  brigadasOcupadas;
     }
+    
+    public boolean comprobarCapacidadBrigada(int h){
+        boolean confirmacion= false; 
+     try {
+          
+         String sql = "SELECT * FROM bombero WHERE estado = 1 AND cod_brigada ="+h;
+            
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Bombero> bomberos = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                Bombero b = new Bombero();
+                b.setIdBombero(rs.getInt("id_bombero"));
+                b.setDni(rs.getString("dni"));
+                b.setNombre(rs.getString("nombre"));
+                b.setApellido(rs.getString("apellido"));
+                b.setFechaNac(rs.getDate("fecha_nac").toLocalDate());
+                b.setCelular(rs.getString("celular"));
+                b.setBrigada(buscarBrigada(rs.getInt("cod_brigada")));
+                b.setGrupoSanguineo(rs.getString("grupo_sanguineo"));
+                b.setEstado(rs.getBoolean("estado"));
+                bomberos.add(b);
+            }
+            
+            if (bomberos.size()<5) {
+            confirmacion = true;
+         }else{
+               confirmacion = false; 
+            }
+            ps.close();
+        } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "Error al buscar la capacidad de la Brigada " + ex.getMessage());
+        }
+    
+ return confirmacion; 
+    }
+    
 }

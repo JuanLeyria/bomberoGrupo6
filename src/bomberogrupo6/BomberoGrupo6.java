@@ -30,10 +30,10 @@ public class BomberoGrupo6 {
         BrigadaData bd = new BrigadaData();
         BomberoData bomd = new BomberoData();
         SiniestroData sd= new SiniestroData();
-
-        MenuView escr = new MenuView();
-        escr.setVisible(true);
-        Connection con = Conexion.getConexion();
+ 
+       MenuView escr = new MenuView();
+       escr.setVisible(true);
+       Connection con = Conexion.getConexion();
         
         
 // CREACION DE BRIGADA

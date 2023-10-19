@@ -340,6 +340,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
             if (b.getBrigada() != null) {
                 cbCuartel.removeAllItems();
                 LlenarCBCuarteles(1);
+              
                 cbCuartel.setSelectedItem(b.getBrigada().getCuartel());
                 cbBrigada.removeAllItems();
                 LlenarCBBrigadas(b.getBrigada().getCuartel(), 1);
@@ -389,8 +390,10 @@ public class BomberoView extends javax.swing.JInternalFrame {
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
         // TODO add your handling code here:
         ////CONFIRMAR VACANTES DE BRIGADAS
+        BrigadaData brd = new BrigadaData(); 
         Bombero b = new Bombero();
         BomberoData bd = new BomberoData(); 
+       
         b.setApellido(jtApellido.getText());
         b.setNombre(jtNombre.getText());
         b.setCelular(jtCelular.getText());
@@ -400,11 +403,17 @@ public class BomberoView extends javax.swing.JInternalFrame {
         b.setFechaNac(jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         if (cbBrigada.getSelectedItem()!=null) {
                b.setBrigada((Brigada) cbBrigada.getSelectedItem());
+               
+               if (brd.comprobarCapacidadBrigada(b.getBrigada().getCodigo())) {
                  bd.guardarBombero(b);
+                 limpiarCampos();
+            }else{
+               JOptionPane.showMessageDialog(null,"La Brigada está completa. Elija otra Brigada");
+               }    
         }else{
         JOptionPane.showMessageDialog(null,"Es necesario agregar al bombero en una Brigada");
         }
-        limpiarCampos();
+     
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
@@ -415,12 +424,20 @@ public class BomberoView extends javax.swing.JInternalFrame {
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
        Bombero b = new Bombero();
-       BomberoData bd = new BomberoData();         
+       BomberoData bd = new BomberoData();    
+       BrigadaData brd = new BrigadaData(); 
         if (jtDNI.getText().length()!=0) {
             b = bd.buscarBomberoPorDni(jtDNI.getText());
-            if (b.getDni()!=null) {              
+            if (b.getDni()!=null) {   
+                
+                if (brd.comprobarCapacidadBrigada(b.getBrigada().getCodigo())){
                  bd.darDeAltaBombero(b.getIdBombero());
                  jtEstado.setText("Activo");
+                }else{
+                JOptionPane.showMessageDialog(null,"La Brigada ya está completa. Elija otra.");
+                }
+                
+                
             }                  
         }else{
             JOptionPane.showMessageDialog(null,"complete el campo del DNI");
@@ -430,6 +447,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         Bombero b = new Bombero();
         BomberoData bd = new BomberoData();
+        BrigadaData brd = new BrigadaData(); 
         if (jtDNI.getText().length() != 0) {
             b.setNombre(jtNombre.getText());
             b.setApellido(jtApellido.getText());
@@ -440,8 +458,16 @@ public class BomberoView extends javax.swing.JInternalFrame {
             b.setIdBombero(bd.buscarBomberoPorDni(jtDNI.getText()).getIdBombero());
             b.setDni(jtDNI.getText());
             b.setEstado(bd.buscarBomberoPorDni(jtDNI.getText()).isEstado());
+            
+             if (brd.comprobarCapacidadBrigada(b.getBrigada().getCodigo())){
             bd.modificarBombero(b);
             limpiarCampos();           
+             }else{
+               JOptionPane.showMessageDialog(null,"La Brigada está completa. Elija otra Brigada");
+               }
+             
+             
+             
         }else{
              JOptionPane.showMessageDialog(null,"complete el campo del DNI");
         }
