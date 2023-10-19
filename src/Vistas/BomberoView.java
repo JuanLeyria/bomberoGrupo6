@@ -13,7 +13,7 @@ import Entidades.Brigada;
 import Entidades.Cuartel;
 import java.awt.event.ItemEvent;
 import java.sql.Date;
-import java.time.LocalDate;
+import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -58,16 +58,17 @@ public class BomberoView extends javax.swing.JInternalFrame {
         jdFechaNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         jbAgregar = new javax.swing.JButton();
-        jbActualizar = new javax.swing.JButton();
+        jbModificar = new javax.swing.JButton();
         jbBuscar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jcGrupoSanguinio = new javax.swing.JComboBox<>();
+        jcGrupoSanguineo = new javax.swing.JComboBox<>();
         jbBaja = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         cbBrigada = new javax.swing.JComboBox<>();
         jbLimpiar = new javax.swing.JButton();
         jtEstado = new javax.swing.JTextField();
+        jbAlta = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -128,8 +129,13 @@ public class BomberoView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbActualizar.setBackground(new java.awt.Color(153, 153, 153));
-        jbActualizar.setText("Actualizar");
+        jbModificar.setBackground(new java.awt.Color(153, 153, 153));
+        jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
         jbBuscar.setBackground(new java.awt.Color(204, 204, 204));
         jbBuscar.setText("Buscar");
@@ -150,7 +156,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setText("Brigada");
 
-        jcGrupoSanguinio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "A+", "B+", "0+", "AB+", "A-", "B-", "0-", "AB-" }));
+        jcGrupoSanguineo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "A+", "B+", "0+", "AB+", "A-", "B-", "0-", "AB-" }));
 
         jbBaja.setText("Dar de Baja");
         jbBaja.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +176,13 @@ public class BomberoView extends javax.swing.JInternalFrame {
         });
 
         jtEstado.setEditable(false);
+
+        jbAlta.setText("Dar de Alta");
+        jbAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAltaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -203,13 +216,13 @@ public class BomberoView extends javax.swing.JInternalFrame {
                                     .addComponent(jtCelular, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jtApellido, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jcGrupoSanguinio, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(22, 22, 22)
-                                .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(2, 2, 2))
@@ -221,7 +234,8 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbAlta))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -232,7 +246,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -254,7 +268,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcGrupoSanguinio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -266,11 +280,12 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbAlta))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAgregar)
-                    .addComponent(jbActualizar)
+                    .addComponent(jbModificar)
                     .addComponent(jbSalir)
                     .addComponent(jbBaja))
                 .addGap(29, 29, 29))
@@ -305,36 +320,47 @@ public class BomberoView extends javax.swing.JInternalFrame {
         Bombero b= new Bombero();
         BrigadaData brd= new BrigadaData();
         Brigada bb= new Brigada();
-        b = bd.buscarBomberoPorDni(jtDNI.getText());
-        if (b!=null) {
+        //b = bd.buscarBomberoPorDni(jtDNI.getText());
+        if ( jtDNI.getText().length()!=0) {
+            b = bd.buscarBomberoPorDni(jtDNI.getText());
+        }else{
+            JOptionPane.showMessageDialog(null,"Complete el campo DNI");
+        }
+        if (b.getIdBombero()!=0 ) {
             jtNombre.setText(b.getNombre());
             jtApellido.setText(b.getApellido());
             jtCelular.setText(b.getCelular());
-            jcGrupoSanguinio.setSelectedItem(b.getGrupoSanguineo() + "");
+            jcGrupoSanguineo.setSelectedItem(b.getGrupoSanguineo() + "");
             jdFechaNacimiento.setDate(Date.valueOf(b.getFechaNac()));
             if (b.isEstado()) {
                 jtEstado.setText("Activo"); 
             }else{
-            jtEstado.setText("Inactivo");
+                jtEstado.setText("Inactivo");
             }
-           
-            
-            
             if (b.getBrigada() != null) {
-
                 cbCuartel.removeAllItems();
                 LlenarCBCuarteles(1);
                 cbCuartel.setSelectedItem(b.getBrigada().getCuartel());
                 cbBrigada.removeAllItems();
                 LlenarCBBrigadas(b.getBrigada().getCuartel(), 1);
                 cbBrigada.setSelectedItem(b.getBrigada());
-
             }
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
-        // TODO add your handling code here:
+        Bombero b = new Bombero();
+        BomberoData bd = new BomberoData(); 
+        
+        if (jtDNI.getText().length()!=0) {
+            b = bd.buscarBomberoPorDni(jtDNI.getText());
+            if (b.getDni()!=null) {              
+                 bd.darDeBajaBombero(b.getIdBombero());
+                 jtEstado.setText("Inactivo");
+            }                  
+        }else{
+            JOptionPane.showMessageDialog(null,"complete el campo el DNI");
+        }
     }//GEN-LAST:event_jbBajaActionPerformed
 
     private void jtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDNIKeyTyped
@@ -363,12 +389,6 @@ public class BomberoView extends javax.swing.JInternalFrame {
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
         // TODO add your handling code here:
         ////CONFIRMAR VACANTES DE BRIGADAS
-        
-        
-        
-        
-        
-        
         Bombero b = new Bombero();
         BomberoData bd = new BomberoData(); 
         b.setApellido(jtApellido.getText());
@@ -376,32 +396,57 @@ public class BomberoView extends javax.swing.JInternalFrame {
         b.setCelular(jtCelular.getText());
         b.setEstado(true);
         b.setDni(jtDNI.getText());
-        b.setGrupoSanguineo((String) jcGrupoSanguinio.getSelectedItem());
+        b.setGrupoSanguineo((String) jcGrupoSanguineo.getSelectedItem());
         b.setFechaNac(jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        
-       
         if (cbBrigada.getSelectedItem()!=null) {
-                
                b.setBrigada((Brigada) cbBrigada.getSelectedItem());
                  bd.guardarBombero(b);
         }else{
         JOptionPane.showMessageDialog(null,"Es necesario agregar al bombero en una Brigada");
         }
-       
-   
         limpiarCampos();
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         // TODO add your handling code here:
       limpiarCampos();
-      
-
-
-        
-        
         
     }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
+       Bombero b = new Bombero();
+       BomberoData bd = new BomberoData();         
+        if (jtDNI.getText().length()!=0) {
+            b = bd.buscarBomberoPorDni(jtDNI.getText());
+            if (b.getDni()!=null) {              
+                 bd.darDeAltaBombero(b.getIdBombero());
+                 jtEstado.setText("Activo");
+            }                  
+        }else{
+            JOptionPane.showMessageDialog(null,"complete el campo del DNI");
+        }
+    }//GEN-LAST:event_jbAltaActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        Bombero b = new Bombero();
+        BomberoData bd = new BomberoData();
+        if (jtDNI.getText().length() != 0) {
+            b.setNombre(jtNombre.getText());
+            b.setApellido(jtApellido.getText());
+            b.setFechaNac(jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            b.setCelular(jtCelular.getText());
+            b.setGrupoSanguineo(jcGrupoSanguineo.getSelectedItem().toString());
+            b.setBrigada((Brigada) cbBrigada.getSelectedItem());
+            b.setIdBombero(bd.buscarBomberoPorDni(jtDNI.getText()).getIdBombero());
+            b.setDni(jtDNI.getText());
+            b.setEstado(bd.buscarBomberoPorDni(jtDNI.getText()).isEstado());
+            bd.modificarBombero(b);
+            limpiarCampos();           
+        }else{
+             JOptionPane.showMessageDialog(null,"complete el campo del DNI");
+        }
+
+    }//GEN-LAST:event_jbModificarActionPerformed
     
     private void LlenarCBCuarteles(int j){
         Cuartel c= new Cuartel();
@@ -447,13 +492,14 @@ public class BomberoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton jbActualizar;
     private javax.swing.JButton jbAgregar;
+    private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBaja;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbLimpiar;
+    private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JComboBox<String> jcGrupoSanguinio;
+    private javax.swing.JComboBox<String> jcGrupoSanguineo;
     private com.toedter.calendar.JDateChooser jdFechaNacimiento;
     private javax.swing.JTextField jtApellido;
     private javax.swing.JTextField jtCelular;
@@ -466,7 +512,7 @@ jtNombre.setText("");
         jtDNI.setText("");
         jtApellido.setText("");
         jtCelular.setText("");
-        jcGrupoSanguinio.setSelectedIndex(0);
+        jcGrupoSanguineo.setSelectedIndex(0);
         jdFechaNacimiento.setDate(null);
         jtEstado.setText("");
         cbCuartel.removeAllItems();

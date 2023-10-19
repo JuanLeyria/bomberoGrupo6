@@ -70,7 +70,7 @@
                                       <Component id="jtCelular" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jtNombre" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jtApellido" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jcGrupoSanguinio" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
+                                      <Component id="jcGrupoSanguineo" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                                       <Component id="cbCuartel" min="-2" pref="242" max="-2" attributes="0"/>
                                       <Component id="jtEstado" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                                   </Group>
@@ -78,7 +78,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jbAgregar" min="-2" pref="110" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="jbActualizar" min="-2" pref="110" max="-2" attributes="0"/>
+                                  <Component id="jbModificar" min="-2" pref="110" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jbBaja" min="-2" pref="110" max="-2" attributes="0"/>
                               </Group>
@@ -96,6 +96,7 @@
                       <Component id="jbBuscar" min="-2" pref="110" max="-2" attributes="0"/>
                       <Component id="jbLimpiar" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
                       <Component id="jbSalir" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="jbAlta" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -110,7 +111,7 @@
                       <Component id="jLabel1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
                       <Component id="jtApellido" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -137,7 +138,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="jcGrupoSanguinio" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="jcGrupoSanguineo" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -153,11 +154,12 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel7" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jtEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbAlta" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jbAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbActualizar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbModificar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbSalir" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbBaja" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -277,13 +279,16 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAgregarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jbActualizar">
+        <Component class="javax.swing.JButton" name="jbModificar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Actualizar"/>
+            <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbModificarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbBuscar">
           <Properties>
@@ -315,7 +320,7 @@
             <Property name="text" type="java.lang.String" value="Brigada"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcGrupoSanguinio">
+        <Component class="javax.swing.JComboBox" name="jcGrupoSanguineo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="9">
@@ -373,6 +378,14 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbAlta">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Dar de Alta"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAltaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

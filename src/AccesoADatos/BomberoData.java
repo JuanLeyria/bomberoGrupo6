@@ -129,6 +129,23 @@ public class BomberoData {
         }
     }
     
+    public void darDeAltaBombero(int id) {        
+        try {
+            String sql = "UPDATE bombero SET estado=1 WHERE id_bombero=" + id;
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            int resultado = ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (resultado == 1) {
+                JOptionPane.showMessageDialog(null, "Bombero dado de alta.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Bombero no encontrado.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo dar de alta al bombero.");
+        }
+    }
+    
     public void modificarBombero(Bombero bombero){
         
         String sql = "UPDATE bombero SET dni=?, nombre=?, apellido=?, fecha_nac=?, celular=?, cod_brigada=?, grupo_sanguineo=?, estado=? WHERE id_bombero=?";
