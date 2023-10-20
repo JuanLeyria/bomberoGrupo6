@@ -51,8 +51,9 @@ public class BrigadasView extends javax.swing.JInternalFrame {
         jtEstado = new javax.swing.JTextField();
         jtId = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbBajas = new javax.swing.JButton();
+        jbAltas = new javax.swing.JButton();
+        jbLimpiarCampos = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("BRIGADAS");
@@ -68,6 +69,12 @@ public class BrigadasView extends javax.swing.JInternalFrame {
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setText("Estado");
+
+        jcCuartel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcCuartelActionPerformed(evt);
+            }
+        });
 
         jbAgregar.setText("Agregar");
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,16 +108,29 @@ public class BrigadasView extends javax.swing.JInternalFrame {
 
         jtEstado.setEditable(false);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("ID de brigadas");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbBajas.setText("Dar de Baja");
+        jbBajas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbBajasActionPerformed(evt);
             }
         });
 
-        jButton2.setText("jButton2");
+        jbAltas.setText("Dar de Alta");
+        jbAltas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAltasActionPerformed(evt);
+            }
+        });
+
+        jbLimpiarCampos.setText("Limpiar Campos");
+        jbLimpiarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarCamposActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,19 +139,8 @@ public class BrigadasView extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jButton1)
-                                .addGap(48, 48, 48)
-                                .addComponent(jButton2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -149,10 +158,23 @@ public class BrigadasView extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(18, 18, 18)
-                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jbLimpiarCampos))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbBajas, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbAltas, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +185,8 @@ public class BrigadasView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jbBuscar))
+                    .addComponent(jbBuscar)
+                    .addComponent(jbLimpiarCampos))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,7 +195,7 @@ public class BrigadasView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -180,13 +203,13 @@ public class BrigadasView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbModificar)
                     .addComponent(jbSalir)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jbAltas)
+                    .addComponent(jbBajas)
+                    .addComponent(jbModificar)
+                    .addComponent(jbAgregar))
                 .addGap(23, 23, 23))
         );
 
@@ -200,7 +223,7 @@ public class BrigadasView extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,8 +244,8 @@ public class BrigadasView extends javax.swing.JInternalFrame {
         b.setLibre(true);
         b.setCuartel((Cuartel) jcCuartel.getSelectedItem());
 
-        brd.modificarBrigada(b);
-
+        
+        brd.guardarBrigada(b);
         limpiarCampos();
 
 
@@ -238,8 +261,8 @@ public class BrigadasView extends javax.swing.JInternalFrame {
         b.setEstado(true);
         b.setLibre(true);
         b.setCuartel((Cuartel) jcCuartel.getSelectedItem());
-
-        brd.guardarBrigada(b);
+        b.setCodigo(Integer.parseInt(jtId.getText()));
+        brd.modificarBrigada(b);
 
         limpiarCampos();
 
@@ -257,27 +280,73 @@ public class BrigadasView extends javax.swing.JInternalFrame {
             bb = brd.buscarBrigada(Integer.parseInt(jtId.getText()));
           //  limpiarCampos();
             if (bb.getNombre() != null) {
+
                 jtNombreBrigada.setText(bb.getNombre());
                 jtId.setText(bb.getCodigo() + "");
-                jcEspecialidad.setSelectedItem(bb.getEspecialidad());
-//                jcCuartel.removeAllItems();
-//                LlenarCBCuarteles();
-                jcCuartel.setSelectedItem(bb.getCuartel());
-                
-                if (bb.isEstado()) {
+                 if (bb.isEstado()==true) {
                     jtEstado.setText("Activo");
                 } else {
                     jtEstado.setText("Inactivo");
                 }
+                jcEspecialidad.setSelectedItem(bb.getEspecialidad());
+               
+               // jcCuartel.removeAllItems();
+               // LlenarCBCuarteles();
+              
+                jcCuartel.setSelectedItem(bb.getCuartel());
+                
+               
             }
         }
 
 
     }//GEN-LAST:event_jbBuscarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbBajasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        BrigadaData brd = new BrigadaData();
+        Brigada b = new Brigada();
+
+        b.setNombre(jtNombreBrigada.getText());
+        b.setEspecialidad((String) jcEspecialidad.getSelectedItem());
+        b.setEstado(true);
+        b.setLibre(true);
+        b.setCuartel((Cuartel) jcCuartel.getSelectedItem());
+        b.setCodigo(Integer.parseInt(jtId.getText()));
+        brd.darDeBaja(b);
+
+        limpiarCampos();
+   
+        
+    }//GEN-LAST:event_jbBajasActionPerformed
+
+    private void jcCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCuartelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcCuartelActionPerformed
+
+    private void jbAltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltasActionPerformed
+        // TODO add your handling code here:
+          BrigadaData brd = new BrigadaData();
+        Brigada b = new Brigada();
+
+        b.setNombre(jtNombreBrigada.getText());
+        b.setEspecialidad((String) jcEspecialidad.getSelectedItem());
+        b.setEstado(true);
+        b.setLibre(true);
+        b.setCuartel((Cuartel) jcCuartel.getSelectedItem());
+        b.setCodigo(Integer.parseInt(jtId.getText()));
+        brd.darDeAlta(b);
+
+        limpiarCampos();
+        
+        
+        
+    }//GEN-LAST:event_jbAltasActionPerformed
+
+    private void jbLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarCamposActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_jbLimpiarCamposActionPerformed
     private void LlenarCBCuarteles() {
         Cuartel c = new Cuartel();
         ArrayList<Cuartel> cuarteles = new ArrayList<>();
@@ -304,8 +373,6 @@ public class BrigadasView extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -314,7 +381,10 @@ public class BrigadasView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbAgregar;
+    private javax.swing.JButton jbAltas;
+    private javax.swing.JButton jbBajas;
     private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbLimpiarCampos;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<Cuartel> jcCuartel;

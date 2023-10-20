@@ -166,6 +166,12 @@ public class BomberoView extends javax.swing.JInternalFrame {
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setText("Cuartel");
 
+        cbBrigada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbBrigadaActionPerformed(evt);
+            }
+        });
+
         jbLimpiar.setText("Limpiar Campos");
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -477,6 +483,10 @@ public class BomberoView extends javax.swing.JInternalFrame {
         
         }
     }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void cbBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBrigadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbBrigadaActionPerformed
     
     private void LlenarCBCuarteles(int j){
         Cuartel c= new Cuartel();

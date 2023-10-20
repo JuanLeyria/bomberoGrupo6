@@ -5,12 +5,15 @@
  */
 package Vistas;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Juan
  */
 public class ListadoDeBrigadaView extends javax.swing.JInternalFrame {
-
+private DefaultTableModel modelo = new DefaultTableModel(){        
+    };
     /**
      * Creates new form ListadoDeBrigadaView
      */
@@ -97,10 +100,10 @@ public class ListadoDeBrigadaView extends javax.swing.JInternalFrame {
                     .addComponent(jrBrigadasLibres)
                     .addComponent(jrBrigadasOcupadas))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(jbSalir)
-                .addGap(48, 48, 48))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -113,16 +116,25 @@ public class ListadoDeBrigadaView extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
-
+  private void armarCabecera() {
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Materia");
+        modelo.addColumn("Nota");
+        //jtNotas.setModel(modelo);
+    }  
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

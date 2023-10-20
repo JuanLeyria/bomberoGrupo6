@@ -64,7 +64,7 @@ public class BrigadaData {
                 br.setEspecialidad(rs.getString("especialidad"));
                 br.setLibre(rs.getBoolean("libre"));
                 br.setCuartel(cd.buscarCuartel(rs.getInt("nro_cuartel")));
-                br.setLibre(rs.getBoolean("estado"));
+                br.setEstado(rs.getBoolean("estado"));
             ///    JOptionPane.showMessageDialog(null, "Brigada encontrada.");
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro la brigada con el id:" + id);
@@ -206,5 +206,49 @@ public class BrigadaData {
     
  return confirmacion; 
     }
+    
+    public void darDeBaja(Brigada brigada) {
+
+        String sql = "UPDATE brigada SET estado=0 WHERE cod_brigada=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            ps.setInt(1, brigada.getCodigo());
+ 
+            int resultado = ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (resultado == 1) {
+                JOptionPane.showMessageDialog(null, "Brigada dada de baja.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La brigada no se pudo dar de baja.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer dar de baja la brigada");
+        }
+    }
+    public void darDeAlta(Brigada brigada) {
+
+        String sql = "UPDATE brigada SET estado=1 WHERE cod_brigada=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            ps.setInt(1, brigada.getCodigo());
+ 
+            int resultado = ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (resultado == 1) {
+                JOptionPane.showMessageDialog(null, "Brigada dada de alta.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La brigada no se pudo dar de alta.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer dar de alta la brigada");
+        }
+    }
+    
     
 }
