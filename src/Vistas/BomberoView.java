@@ -13,10 +13,8 @@ import Entidades.Brigada;
 import Entidades.Cuartel;
 import java.awt.event.ItemEvent;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,7 +28,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
      */
     public BomberoView() {
         initComponents();
-        LlenarCBCuarteles(2);
+        LlenarCBCuarteles(1);
     }
 
     /**
@@ -339,7 +337,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
             }
             if (b.getBrigada() != null) {
                 cbCuartel.removeAllItems();
-                LlenarCBCuarteles(1);
+                LlenarCBCuarteles(2);
               
                 cbCuartel.setSelectedItem(b.getBrigada().getCuartel());
                 cbBrigada.removeAllItems();
@@ -445,10 +443,16 @@ public class BomberoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        
+        //No Muestra el cuartel requerido
+        
         Bombero b = new Bombero();
         BomberoData bd = new BomberoData();
         BrigadaData brd = new BrigadaData(); 
         if (jtDNI.getText().length() != 0) {
+            if (jtNombre.getText().equals("") || jtApellido.getText().equals("") || jdFechaNacimiento == null || jtCelular.getText().equals("")||jcGrupoSanguineo.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(null,"Busque el bombero correspondiente");
+            }else {
             b.setNombre(jtNombre.getText());
             b.setApellido(jtApellido.getText());
             b.setFechaNac(jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
@@ -466,12 +470,12 @@ public class BomberoView extends javax.swing.JInternalFrame {
                JOptionPane.showMessageDialog(null,"La Brigada está completa. Elija otra Brigada");
                }
              
-             
-             
+            }
+              
         }else{
              JOptionPane.showMessageDialog(null,"complete el campo del DNI");
+        
         }
-
     }//GEN-LAST:event_jbModificarActionPerformed
     
     private void LlenarCBCuarteles(int j){

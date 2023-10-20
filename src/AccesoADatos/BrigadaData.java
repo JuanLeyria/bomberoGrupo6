@@ -144,6 +144,7 @@ public class BrigadaData {
           }
     return  brigadasPorCuartel;
     }
+    
     public ArrayList listarBrigadasLibres(){
       ArrayList<Brigada> aux = listarBrigada();
        ArrayList<Brigada> brigadasLibres= new ArrayList<>();
@@ -157,6 +158,7 @@ public class BrigadaData {
           }
     return  brigadasLibres;
     }
+    
     public ArrayList listarBrigadasOcupadas(){
       ArrayList<Brigada> aux = listarBrigada();
        ArrayList<Brigada> brigadasOcupadas= new ArrayList<>();       
