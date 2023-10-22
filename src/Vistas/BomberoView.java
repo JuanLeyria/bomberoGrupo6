@@ -28,7 +28,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
      */
     public BomberoView() {
         initComponents();
-        LlenarCBCuarteles(1);
+       LlenarCBCuarteles();
     }
 
     /**
@@ -52,7 +52,6 @@ public class BomberoView extends javax.swing.JInternalFrame {
         jtApellido = new javax.swing.JTextField();
         jtDNI = new javax.swing.JTextField();
         jtCelular = new javax.swing.JTextField();
-        cbCuartel = new javax.swing.JComboBox<>();
         jdFechaNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         jbAgregar = new javax.swing.JButton();
@@ -63,61 +62,65 @@ public class BomberoView extends javax.swing.JInternalFrame {
         jcGrupoSanguineo = new javax.swing.JComboBox<>();
         jbBaja = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        cbBrigada = new javax.swing.JComboBox<>();
         jbLimpiar = new javax.swing.JButton();
         jtEstado = new javax.swing.JTextField();
         jbAlta = new javax.swing.JButton();
+        cbCuartel = new javax.swing.JComboBox<>();
+        cbBrigada = new javax.swing.JComboBox<>();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Nombre");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 65, 136, 20));
 
         jtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtNombreActionPerformed(evt);
             }
         });
+        jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 67, 230, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Apellido");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 119, 136, 16));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setText("DNI");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 159, 136, 24));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("Fecha Nacimieto");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 203, 136, 26));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setText("Celular");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 244, 136, 20));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setText("Grupo sanguinio");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 287, 136, 16));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setText("Estado");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 402, 136, 28));
+        jPanel1.add(jtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 119, 230, -1));
 
         jtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtDNIKeyTyped(evt);
             }
         });
-
-        cbCuartel.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbCuartelItemStateChanged(evt);
-            }
-        });
-        cbCuartel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbCuartelActionPerformed(evt);
-            }
-        });
+        jPanel1.add(jtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 163, 230, -1));
+        jPanel1.add(jtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 246, 230, -1));
 
         jdFechaNacimiento.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jdFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 206, 230, -1));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel8.setText("BOMBERO");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 0, 133, -1));
 
         jbAgregar.setBackground(new java.awt.Color(153, 153, 153));
         jbAgregar.setText("Agregar");
@@ -126,6 +129,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 jbAgregarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 454, 110, -1));
 
         jbModificar.setBackground(new java.awt.Color(153, 153, 153));
         jbModificar.setText("Modificar");
@@ -134,6 +138,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 jbModificarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 454, 110, -1));
 
         jbBuscar.setBackground(new java.awt.Color(204, 204, 204));
         jbBuscar.setText("Buscar");
@@ -142,6 +147,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 jbBuscarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 162, 110, -1));
 
         jbSalir.setBackground(new java.awt.Color(153, 153, 153));
         jbSalir.setText("Salir");
@@ -150,11 +156,14 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 jbSalirActionPerformed(evt);
             }
         });
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 454, 110, -1));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setText("Brigada");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 367, 136, -1));
 
         jcGrupoSanguineo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "A+", "B+", "0+", "AB+", "A-", "B-", "0-", "AB-" }));
+        jPanel1.add(jcGrupoSanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 284, 230, 26));
 
         jbBaja.setText("Dar de Baja");
         jbBaja.addActionListener(new java.awt.event.ActionListener() {
@@ -162,15 +171,11 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 jbBajaActionPerformed(evt);
             }
         });
+        jPanel1.add(jbBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 454, 110, -1));
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setText("Cuartel");
-
-        cbBrigada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbBrigadaActionPerformed(evt);
-            }
-        });
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 328, 136, -1));
 
         jbLimpiar.setText("Limpiar Campos");
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -178,8 +183,10 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 jbLimpiarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 203, 110, -1));
 
         jtEstado.setEditable(false);
+        jPanel1.add(jtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 408, 138, -1));
 
         jbAlta.setText("Dar de Alta");
         jbAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -187,123 +194,36 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 jbAltaActionPerformed(evt);
             }
         });
+        jPanel1.add(jbAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 407, 110, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(253, Short.MAX_VALUE)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(254, 254, 254))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jdFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtDNI, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jtCelular, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jtApellido, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jcGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22)
-                                .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(2, 2, 2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbAlta))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel8)
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBuscar))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jbLimpiar)
-                        .addComponent(jdFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbAlta))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbAgregar)
-                    .addComponent(jbModificar)
-                    .addComponent(jbSalir)
-                    .addComponent(jbBaja))
-                .addGap(29, 29, 29))
-        );
+        cbCuartel.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbCuartelItemStateChanged(evt);
+            }
+        });
+        cbCuartel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbCuartelMousePressed(evt);
+            }
+        });
+        cbCuartel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCuartelActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbCuartel, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 329, 230, -1));
+
+        jPanel1.add(cbBrigada, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 368, 230, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
         );
 
         pack();
@@ -343,12 +263,13 @@ public class BomberoView extends javax.swing.JInternalFrame {
             }
             if (b.getBrigada() != null) {
                 cbCuartel.removeAllItems();
-                LlenarCBCuarteles(2);
+                LlenarCBCuarteles();
               
-                cbCuartel.setSelectedItem(b.getBrigada().getCuartel());
+                cbCuartel.setSelectedItem(b.getBrigada().getCuartel().toString());
                 cbBrigada.removeAllItems();
-                LlenarCBBrigadas(b.getBrigada().getCuartel(), 1);
-                cbBrigada.setSelectedItem(b.getBrigada());
+             
+                LlenarCBBrigadas(b.getBrigada().getCuartel(), 2);
+                cbBrigada.setSelectedItem(b.getBrigada().toString());
             }
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
@@ -366,6 +287,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
         }else{
             JOptionPane.showMessageDialog(null,"complete el campo el DNI");
         }
+        limpiarCampos();
     }//GEN-LAST:event_jbBajaActionPerformed
 
     private void jtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDNIKeyTyped
@@ -374,22 +296,6 @@ public class BomberoView extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jtDNIKeyTyped
-
-    private void cbCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCuartelActionPerformed
-         /*Cuartel cuartel= (Cuartel)cbCuartel.getSelectedItem();
-            BrigadaData bd= new BrigadaData();
-            cbBrigada.removeAllItems();
-            LlenarCBBrigadas(cuartel);  */
-    }//GEN-LAST:event_cbCuartelActionPerformed
-
-    private void cbCuartelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCuartelItemStateChanged
-        if (evt.getStateChange()== ItemEvent.SELECTED) {
-            Cuartel cuartel= (Cuartel)cbCuartel.getSelectedItem();
-            BrigadaData bd= new BrigadaData();
-            cbBrigada.removeAllItems();
-            LlenarCBBrigadas(cuartel, 1);            
-        }
-    }//GEN-LAST:event_cbCuartelItemStateChanged
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
         // TODO add your handling code here:
@@ -406,11 +312,35 @@ public class BomberoView extends javax.swing.JInternalFrame {
         b.setGrupoSanguineo((String) jcGrupoSanguineo.getSelectedItem());
         b.setFechaNac(jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         if (cbBrigada.getSelectedItem()!=null) {
-               b.setBrigada((Brigada) cbBrigada.getSelectedItem());
-               
-               if (brd.comprobarCapacidadBrigada(b.getBrigada().getCodigo())) {
+            
+             ArrayList<Cuartel> cuarteles = new ArrayList<>();        
+        CuartelData cd= new CuartelData();
+        cuarteles = cd.listarCuartel();
+        if (cbCuartel.getSelectedIndex()==0) {
+            cbBrigada.removeAllItems();
+            cbBrigada.addItem("Seleccione la Brigada");
+        }
+        if(cbCuartel.getSelectedIndex()!=0){
+        int num = cbCuartel.getSelectedIndex()-1;
+         Cuartel c= cuarteles.get(num);
+            
+            ArrayList<Brigada> brigadas = brd.listarBrigadasPorCuartel(c.getCodigo());   
+            
+            for (int i = 0; i < brigadas.size(); i++) {
+                System.out.println(brigadas.get(i));
+            }
+            
+            
+            if(brigadas!=null){
+              b.setBrigada(brigadas.get(cbBrigada.getSelectedIndex()));
+              if (brd.comprobarCapacidadBrigada(brigadas.get(cbBrigada.getSelectedIndex()).getCodigo())) {
                  bd.guardarBombero(b);
                  limpiarCampos();
+            }
+             
+ 
+        
+               
             }else{
                JOptionPane.showMessageDialog(null,"La Brigada está completa. Elija otra Brigada");
                }    
@@ -419,7 +349,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
         }
      
     }//GEN-LAST:event_jbAgregarActionPerformed
-
+    }
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         // TODO add your handling code here:
       limpiarCampos();
@@ -446,6 +376,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
         }else{
             JOptionPane.showMessageDialog(null,"complete el campo del DNI");
         }
+        limpiarCampos();
     }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
@@ -464,7 +395,18 @@ public class BomberoView extends javax.swing.JInternalFrame {
             b.setFechaNac(jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             b.setCelular(jtCelular.getText());
             b.setGrupoSanguineo(jcGrupoSanguineo.getSelectedItem().toString());
-            b.setBrigada((Brigada) cbBrigada.getSelectedItem());
+            
+            
+            CuartelData cd = new CuartelData();
+            ArrayList<Cuartel> cuarteles = new ArrayList<>();
+            cuarteles= cd.listarCuartel();
+            Cuartel c = cuarteles.get(cbCuartel.getSelectedIndex()-1);
+            ArrayList<Brigada>  brigadas = brd.listarBrigadasPorCuartel(c.getCodigo()); 
+            
+            b.setBrigada(brigadas.get(cbBrigada.getSelectedIndex()));
+            
+            
+            
             b.setIdBombero(bd.buscarBomberoPorDni(jtDNI.getText()).getIdBombero());
             b.setDni(jtDNI.getText());
             b.setEstado(bd.buscarBomberoPorDni(jtDNI.getText()).isEstado());
@@ -482,45 +424,83 @@ public class BomberoView extends javax.swing.JInternalFrame {
              JOptionPane.showMessageDialog(null,"complete el campo del DNI");
         
         }
+        
+        
+        
     }//GEN-LAST:event_jbModificarActionPerformed
 
-    private void cbBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBrigadaActionPerformed
+    private void cbCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCuartelActionPerformed
+       
+       /*
+        ArrayList<Cuartel> cuarteles = new ArrayList<>();        
+        CuartelData cd= new CuartelData();
+        cuarteles = cd.listarCuartel();
+        
+        int num = cbCuartel.getSelectedIndex()-1;
+         Cuartel c= cuarteles.get(num);
+        cbBrigada.removeAllItems();
+        
+        LlenarCBBrigadas(c);
+     
+     */
+    }//GEN-LAST:event_cbCuartelActionPerformed
+
+    private void cbCuartelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCuartelItemStateChanged
+        ArrayList<Cuartel> cuarteles = new ArrayList<>();        
+        CuartelData cd= new CuartelData();
+        cuarteles = cd.listarCuartel();
+        if (cbCuartel.getSelectedIndex()==0) {
+            cbBrigada.removeAllItems();
+            cbBrigada.addItem("Seleccione la Brigada");
+        }
+        if(cbCuartel.getSelectedIndex()!=0){
+        int num = cbCuartel.getSelectedIndex()-1;
+         Cuartel c= cuarteles.get(num);
+ 
+        cbBrigada.removeAllItems();
+        
+        LlenarCBBrigadas(c, 2);
+        
+        }
+    }//GEN-LAST:event_cbCuartelItemStateChanged
+
+    private void cbCuartelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbCuartelMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbBrigadaActionPerformed
+       
+        
+    }//GEN-LAST:event_cbCuartelMousePressed
     
-    private void LlenarCBCuarteles(int j){
+    private void LlenarCBCuarteles(){
+      
         Cuartel c= new Cuartel();
         ArrayList<Cuartel> cuarteles = new ArrayList<>();        
         CuartelData cd= new CuartelData();
         cuarteles = cd.listarCuartel();
-       Cuartel cl = new  Cuartel("Seleccione el Cuartel");
-        if (j!=1) {
-          cbCuartel.addItem(cl);  
-        }
-        
+  
+       cbCuartel.addItem("Seleccione el Cuartel");
         for (Cuartel cuartel : cuarteles) {
-            cbCuartel.addItem(cuartel);
+            cbCuartel.addItem(cuartel.toString());
         }
+        cbBrigada.addItem("Seleccione la Brigada");
     }
-    private void LlenarCBBrigadas(Cuartel cuartel, int j){
+    private void LlenarCBBrigadas(Cuartel cuartel, int f){
         Brigada b= new Brigada();
         ArrayList<Brigada> brigadas = new ArrayList<>();        
         BrigadaData bd= new BrigadaData();
         brigadas = bd.listarBrigadasPorCuartel(cuartel.getCodigo());
-        Brigada br = new Brigada("Seleccione la Brigada");
-        if(j !=1){
-        cbBrigada.addItem(br);
+        if (f==1){
+          cbBrigada.addItem("Seleccione la Brigada");
         }
+      
         
-
         for (Brigada brigada : brigadas) {
-            cbBrigada.addItem(brigada);
+            cbBrigada.addItem(brigada.toString());
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Brigada> cbBrigada;
-    private javax.swing.JComboBox<Cuartel> cbCuartel;
+    private javax.swing.JComboBox<String> cbBrigada;
+    private javax.swing.JComboBox<String> cbCuartel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -556,7 +536,7 @@ jtNombre.setText("");
         jdFechaNacimiento.setDate(null);
         jtEstado.setText("");
         cbCuartel.removeAllItems();
-        LlenarCBCuarteles(2);
+        LlenarCBCuarteles();
         cbBrigada.removeAllItems();
 
 

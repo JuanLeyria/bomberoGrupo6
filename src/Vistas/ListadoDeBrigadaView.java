@@ -5,6 +5,9 @@
  */
 package Vistas;
 
+import AccesoADatos.BrigadaData;
+import Entidades.Brigada;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,6 +22,7 @@ private DefaultTableModel modelo = new DefaultTableModel(){
      */
     public ListadoDeBrigadaView() {
         initComponents();
+        armarCabecera();
     }
 
     /**
@@ -57,9 +61,19 @@ private DefaultTableModel modelo = new DefaultTableModel(){
 
         buttonGroup1.add(jrBrigadasLibres);
         jrBrigadasLibres.setText("BRIGADAS LIBRES");
+        jrBrigadasLibres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrBrigadasLibresActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jrBrigadasOcupadas);
         jrBrigadasOcupadas.setText("BRIGADAS OCUPADAS");
+        jrBrigadasOcupadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrBrigadasOcupadasActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -128,12 +142,50 @@ private DefaultTableModel modelo = new DefaultTableModel(){
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
-  private void armarCabecera() {
+
+    private void jrBrigadasLibresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrBrigadasLibresActionPerformed
+        // TODO add your handling code here:
+        limpiarTabla();
+        BrigadaData brd = new BrigadaData();
+        ArrayList<Brigada> brigadas = brd.listarBrigadasLibres();
+        for (Brigada brigada : brigadas) {
+            cargarDatos(brigada);
+        }
+  
+    }//GEN-LAST:event_jrBrigadasLibresActionPerformed
+
+    private void jrBrigadasOcupadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrBrigadasOcupadasActionPerformed
+         limpiarTabla();
+        BrigadaData brd = new BrigadaData();
+        ArrayList<Brigada> brigadas = brd.listarBrigadasOcupadas();
+        for (Brigada brigada : brigadas) {
+            cargarDatos(brigada);
+        }
+        
+        
+    }//GEN-LAST:event_jrBrigadasOcupadasActionPerformed
+  
+     private void cargarDatos(Brigada brigada) {    
+        modelo.addRow(new Object[]{brigada.getCodigo(),brigada.getNombre(), brigada.getEspecialidad(),
+            brigada.getCuartel().getNombre()}); 
+
+  }
+       private void limpiarTabla() {
+        for (int i = 0; i < jtListadoBrigadas.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i -= 1;
+        }
+    }
+
+    private void armarCabecera() {
         modelo.addColumn("Codigo");
-        modelo.addColumn("Materia");
-        modelo.addColumn("Nota");
-        //jtNotas.setModel(modelo);
-    }  
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Especialidad");
+        modelo.addColumn("Cuartel");
+      
+        jtListadoBrigadas.setModel(modelo);
+    } 
+ 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

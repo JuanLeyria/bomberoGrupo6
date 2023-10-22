@@ -207,14 +207,14 @@ public class BrigadaData {
  return confirmacion; 
     }
     
-    public void darDeBaja(Brigada brigada) {
+    public void darDeBaja(int id) {
 
         String sql = "UPDATE brigada SET estado=0 WHERE cod_brigada=?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setInt(1, brigada.getCodigo());
+            ps.setInt(1, id);
  
             int resultado = ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -228,14 +228,14 @@ public class BrigadaData {
             JOptionPane.showMessageDialog(null, "Error al querer dar de baja la brigada");
         }
     }
-    public void darDeAlta(Brigada brigada) {
+    public void darDeAlta(int id) {
 
         String sql = "UPDATE brigada SET estado=1 WHERE cod_brigada=?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setInt(1, brigada.getCodigo());
+            ps.setInt(1, id);
  
             int resultado = ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();

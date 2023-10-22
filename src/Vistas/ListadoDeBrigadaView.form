@@ -123,6 +123,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="BRIGADAS LIBRES"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrBrigadasLibresActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jrBrigadasOcupadas">
           <Properties>
@@ -131,6 +134,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="BRIGADAS OCUPADAS"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrBrigadasOcupadasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbSalir">
           <Properties>

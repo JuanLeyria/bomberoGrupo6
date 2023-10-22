@@ -5,6 +5,13 @@
  */
 package Vistas;
 
+import AccesoADatos.SiniestroData;
+import Entidades.Brigada;
+import Entidades.Siniestro;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  *
  * @author Juan
@@ -61,6 +68,11 @@ public class SiniestroView extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtDetalles);
 
         jbCrear.setText("Crear");
+        jbCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCrearActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +81,7 @@ public class SiniestroView extends javax.swing.JInternalFrame {
             }
         });
 
-        jcTipoSiniestro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcTipoSiniestro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione especialidad", "Incendios en viviendas e industrias", "Salvamento en derrumbes", "Rescates en ámbito montaña", "Rescate de personas atrapadas en accidentes de tráfico", "Socorrer inundaciones", "Operativos de prevención" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,6 +160,32 @@ public class SiniestroView extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
+    private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
+       
+        if(jcTipoSiniestro.getSelectedIndex()!=0 && jtCoordenadasX.getText().length()>0 && jtCoordenadasY.getText().length()>0){
+        Siniestro s = new Siniestro();
+        SiniestroData sd = new SiniestroData(); 
+        
+        s.setTipo((String) jcTipoSiniestro.getSelectedItem());
+        s.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
+        s.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
+        s.setDetalles(jtDetalles.getText());
+        s.setEstado(true);
+        s.setFechaSiniestro(LocalDate.now());
+        s.setHoraSiniestro(Time.valueOf(LocalTime.now()));
+        sd.guardarSiniestro(s);
+        limpiarCampos();
+        }
+  
+    }//GEN-LAST:event_jbCrearActionPerformed
+ private void limpiarCampos() {
+        
+        jcTipoSiniestro.setSelectedIndex(0);
+        jtCoordenadasX.setText("");
+        jtCoordenadasY.setText("");
+        jtDetalles.setText("");
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

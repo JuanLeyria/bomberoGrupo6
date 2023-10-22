@@ -93,7 +93,7 @@ public class Brigada {
 
     @Override
     public String toString() {
-        return nombre;
+        return codigo+", "+nombre ;
     }
 
     

@@ -92,6 +92,22 @@ public class CuartelData {
             JOptionPane.showMessageDialog(null, "No se pudo dar de baja el cuartel.");
         }
     }
+    public void darDeAltaCuartel(int id) {
+        try {
+            String sql = "UPDATE cuartel SET estado=1 WHERE cod_cuartel=" + id;
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            int resultado = ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (resultado == 1) {
+                JOptionPane.showMessageDialog(null, "Cuartel dado de alta.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Cuartel no encontrado.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo dar de alta el Cuartel.");
+        }
+    }
 
     public void modificarCuartel(Cuartel cuartel) {
 
@@ -149,5 +165,7 @@ public class CuartelData {
         }
         return cuarteles;
     }
+      
+      
 }
 
