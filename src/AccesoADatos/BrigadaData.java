@@ -67,7 +67,7 @@ public class BrigadaData {
                 br.setEstado(rs.getBoolean("estado"));
             ///    JOptionPane.showMessageDialog(null, "Brigada encontrada.");
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontro la brigada con el id:" + id);
+               /// JOptionPane.showMessageDialog(null, "No se encontro la brigada con el id:" + id);
             }
             ps.close();
         } catch (SQLException ex) {

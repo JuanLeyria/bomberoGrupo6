@@ -5,20 +5,30 @@
  */
 package Vistas;
 
+import AccesoADatos.BrigadaData;
+import AccesoADatos.SiniestroData;
+import Entidades.Brigada;
+import Entidades.Cuartel;
 import Entidades.Siniestro;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Juan
  */
 public class AsignarBrigadasView extends javax.swing.JInternalFrame {
-
+private DefaultTableModel modelo = new DefaultTableModel(){        
+    };
     /**
      * Creates new form AsignarBrigadasView
      */
     public AsignarBrigadasView() {
         initComponents();
+        armarCabecera();
+        llenarComboBox();
     }
 
     /**
@@ -62,6 +72,11 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
             }
         });
 
+        jcSeleccionDeSiniestro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcSeleccionDeSiniestroItemStateChanged(evt);
+            }
+        });
         jcSeleccionDeSiniestro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcSeleccionDeSiniestroActionPerformed(evt);
@@ -71,10 +86,20 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
         buttonGroup1.add(jrBrigadasEspecializadas);
         jrBrigadasEspecializadas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jrBrigadasEspecializadas.setText("Brigadas Especializadas");
+        jrBrigadasEspecializadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrBrigadasEspecializadasActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jrTodasLasBrigadas);
         jrTodasLasBrigadas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jrTodasLasBrigadas.setText("Todas Las Brigadas");
+        jrTodasLasBrigadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrTodasLasBrigadasActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("ASIGNACION DE BRIGADAS");
@@ -157,21 +182,113 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
 
     private void jcSeleccionDeSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcSeleccionDeSiniestroActionPerformed
         
-//        Alumno alu = (Alumno) comboBoxAlumno.getSelectedItem();
-//        idAlumno = alu.getIdAlumno();
-//        if (jtMaterias.getRowCount() > 0) {
-//            limpiarTabla();
-//        }
-        
+
         
         
     }//GEN-LAST:event_jcSeleccionDeSiniestroActionPerformed
+
+    private void jrTodasLasBrigadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrTodasLasBrigadasActionPerformed
+        // TODAS LAS BRIGADAS MÁS CERCANAS INDISCRIMINADAS
+        
+        limpiarTabla();
+        SiniestroData sd = new SiniestroData(); 
+        ArrayList<Siniestro> siniestros= sd.listarSiniestrosNoResultos();
+        Siniestro s = new Siniestro();
+        BrigadaData bd = new BrigadaData(); 
+       
+        s = siniestros.get(jcSeleccionDeSiniestro.getSelectedIndex());
+        
+        
+        TreeMap<Double, Cuartel> tree = sd.cuartelesDisponiblesCompleto(s);
+        
+        for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
+            Double key = entry.getKey();
+            Cuartel value = entry.getValue();
+             ArrayList<Brigada> brigadas =bd.listarBrigadasPorCuartel(value.getCodigo());
+             
+             for (int i = 0; i < brigadas.size(); i++) {
+               
+                 cargarDatos(brigadas.get(i), key); 
+            }
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_jrTodasLasBrigadasActionPerformed
+
+    private void jcSeleccionDeSiniestroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcSeleccionDeSiniestroItemStateChanged
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jcSeleccionDeSiniestroItemStateChanged
+
+    private void jrBrigadasEspecializadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrBrigadasEspecializadasActionPerformed
+        // BRIGADAS CERCANAS Y ESPECILIZADAS
+        
+        limpiarTabla();
+        SiniestroData sd = new SiniestroData(); 
+        ArrayList<Siniestro> siniestros= sd.listarSiniestrosNoResultos();
+        Siniestro s = new Siniestro();
+        BrigadaData bd = new BrigadaData(); 
+       
+        s = siniestros.get(jcSeleccionDeSiniestro.getSelectedIndex());
+        
+        
+        TreeMap<Double, Cuartel> tree = sd.cuartelesDisponiblesCompleto(s);
+        
+        for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
+            Double key = entry.getKey();
+            Cuartel value = entry.getValue();
+             ArrayList<Brigada> brigadas =bd.listarBrigadasPorCuartel(value.getCodigo());
+             
+             for (int i = 0; i < brigadas.size(); i++) {
+               
+                 
+                 if (brigadas.get(i).getEspecialidad().equalsIgnoreCase(s.getTipo())   ) {
+                   cargarDatos(brigadas.get(i), key);   
+                 }
+                  
+            }
+            
+        }
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jrBrigadasEspecializadasActionPerformed
+      private void cargarDatos(Brigada brigada,Double key) {    
+        modelo.addRow(new Object[]{brigada.getCodigo(), brigada.getNombre(), brigada.getCuartel(), brigada.getEspecialidad(), key }); 
+
+  }
     private void llenarComboBox(){
-    
-         ArrayList<Siniestro> siniestros= new ArrayList();
-         
+        SiniestroData sd = new SiniestroData();
+        
+         ArrayList<Siniestro> siniestros= sd.listarSiniestrosNoResultos();
+ 
+         for (int i = 0; i < siniestros.size(); i++) {
+            jcSeleccionDeSiniestro.addItem(siniestros.get(i).toString());
+        }
     
     }
+    
+       private void limpiarTabla() {
+        for (int i = 0; i < jtListadosDeBrigadas.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i -= 1;
+        }
+    }
+
+    private void armarCabecera() {
+        modelo.addColumn("Código");
+        modelo.addColumn("Brigada");
+        modelo.addColumn("Cuartel");
+        modelo.addColumn("Especialidad");
+        modelo.addColumn("Distancia");
+      
+        jtListadosDeBrigadas.setModel(modelo);
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

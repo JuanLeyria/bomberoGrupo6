@@ -224,30 +224,7 @@ public class SiniestroData {
         }        
         return tree;
     }
-    
-  
-    
-    
-    public void vamos(){
-    
-    ////
-    ////asdd
-    //7
-    ///
-    ///
-    ///
-    //sd
-    //
-    
-    
-    }
-    
-    
-    
-    
-    
-    
-    
+
     public ArrayList mostrarIncidenteEntreAyerYHoy(){
         ArrayList<Siniestro> siniestrosAyeryHoy= new ArrayList<>();
         LocalDate fechaAyer= LocalDate.now().minusDays(1);        
@@ -263,7 +240,7 @@ public class SiniestroData {
       public ArrayList listarSiniestrosNoResultos(){
         ArrayList<Siniestro> siniestros= new ArrayList();
       try {
-            String sql = "SELECT * FROM siniestro";
+            String sql = "SELECT * FROM siniestro WHERE fecha_resol is null";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
             int cont = 0;
