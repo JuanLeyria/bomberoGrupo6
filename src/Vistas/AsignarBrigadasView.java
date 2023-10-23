@@ -5,6 +5,9 @@
  */
 package Vistas;
 
+import Entidades.Siniestro;
+import java.util.ArrayList;
+
 /**
  *
  * @author Juan
@@ -153,9 +156,22 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jcSeleccionDeSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcSeleccionDeSiniestroActionPerformed
-        // TODO add your handling code here:
+        
+//        Alumno alu = (Alumno) comboBoxAlumno.getSelectedItem();
+//        idAlumno = alu.getIdAlumno();
+//        if (jtMaterias.getRowCount() > 0) {
+//            limpiarTabla();
+//        }
+        
+        
+        
     }//GEN-LAST:event_jcSeleccionDeSiniestroActionPerformed
-
+    private void llenarComboBox(){
+    
+         ArrayList<Siniestro> siniestros= new ArrayList();
+         
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

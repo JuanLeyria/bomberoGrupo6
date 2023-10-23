@@ -6,7 +6,6 @@
 package Vistas;
 
 import AccesoADatos.SiniestroData;
-import Entidades.Brigada;
 import Entidades.Siniestro;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -82,6 +81,11 @@ public class SiniestroView extends javax.swing.JInternalFrame {
         });
 
         jcTipoSiniestro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione especialidad", "Incendios en viviendas e industrias", "Salvamento en derrumbes", "Rescates en ámbito montaña", "Rescate de personas atrapadas en accidentes de tráfico", "Socorrer inundaciones", "Operativos de prevención" }));
+        jcTipoSiniestro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcTipoSiniestroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,6 +182,10 @@ public class SiniestroView extends javax.swing.JInternalFrame {
         }
   
     }//GEN-LAST:event_jbCrearActionPerformed
+
+    private void jcTipoSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcTipoSiniestroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcTipoSiniestroActionPerformed
  private void limpiarCampos() {
         
         jcTipoSiniestro.setSelectedIndex(0);

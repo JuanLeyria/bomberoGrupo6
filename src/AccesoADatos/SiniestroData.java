@@ -225,7 +225,29 @@ public class SiniestroData {
         return tree;
     }
     
-   /// SELECT a.nombre_br, a.nro_cuartel,  a.especialidad, b.tipo, b.codigo FROM brigada a JOIN siniestro b ON a.especialidad = b.tipo WHERE a.libre=true AND b.tipo LIKE "Incendios en viviendas e industrias" and a.estado=1;
+  
+    
+    
+    public void vamos(){
+    
+    ////
+    ////asdd
+    //7
+    ///
+    ///
+    ///
+    //sd
+    //
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
     public ArrayList mostrarIncidenteEntreAyerYHoy(){
         ArrayList<Siniestro> siniestrosAyeryHoy= new ArrayList<>();
         LocalDate fechaAyer= LocalDate.now().minusDays(1);        
@@ -238,9 +260,51 @@ public class SiniestroData {
         return siniestrosAyeryHoy;
     }
      
-    
-       
- }
+      public ArrayList listarSiniestrosNoResultos(){
+        ArrayList<Siniestro> siniestros= new ArrayList();
+      try {
+            String sql = "SELECT * FROM siniestro";
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            int cont = 0;
+            while (rs.next()) {
+                Siniestro s = new Siniestro();
+                cont++;
+                s.setCodigo(rs.getInt("codigo"));
+                s.setTipo(rs.getString("tipo"));
+                s.setFechaSiniestro(rs.getDate("fecha_siniestro").toLocalDate());
+                s.setHoraSiniestro(rs.getTime("hora_siniestro"));
+                s.setCoordX(rs.getDouble("coord_X"));
+                s.setCoordY(rs.getDouble("coord_Y"));
+                s.setDetalles(rs.getString("detalles"));                
+                 if (rs.getDate("fecha_resol")!=null) {
+                    s.setFechaResolucion(rs.getDate("fecha_resol").toLocalDate());
+                }else{
+                    s.setFechaResolucion(null);
+                }                 
+                s.setHoraResolucion(rs.getTime("hora_resol"));
+                s.setPuntuacion(rs.getInt("puntuacion"));
+              
+                if (bd.buscarBrigada(rs.getInt("cod_brigada")).getCodigo()!=0) {
+                    s.setBrigada(bd.buscarBrigada(rs.getInt("cod_brigada")));
+                }else {
+                    s.setBrigada(null);
+                } 
+                s.setEstado(rs.getBoolean("estado"));
+                siniestros.add(s);            
+            }
+            if (cont == 0) {
+                JOptionPane.showMessageDialog(null, "No se encontro ningun siniestro");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer listar los siniestros" + ex.getMessage());
+        }
+        return siniestros;
+    }
+    }
+ 
+ 
         
     
  
