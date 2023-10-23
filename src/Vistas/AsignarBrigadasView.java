@@ -59,7 +59,11 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
             }
         });
 
-        jcSeleccionDeSiniestro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcSeleccionDeSiniestro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcSeleccionDeSiniestroActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jrBrigadasEspecializadas);
         jrBrigadasEspecializadas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -147,6 +151,10 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jcSeleccionDeSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcSeleccionDeSiniestroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcSeleccionDeSiniestroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -144,7 +144,7 @@ private DefaultTableModel modelo = new DefaultTableModel(){
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jrBrigadasLibresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrBrigadasLibresActionPerformed
-        // TODO add your handling code here:
+        
         limpiarTabla();
         BrigadaData brd = new BrigadaData();
         ArrayList<Brigada> brigadas = brd.listarBrigadasLibres();
