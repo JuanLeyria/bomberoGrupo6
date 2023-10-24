@@ -13,6 +13,7 @@ import Entidades.Siniestro;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,8 +21,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class AsignarBrigadasView extends javax.swing.JInternalFrame {
-private DefaultTableModel modelo = new DefaultTableModel(){        
+
+    private DefaultTableModel modelo = new DefaultTableModel() {
     };
+
     /**
      * Creates new form AsignarBrigadasView
      */
@@ -105,6 +108,11 @@ private DefaultTableModel modelo = new DefaultTableModel(){
         jLabel1.setText("ASIGNACION DE BRIGADAS");
 
         jbAsignar.setText("Asignar");
+        jbAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAsignarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Seleccione el siniestro");
@@ -181,26 +189,60 @@ private DefaultTableModel modelo = new DefaultTableModel(){
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jcSeleccionDeSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcSeleccionDeSiniestroActionPerformed
-        
-
-        
-        
+        if (jrBrigadasEspecializadas.isSelected()) {
+            limpiarTabla();
+            SiniestroData sd = new SiniestroData();
+            ArrayList<Siniestro> siniestros = sd.listarSiniestrosNoResultos();
+            Siniestro s = new Siniestro();
+            BrigadaData bd = new BrigadaData();
+            try{
+            s = siniestros.get(jcSeleccionDeSiniestro.getSelectedIndex());
+            TreeMap<Double, Cuartel> tree = sd.cuartelesDisponiblesCompleto(s);
+            for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
+                Double key = entry.getKey();
+                Cuartel value = entry.getValue();
+                ArrayList<Brigada> brigadas = bd.listarBrigadasPorCuartel(value.getCodigo());                
+                for (int i = 0; i < brigadas.size(); i++) {
+                    if (brigadas.get(i).getEspecialidad().equalsIgnoreCase(s.getTipo())) {
+                        cargarDatos(brigadas.get(i), key);
+                    }
+                }
+            }
+            }catch(Exception e){
+                
+            }
+        } else if (jrTodasLasBrigadas.isSelected()) {
+            limpiarTabla();
+            SiniestroData sd = new SiniestroData();
+            ArrayList<Siniestro> siniestros = sd.listarSiniestrosNoResultos();
+            Siniestro s = new Siniestro();
+            BrigadaData bd = new BrigadaData();
+            try{
+            s = siniestros.get(jcSeleccionDeSiniestro.getSelectedIndex());
+            TreeMap<Double, Cuartel> tree = sd.cuartelesDisponiblesCompleto(s);
+            for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
+                Double key = entry.getKey();
+                Cuartel value = entry.getValue();
+                ArrayList<Brigada> brigadas = bd.listarBrigadasPorCuartel(value.getCodigo());
+                for (int i = 0; i < brigadas.size(); i++) {
+                    cargarDatos(brigadas.get(i), key);
+                }
+            }
+            }catch(Exception e){
+                
+            }
+        }
     }//GEN-LAST:event_jcSeleccionDeSiniestroActionPerformed
 
     private void jrTodasLasBrigadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrTodasLasBrigadasActionPerformed
         // TODAS LAS BRIGADAS MÁS CERCANAS INDISCRIMINADAS
-        
         limpiarTabla();
         SiniestroData sd = new SiniestroData(); 
         ArrayList<Siniestro> siniestros= sd.listarSiniestrosNoResultos();
         Siniestro s = new Siniestro();
         BrigadaData bd = new BrigadaData(); 
-       
         s = siniestros.get(jcSeleccionDeSiniestro.getSelectedIndex());
-        
-        
         TreeMap<Double, Cuartel> tree = sd.cuartelesDisponiblesCompleto(s);
-        
         for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
             Double key = entry.getKey();
             Cuartel value = entry.getValue();
@@ -212,9 +254,6 @@ private DefaultTableModel modelo = new DefaultTableModel(){
             }
             
         }
-        
-        
-        
     }//GEN-LAST:event_jrTodasLasBrigadasActionPerformed
 
     private void jcSeleccionDeSiniestroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcSeleccionDeSiniestroItemStateChanged
@@ -229,36 +268,42 @@ private DefaultTableModel modelo = new DefaultTableModel(){
         SiniestroData sd = new SiniestroData(); 
         ArrayList<Siniestro> siniestros= sd.listarSiniestrosNoResultos();
         Siniestro s = new Siniestro();
-        BrigadaData bd = new BrigadaData(); 
-       
+        BrigadaData bd = new BrigadaData();        
         s = siniestros.get(jcSeleccionDeSiniestro.getSelectedIndex());
-        
-        
         TreeMap<Double, Cuartel> tree = sd.cuartelesDisponiblesCompleto(s);
         
         for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
             Double key = entry.getKey();
             Cuartel value = entry.getValue();
-             ArrayList<Brigada> brigadas =bd.listarBrigadasPorCuartel(value.getCodigo());
-             
+             ArrayList<Brigada> brigadas =bd.listarBrigadasPorCuartel(value.getCodigo());             
              for (int i = 0; i < brigadas.size(); i++) {
-               
-                 
                  if (brigadas.get(i).getEspecialidad().equalsIgnoreCase(s.getTipo())   ) {
                    cargarDatos(brigadas.get(i), key);   
-                 }
-                  
+                 } 
             }
-            
         }
         
-        
-        
-        
-        
-        
     }//GEN-LAST:event_jrBrigadasEspecializadasActionPerformed
-      private void cargarDatos(Brigada brigada,Double key) {    
+
+    private void jbAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAsignarActionPerformed
+        BrigadaData bd = new BrigadaData();
+        SiniestroData sd = new SiniestroData();
+        Brigada b = new Brigada();
+        int fila = jtListadosDeBrigadas.getSelectedRow();
+        int codigo = (Integer) jtListadosDeBrigadas.getValueAt(fila, 0);
+        b = bd.buscarBrigada(codigo);
+        ArrayList<Siniestro> siniestros = sd.listarSiniestrosNoResultos();
+        Siniestro s = new Siniestro();
+        s = siniestros.get(jcSeleccionDeSiniestro.getSelectedIndex());
+        sd.asignarBrigada(b, s.getCodigo());
+        b.setLibre(false);
+        bd.modificarBrigada(b);
+        limpiarTabla();
+        jcSeleccionDeSiniestro.removeAllItems();
+        llenarComboBox();
+    }//GEN-LAST:event_jbAsignarActionPerformed
+      
+    private void cargarDatos(Brigada brigada,Double key) {    
         modelo.addRow(new Object[]{brigada.getCodigo(), brigada.getNombre(), brigada.getCuartel(), brigada.getEspecialidad(), key }); 
 
   }

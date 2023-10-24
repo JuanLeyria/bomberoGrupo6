@@ -422,7 +422,6 @@ public class BomberoView extends javax.swing.JInternalFrame {
         b.setGrupoSanguineo((String) jcGrupoSanguineo.getSelectedItem());
         b.setFechaNac(jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         if (cbBrigada.getSelectedItem()!=null) {
-            
              ArrayList<Cuartel> cuarteles = new ArrayList<>();        
         CuartelData cd= new CuartelData();
         cuarteles = cd.listarCuartel();
@@ -433,24 +432,17 @@ public class BomberoView extends javax.swing.JInternalFrame {
         if(cbCuartel.getSelectedIndex()!=0){
         int num = cbCuartel.getSelectedIndex()-1;
          Cuartel c= cuarteles.get(num);
-            
             ArrayList<Brigada> brigadas = brd.listarBrigadasPorCuartel(c.getCodigo());   
             
             for (int i = 0; i < brigadas.size(); i++) {
                 System.out.println(brigadas.get(i));
             }
-            
-            
             if(brigadas!=null){
               b.setBrigada(brigadas.get(cbBrigada.getSelectedIndex()));
               if (brd.comprobarCapacidadBrigada(brigadas.get(cbBrigada.getSelectedIndex()).getCodigo())) {
                  bd.guardarBombero(b);
                  limpiarCampos();
             }
-             
- 
-        
-               
             }else{
                JOptionPane.showMessageDialog(null,"La Brigada está completa. Elija otra Brigada");
                }    
@@ -638,16 +630,17 @@ public class BomberoView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
 public void limpiarCampos(){
-jtNombre.setText("");
+        jtNombre.setText("");
         jtDNI.setText("");
         jtApellido.setText("");
         jtCelular.setText("");
         jcGrupoSanguineo.setSelectedIndex(0);
         jdFechaNacimiento.setDate(null);
         jtEstado.setText("");
-        cbCuartel.removeAllItems();
-        LlenarCBCuarteles();
         cbBrigada.removeAllItems();
+        cbCuartel.removeAllItems();        
+        LlenarCBCuarteles();
+        
 
 
 }

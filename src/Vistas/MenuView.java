@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ fijarse despues de agregar un bombero el campo brigadas queda activo
+    modificar libre brigada
+    completar el siniestro entero (constructor de siniestro)
  */
 package Vistas;
 
@@ -170,6 +170,11 @@ public class MenuView extends javax.swing.JFrame {
         jMenu4.add(jmAgregarBrigadas);
 
         jmResolverSiniestro.setText("Resolver Siniestro");
+        jmResolverSiniestro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmResolverSiniestroActionPerformed(evt);
+            }
+        });
         jMenu4.add(jmResolverSiniestro);
 
         jmMostrarSiniestro.setText("Mostrar Siniestros");
@@ -256,13 +261,22 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jmMostrarSiniestroActionPerformed
 
     private void jmAgregarBrigadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarBrigadasActionPerformed
-               Escritorio.removeAll();
+        Escritorio.removeAll();
         Escritorio.repaint();
-        AsignarBrigadasView abv= new AsignarBrigadasView();
+        AsignarBrigadasView abv = new AsignarBrigadasView();
         abv.setVisible(true);
         Escritorio.add(abv);
         Escritorio.moveToFront(abv);
     }//GEN-LAST:event_jmAgregarBrigadasActionPerformed
+
+    private void jmResolverSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmResolverSiniestroActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        ResolverSiniestroView rsv= new ResolverSiniestroView();
+        rsv.setVisible(true);
+        Escritorio.add(rsv);
+        Escritorio.moveToFront(rsv);
+    }//GEN-LAST:event_jmResolverSiniestroActionPerformed
 
     /**
      * @param args the command line arguments

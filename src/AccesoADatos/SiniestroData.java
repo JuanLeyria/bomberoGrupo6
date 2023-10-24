@@ -5,6 +5,7 @@
  */
 package AccesoADatos;
 
+import Entidades.Brigada;
 import Entidades.Cuartel;
 import Entidades.Siniestro;
 import java.sql.Connection;
@@ -100,6 +101,27 @@ public class SiniestroData {
         }       
     }
     
+    public void asignarBrigada(Brigada brigada, int codSiniestro){
+        //agregar en el boton . traer el objeto y completarlo con estos datos 
+        // falta probar la brigada
+        String sql = "UPDATE siniestro SET cod_brigada=? WHERE codigo=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, brigada.getCodigo());
+            ps.setInt(2, codSiniestro);           
+            int resultado = ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (resultado == 1) {
+                JOptionPane.showMessageDialog(null, "Brigada asignada");
+            } else {
+                JOptionPane.showMessageDialog(null, "La brigada no se púdo asignar");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer asignar brigada");
+        }       
+    }
+    
     public ArrayList listarSiniestros(){        
         ArrayList<Siniestro> siniestros= new ArrayList();
         try {
@@ -142,6 +164,19 @@ public class SiniestroData {
         }
         return siniestros;
     }
+    
+    public ArrayList listarSiniestrosNoResueltosConBrigada(){
+       // listarSiniestros(){        
+        ArrayList<Siniestro> siniestros= listarSiniestros();
+        ArrayList<Siniestro> siniestros2= new ArrayList();
+        for (Siniestro siniestro : siniestros) {
+            if(siniestro.getBrigada()!=null && siniestro.getFechaResolucion()==null){
+                siniestros2.add(siniestro);                
+            }
+        }        
+        return siniestros2;   
+    }
+    
             
     public Cuartel calcularDistanciaDelCuartel(Siniestro siniestro) {
         ArrayList<Cuartel> cuarteles = cd.listarCuartel();
@@ -240,7 +275,7 @@ public class SiniestroData {
       public ArrayList listarSiniestrosNoResultos(){
         ArrayList<Siniestro> siniestros= new ArrayList();
       try {
-            String sql = "SELECT * FROM siniestro WHERE fecha_resol is null";
+            String sql = "SELECT * FROM siniestro WHERE fecha_resol is null and cod_brigada is null";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
             int cont = 0;

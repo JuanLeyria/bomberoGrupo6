@@ -136,7 +136,7 @@ public class BrigadaData {
        ArrayList<Brigada> brigadasPorCuartel= new ArrayList<>();
        
             for(Brigada brigada:aux){
-             if (brigada.getCuartel().getCodigo()== idCuartel){
+             if (brigada.getCuartel().getCodigo()== idCuartel && brigada.isLibre()){
                
              brigadasPorCuartel.add(brigada);
              

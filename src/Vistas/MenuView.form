@@ -158,6 +158,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Resolver Siniestro"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmResolverSiniestroActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmMostrarSiniestro">
               <Properties>
