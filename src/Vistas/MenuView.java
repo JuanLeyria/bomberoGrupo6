@@ -2,6 +2,7 @@
  fijarse despues de agregar un bombero el campo brigadas queda activo
     modificar libre brigada
     completar el siniestro entero (constructor de siniestro)
+boton asignar en asignar brigada error
  */
 package Vistas;
 

@@ -24,8 +24,7 @@ public class ResolverSiniestroView extends javax.swing.JInternalFrame {
      */
     public ResolverSiniestroView() {
         initComponents();
-        llenarComboBox();
-        
+        llenarComboBox();        
     }
 
     /**
@@ -189,14 +188,19 @@ public class ResolverSiniestroView extends javax.swing.JInternalFrame {
             Time t = new Time(Integer.parseInt(jcHora.getSelectedItem().toString()), Integer.parseInt(jcMinutos.getSelectedItem().toString()), 00);
             s.setHoraResolucion(t);
             s.setPuntuacion(Integer.parseInt(jcPuntuacion.getSelectedItem().toString()));
-            int c = s.getBrigada().getCodigo();
-            Brigada b = bd.buscarBrigada(c);
-            b.setLibre(true);
-            bd.modificarBrigada(b);
-            s.setEstado(false);
+            s.setEstado(false); 
+            System.out.println(s.toString());
             sd.resolverSiniestro(s);
+            //
+//            int c = s.getBrigada().getCodigo();
+//            Brigada b = bd.buscarBrigada(c);
+//            b.setLibre(true);
+//            bd.modificarBrigada(b);
+            //   
         } catch (Exception e) {
+            
         }
+        
         LimpiarCampos();
     }//GEN-LAST:event_jbResolverActionPerformed
     

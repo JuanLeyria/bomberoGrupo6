@@ -165,6 +165,11 @@ public class Siniestro {
         return  tipo + ", "+fechaSiniestro;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Siniestro{" + "codigo=" + codigo + ", tipo=" + tipo + ", fechaSiniestro=" + fechaSiniestro + ", horaSiniestro=" + horaSiniestro + ", coordX=" + coordX + ", coordY=" + coordY + ", detalles=" + detalles + ", fechaResolucion=" + fechaResolucion + ", horaResolucion=" + horaResolucion + ", puntuacion=" + puntuacion + ", brigada=" + brigada + ", estado=" + estado + '}';
+//    }
+
    
 
     

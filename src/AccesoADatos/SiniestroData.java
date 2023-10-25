@@ -81,14 +81,17 @@ public class SiniestroData {
             ps.setDate(1, Date.valueOf(siniestro.getFechaResolucion()));
             ps.setTime(2, siniestro.getHoraResolucion());
             ps.setInt(3, siniestro.getPuntuacion());            
-            ps.setBoolean(4, siniestro.isEstado());
-            if (siniestro.getBrigada()!=null) {
+            ps.setBoolean(4, siniestro.isEstado());            
+            if (siniestro.getBrigada()!=null) {              
                 ps.setInt(5, siniestro.getBrigada().getCodigo());
-            }else{
+                
+            }else{              
                 ps.setObject(5, null);
-            }
+            }              
             ps.setInt(6, siniestro.getCodigo()); 
+            System.out.println("2");
             int resultado = ps.executeUpdate();
+            System.out.println("3");
             ResultSet rs = ps.getGeneratedKeys();
             if (resultado == 1) {
                 JOptionPane.showMessageDialog(null, "Siniestro resuelto");
@@ -153,7 +156,8 @@ public class SiniestroData {
                     s.setBrigada(null);
                 } 
                 s.setEstado(rs.getBoolean("estado"));
-                siniestros.add(s);            
+                siniestros.add(s);
+                System.out.println(s.toString());
             }
             if (cont == 0) {
                 JOptionPane.showMessageDialog(null, "No se encontro ningun siniestro");
@@ -171,7 +175,8 @@ public class SiniestroData {
         ArrayList<Siniestro> siniestros2= new ArrayList();
         for (Siniestro siniestro : siniestros) {
             if(siniestro.getBrigada()!=null && siniestro.getFechaResolucion()==null){
-                siniestros2.add(siniestro);                
+                siniestros2.add(siniestro); 
+                
             }
         }        
         return siniestros2;   
