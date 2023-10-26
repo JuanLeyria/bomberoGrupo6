@@ -64,6 +64,11 @@ public class ResolverSiniestroView extends javax.swing.JInternalFrame {
         });
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         jbResolver.setText("Resolver");
         jbResolver.addActionListener(new java.awt.event.ActionListener() {
@@ -191,18 +196,23 @@ public class ResolverSiniestroView extends javax.swing.JInternalFrame {
             s.setEstado(false); 
             System.out.println(s.toString());
             sd.resolverSiniestro(s);
-            //
-//            int c = s.getBrigada().getCodigo();
-//            Brigada b = bd.buscarBrigada(c);
-//            b.setLibre(true);
-//            bd.modificarBrigada(b);
-            //   
+           
+            int c = s.getBrigada().getCodigo();
+            Brigada b = bd.buscarBrigada(c);
+            b.setLibre(true);
+            bd.modificarBrigada(b);
+            
         } catch (Exception e) {
             
         }
         
         LimpiarCampos();
     }//GEN-LAST:event_jbResolverActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+           this.dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
     
      private void llenarComboBox(){
         SiniestroData sd = new SiniestroData();

@@ -42,9 +42,11 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jmBombero = new javax.swing.JMenu();
         jmFormularioBombero = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jBrigadas = new javax.swing.JMenu();
         jmFormularioBrigadas = new javax.swing.JMenuItem();
         jmListadoBrigadas = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jmFormularioCuarteles = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -93,11 +95,9 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
 
         jmBombero.setBackground(new java.awt.Color(255, 255, 255));
-        jmBombero.setForeground(new java.awt.Color(0, 0, 0));
         jmBombero.setText("Bomberos");
 
         jmFormularioBombero.setBackground(new java.awt.Color(255, 255, 255));
-        jmFormularioBombero.setForeground(new java.awt.Color(0, 0, 0));
         jmFormularioBombero.setText("Formulario Bombero");
         jmFormularioBombero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +106,14 @@ public class MenuView extends javax.swing.JFrame {
         });
         jmBombero.add(jmFormularioBombero);
 
+        jMenuItem3.setText("Listado de Bomberos X Brigadas");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jmBombero.add(jMenuItem3);
+
         jMenuBar1.add(jmBombero);
 
         jBrigadas.setBackground(new java.awt.Color(255, 255, 255));
@@ -113,7 +121,6 @@ public class MenuView extends javax.swing.JFrame {
         jBrigadas.setText("Brigadas");
 
         jmFormularioBrigadas.setBackground(new java.awt.Color(255, 255, 255));
-        jmFormularioBrigadas.setForeground(new java.awt.Color(0, 0, 0));
         jmFormularioBrigadas.setText("Formulario Brigadas");
         jmFormularioBrigadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +129,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jBrigadas.add(jmFormularioBrigadas);
 
-        jmListadoBrigadas.setText("Listado de Brigadas");
+        jmListadoBrigadas.setText("Brigadas Libres / Ocupadas");
         jmListadoBrigadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmListadoBrigadasActionPerformed(evt);
@@ -130,14 +137,15 @@ public class MenuView extends javax.swing.JFrame {
         });
         jBrigadas.add(jmListadoBrigadas);
 
+        jMenuItem2.setText("Listado de  Brigadas X Cuartel");
+        jBrigadas.add(jMenuItem2);
+
         jMenuBar1.add(jBrigadas);
 
         jMenu3.setBackground(new java.awt.Color(255, 255, 255));
-        jMenu3.setForeground(new java.awt.Color(0, 0, 0));
         jMenu3.setText("Cuarteles");
 
         jmFormularioCuarteles.setBackground(new java.awt.Color(255, 255, 255));
-        jmFormularioCuarteles.setForeground(new java.awt.Color(0, 0, 0));
         jmFormularioCuarteles.setText("Formulario Cuarteles");
         jmFormularioCuarteles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,11 +157,9 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setBackground(new java.awt.Color(255, 255, 255));
-        jMenu4.setForeground(new java.awt.Color(0, 0, 0));
         jMenu4.setText("Siniestros");
 
         jmFormularioSiniestro.setBackground(new java.awt.Color(255, 255, 255));
-        jmFormularioSiniestro.setForeground(new java.awt.Color(0, 0, 0));
         jmFormularioSiniestro.setText("Formulario Siniestro");
         jmFormularioSiniestro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,7 +184,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu4.add(jmResolverSiniestro);
 
-        jmMostrarSiniestro.setText("Mostrar Siniestros");
+        jmMostrarSiniestro.setText("Mostrar Siniestros entre ayer y hoy");
         jmMostrarSiniestro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmMostrarSiniestroActionPerformed(evt);
@@ -187,6 +193,11 @@ public class MenuView extends javax.swing.JFrame {
         jMenu4.add(jmMostrarSiniestro);
 
         jmHistoriaSiniestro.setText("Historial siniestros");
+        jmHistoriaSiniestro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmHistoriaSiniestroActionPerformed(evt);
+            }
+        });
         jMenu4.add(jmHistoriaSiniestro);
 
         jMenuBar1.add(jMenu4);
@@ -258,7 +269,16 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jmListadoBrigadasActionPerformed
 
     private void jmMostrarSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMostrarSiniestroActionPerformed
-        // TODO add your handling code here:
+       
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        SiniestosAyeryHoyView sahv =  new SiniestosAyeryHoyView();
+        sahv.setVisible(true);
+        Escritorio.add(sahv);
+        Escritorio.moveToFront(sahv);
+        
+        
+        
     }//GEN-LAST:event_jmMostrarSiniestroActionPerformed
 
     private void jmAgregarBrigadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarBrigadasActionPerformed
@@ -278,6 +298,31 @@ public class MenuView extends javax.swing.JFrame {
         Escritorio.add(rsv);
         Escritorio.moveToFront(rsv);
     }//GEN-LAST:event_jmResolverSiniestroActionPerformed
+
+    private void jmHistoriaSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmHistoriaSiniestroActionPerformed
+     
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        HistorialSiniestrosView hsv = new HistorialSiniestrosView();
+        hsv.setVisible(true);
+        Escritorio.add(hsv);
+        Escritorio.moveToFront(hsv);
+        
+        
+        
+    }//GEN-LAST:event_jmHistoriaSiniestroActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+     
+         Escritorio.removeAll();
+        Escritorio.repaint();
+        BomberosXBrigadasView bxbv = new BomberosXBrigadasView();
+        bxbv.setVisible(true);
+        Escritorio.add(bxbv);
+        Escritorio.moveToFront(bxbv);
+        
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,6 +369,8 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jmAgregarBrigadas;
     private javax.swing.JMenu jmBombero;

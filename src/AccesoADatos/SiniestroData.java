@@ -75,23 +75,23 @@ public class SiniestroData {
     public void resolverSiniestro(Siniestro siniestro){
         //agregar en el boton . traer el objeto y completarlo con estos datos 
         // falta probar la brigada
-        String sql = "UPDATE siniestro SET fecha_resol=?, hora_resol=?, puntuacion=?, estado=? cod_brigada=? WHERE codigo=?";
+        String sql = "UPDATE siniestro SET fecha_resol=?, hora_resol=?, puntuacion=?, estado=?  WHERE codigo=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setDate(1, Date.valueOf(siniestro.getFechaResolucion()));
             ps.setTime(2, siniestro.getHoraResolucion());
             ps.setInt(3, siniestro.getPuntuacion());            
             ps.setBoolean(4, siniestro.isEstado());            
-            if (siniestro.getBrigada()!=null) {              
-                ps.setInt(5, siniestro.getBrigada().getCodigo());
-                
-            }else{              
-                ps.setObject(5, null);
-            }              
-            ps.setInt(6, siniestro.getCodigo()); 
-            System.out.println("2");
+//            if (siniestro.getBrigada()!=null) {              
+//                ps.setInt(5, siniestro.getBrigada().getCodigo());
+//                
+//            }else{              
+//                ps.setObject(5, null);
+//            }              
+            ps.setInt(5, siniestro.getCodigo()); 
+         
             int resultado = ps.executeUpdate();
-            System.out.println("3");
+     
             ResultSet rs = ps.getGeneratedKeys();
             if (resultado == 1) {
                 JOptionPane.showMessageDialog(null, "Siniestro resuelto");
@@ -270,9 +270,12 @@ public class SiniestroData {
         LocalDate fechaAyer= LocalDate.now().minusDays(1);        
         ArrayList<Siniestro> siniestros= listarSiniestros();         
            for (Siniestro siniestro : siniestros) {
-               if (siniestro.getFechaSiniestro()==fechaAyer || siniestro.getFechaSiniestro()==LocalDate.now()) {
-                   siniestrosAyeryHoy.add(siniestro);
-               }            
+               
+               if(siniestro.getFechaSiniestro().equals(LocalDate.now())|| siniestro.getFechaSiniestro().equals(fechaAyer)){
+                    siniestrosAyeryHoy.add(siniestro);
+               
+               } 
+//                    
         }
         return siniestrosAyeryHoy;
     }
