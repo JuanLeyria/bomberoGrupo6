@@ -103,24 +103,19 @@ private void armarCabecera() {
     modelo.addColumn("Estado");
     modelo.addColumn("Fecha Resolución");
     modelo.addColumn("Puntaje");
-
     tabla.setModel(modelo);
     } 
 
 private void llenarTabla(){
     SiniestroData sd = new SiniestroData(); 
-    
     ArrayList<Siniestro> siniestros = sd.mostrarIncidenteEntreAyerYHoy();
- 
-       for (Siniestro s : siniestros) {
-        System.out.println("Siniestro nuevo: " + s);
+       for (Siniestro s : siniestros) {        
         if (s.getBrigada() == null) {
             modelo.addRow(new Object[]{s.getTipo(), s.getFechaSiniestro(), "No", "ACTIVO", "No", "No"});
         } else if (s.getBrigada() != null && s.getFechaResolucion() == null) {
             modelo.addRow(new Object[]{s.getTipo(), s.getFechaSiniestro(), s.getBrigada().getNombre(), "ACTIVO", "No", "No"});
         } else if (s.getBrigada() != null && s.getFechaResolucion() != null) {
             modelo.addRow(new Object[]{s.getTipo(), s.getFechaSiniestro(), s.getBrigada().getNombre(), "INACTIVO", s.getFechaResolucion(), s.getPuntuacion()});
-
         }
     }
 }

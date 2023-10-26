@@ -236,23 +236,27 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
 
     private void jrTodasLasBrigadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrTodasLasBrigadasActionPerformed
         // TODAS LAS BRIGADAS MÁS CERCANAS INDISCRIMINADAS
-        limpiarTabla();
-        SiniestroData sd = new SiniestroData(); 
-        ArrayList<Siniestro> siniestros= sd.listarSiniestrosNoResultos();
-        Siniestro s = new Siniestro();
-        BrigadaData bd = new BrigadaData(); 
-        s = siniestros.get(jcSeleccionDeSiniestro.getSelectedIndex());
-        TreeMap<Double, Cuartel> tree = sd.cuartelesDisponiblesCompleto(s);
-        for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
-            Double key = entry.getKey();
-            Cuartel value = entry.getValue();
-             ArrayList<Brigada> brigadas =bd.listarBrigadasPorCuartel(value.getCodigo());
-             
-             for (int i = 0; i < brigadas.size(); i++) {
-               
-                 cargarDatos(brigadas.get(i), key); 
+        try {
+            limpiarTabla();
+            SiniestroData sd = new SiniestroData();
+            ArrayList<Siniestro> siniestros = sd.listarSiniestrosNoResultos();
+            Siniestro s = new Siniestro();
+            BrigadaData bd = new BrigadaData();
+            s = siniestros.get(jcSeleccionDeSiniestro.getSelectedIndex());
+            TreeMap<Double, Cuartel> tree = sd.cuartelesDisponiblesCompleto(s);
+            for (Map.Entry<Double, Cuartel> entry : tree.entrySet()) {
+                Double key = entry.getKey();
+                Cuartel value = entry.getValue();
+                ArrayList<Brigada> brigadas = bd.listarBrigadasPorCuartel(value.getCodigo());
+
+                for (int i = 0; i < brigadas.size(); i++) {
+
+                    cargarDatos(brigadas.get(i), key);
+                }
+
             }
-            
+        } catch (Exception e) {
+
         }
     }//GEN-LAST:event_jrTodasLasBrigadasActionPerformed
 
@@ -263,7 +267,7 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
 
     private void jrBrigadasEspecializadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrBrigadasEspecializadasActionPerformed
         // BRIGADAS CERCANAS Y ESPECILIZADAS
-        
+        try {
         limpiarTabla();
         SiniestroData sd = new SiniestroData(); 
         ArrayList<Siniestro> siniestros= sd.listarSiniestrosNoResultos();
@@ -282,11 +286,14 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
                  } 
             }
         }
-        
+        }catch(Exception e){
+            
+        }
     }//GEN-LAST:event_jrBrigadasEspecializadasActionPerformed
 
     private void jbAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAsignarActionPerformed
-        BrigadaData bd = new BrigadaData();
+        if (jrTodasLasBrigadas.isSelected() || jrBrigadasEspecializadas.isSelected() && jtListadosDeBrigadas.getSelectedRow()>-1) {
+            BrigadaData bd = new BrigadaData();
         SiniestroData sd = new SiniestroData();
         Brigada b = new Brigada();
         int fila = jtListadosDeBrigadas.getSelectedRow();
@@ -301,6 +308,11 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
         limpiarTabla();
         jcSeleccionDeSiniestro.removeAllItems();
         llenarComboBox();
+        }else{
+            JOptionPane.showMessageDialog(this, "Seleccione alguna opcion y la brigada de la tabla");
+        }
+            
+        
     }//GEN-LAST:event_jbAsignarActionPerformed
       
     private void cargarDatos(Brigada brigada,Double key) {    
@@ -309,9 +321,7 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
   }
     private void llenarComboBox(){
         SiniestroData sd = new SiniestroData();
-        
          ArrayList<Siniestro> siniestros= sd.listarSiniestrosNoResultos();
- 
          for (int i = 0; i < siniestros.size(); i++) {
             jcSeleccionDeSiniestro.addItem(siniestros.get(i).toString());
         }
@@ -331,7 +341,6 @@ public class AsignarBrigadasView extends javax.swing.JInternalFrame {
         modelo.addColumn("Cuartel");
         modelo.addColumn("Especialidad");
         modelo.addColumn("Distancia");
-      
         jtListadosDeBrigadas.setModel(modelo);
     } 
 

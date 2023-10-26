@@ -22,7 +22,6 @@ private DefaultTableModel modelo = new DefaultTableModel(){
      */
     public ListadoDeBrigadaView() {
         initComponents();
-        
         armarCabecera();
     }
 

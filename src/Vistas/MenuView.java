@@ -138,6 +138,11 @@ public class MenuView extends javax.swing.JFrame {
         jBrigadas.add(jmListadoBrigadas);
 
         jMenuItem2.setText("Listado de  Brigadas X Cuartel");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jBrigadas.add(jMenuItem2);
 
         jMenuBar1.add(jBrigadas);
@@ -320,9 +325,16 @@ public class MenuView extends javax.swing.JFrame {
         bxbv.setVisible(true);
         Escritorio.add(bxbv);
         Escritorio.moveToFront(bxbv);
-        
-        
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        BrigadasXCuartelView bXC = new BrigadasXCuartelView();
+        bXC.setVisible(true);
+        Escritorio.add(bXC);
+        Escritorio.moveToFront(bXC);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

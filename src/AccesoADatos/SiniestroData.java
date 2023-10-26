@@ -81,17 +81,9 @@ public class SiniestroData {
             ps.setDate(1, Date.valueOf(siniestro.getFechaResolucion()));
             ps.setTime(2, siniestro.getHoraResolucion());
             ps.setInt(3, siniestro.getPuntuacion());            
-            ps.setBoolean(4, siniestro.isEstado());            
-//            if (siniestro.getBrigada()!=null) {              
-//                ps.setInt(5, siniestro.getBrigada().getCodigo());
-//                
-//            }else{              
-//                ps.setObject(5, null);
-//            }              
-            ps.setInt(5, siniestro.getCodigo()); 
-         
-            int resultado = ps.executeUpdate();
-     
+            ps.setBoolean(4, siniestro.isEstado());    
+            ps.setInt(5, siniestro.getCodigo());          
+            int resultado = ps.executeUpdate();     
             ResultSet rs = ps.getGeneratedKeys();
             if (resultado == 1) {
                 JOptionPane.showMessageDialog(null, "Siniestro resuelto");
@@ -156,8 +148,7 @@ public class SiniestroData {
                     s.setBrigada(null);
                 } 
                 s.setEstado(rs.getBoolean("estado"));
-                siniestros.add(s);
-                System.out.println(s.toString());
+                siniestros.add(s);                
             }
             if (cont == 0) {
                 JOptionPane.showMessageDialog(null, "No se encontro ningun siniestro");
@@ -176,7 +167,6 @@ public class SiniestroData {
         for (Siniestro siniestro : siniestros) {
             if(siniestro.getBrigada()!=null && siniestro.getFechaResolucion()==null){
                 siniestros2.add(siniestro); 
-                
             }
         }        
         return siniestros2;   
@@ -187,7 +177,6 @@ public class SiniestroData {
         ArrayList<Cuartel> cuarteles = cd.listarCuartel();
         Cuartel cuartelesMasCercano = new Cuartel();
         double aux = 1000000000;
-
         for (Cuartel cuartel : cuarteles) {
             //coordenadas del cuartel
             double x1 = cuartel.getCoordX();
@@ -196,15 +185,12 @@ public class SiniestroData {
             double x2 = siniestro.getCoordX();
             double y2 = siniestro.getCoordY();
             double dis = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-            
             if (dis < aux) {
                 cuartelesMasCercano = cuartel;
                 aux = dis;
             }
         }
-        double aux1 = (aux/1)*95;
-        
-        System.out.println("La distancia entre ambos puntos es : "+ aux1+ " km");
+        double aux1 = (aux/1)*95;       
         return cuartelesMasCercano;
     }    
     
@@ -270,12 +256,9 @@ public class SiniestroData {
         LocalDate fechaAyer= LocalDate.now().minusDays(1);        
         ArrayList<Siniestro> siniestros= listarSiniestros();         
            for (Siniestro siniestro : siniestros) {
-               
                if(siniestro.getFechaSiniestro().equals(LocalDate.now())|| siniestro.getFechaSiniestro().equals(fechaAyer)){
                     siniestrosAyeryHoy.add(siniestro);
-               
                } 
-//                    
         }
         return siniestrosAyeryHoy;
     }
@@ -314,7 +297,7 @@ public class SiniestroData {
                 siniestros.add(s);            
             }
             if (cont == 0) {
-                JOptionPane.showMessageDialog(null, "No se encontro ningun siniestro");
+                //JOptionPane.showMessageDialog(null, "No se encontro ningun siniestro");
             }
             ps.close();
         } catch (SQLException ex) {

@@ -207,12 +207,9 @@ public class BomberoData {
     public ArrayList listarBomberosPorBrigadas(int idBrigada){
       ArrayList<Bombero> aux = listarBombero();
        ArrayList<Bombero> bomberosPorBrigadas= new ArrayList<>();
-       
             for(Bombero bombero:aux){
              if (bombero.getBrigada().getCodigo() == idBrigada){
-               
              bomberosPorBrigadas.add(bombero);
-             
              }
           }
     return bomberosPorBrigadas;
@@ -221,12 +218,9 @@ public class BomberoData {
     public ArrayList listarBomberosPorCuartel(int idCuartel){
       ArrayList<Bombero> aux = listarBombero();
        ArrayList<Bombero> bomberosPorCuartel= new ArrayList<>();
-       
             for(Bombero bombero:aux){
              if (bombero.getBrigada().getCuartel().getCodigo() == idCuartel){
-               
              bomberosPorCuartel.add(bombero);
-             
              }
           }
     return bomberosPorCuartel;

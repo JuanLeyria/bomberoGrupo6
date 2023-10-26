@@ -10,6 +10,7 @@ import Entidades.Siniestro;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -61,6 +62,18 @@ public class SiniestroView extends javax.swing.JInternalFrame {
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel7.setText("SINIESTRO");
+
+        jtCoordenadasX.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCoordenadasXKeyTyped(evt);
+            }
+        });
+
+        jtCoordenadasY.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCoordenadasYKeyTyped(evt);
+            }
+        });
 
         jtDetalles.setColumns(20);
         jtDetalles.setRows(5);
@@ -165,11 +178,10 @@ public class SiniestroView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
-       
-        if(jcTipoSiniestro.getSelectedIndex()!=0 && jtCoordenadasX.getText().length()>0 && jtCoordenadasY.getText().length()>0){
+        
+        if(jcTipoSiniestro.getSelectedIndex()!=0 && jtCoordenadasX.getText().length()>0 && jtCoordenadasY.getText().length()>0 && jtDetalles.getText().length()>0){
         Siniestro s = new Siniestro();
         SiniestroData sd = new SiniestroData(); 
-        
         s.setTipo((String) jcTipoSiniestro.getSelectedItem());
         s.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
         s.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
@@ -179,6 +191,8 @@ public class SiniestroView extends javax.swing.JInternalFrame {
         s.setHoraSiniestro(Time.valueOf(LocalTime.now()));
         sd.guardarSiniestro(s);
         limpiarCampos();
+        }else{
+             JOptionPane.showMessageDialog(this, "Complte todos los campos");
         }
   
     }//GEN-LAST:event_jbCrearActionPerformed
@@ -186,6 +200,20 @@ public class SiniestroView extends javax.swing.JInternalFrame {
     private void jcTipoSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcTipoSiniestroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcTipoSiniestroActionPerformed
+
+    private void jtCoordenadasXKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCoordenadasXKeyTyped
+       char caracter=evt.getKeyChar();
+        if ((caracter < '0' || caracter > '9') && (caracter != '.'||jtCoordenadasX.getText().contains(".")) && (caracter != '-'||jtCoordenadasX.getText().contains("."))) {
+           evt.consume();
+        }
+    }//GEN-LAST:event_jtCoordenadasXKeyTyped
+
+    private void jtCoordenadasYKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCoordenadasYKeyTyped
+        char caracter=evt.getKeyChar();
+        if ((caracter < '0' || caracter > '9') && (caracter != '.'||jtCoordenadasY.getText().contains(".")) && (caracter != '-'||jtCoordenadasY.getText().contains("."))) {
+           evt.consume();
+        }
+    }//GEN-LAST:event_jtCoordenadasYKeyTyped
  private void limpiarCampos() {
         
         jcTipoSiniestro.setSelectedIndex(0);

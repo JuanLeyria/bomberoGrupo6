@@ -12,6 +12,7 @@ import Entidades.Siniestro;
 import java.sql.Time;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -193,17 +194,14 @@ public class ResolverSiniestroView extends javax.swing.JInternalFrame {
             Time t = new Time(Integer.parseInt(jcHora.getSelectedItem().toString()), Integer.parseInt(jcMinutos.getSelectedItem().toString()), 00);
             s.setHoraResolucion(t);
             s.setPuntuacion(Integer.parseInt(jcPuntuacion.getSelectedItem().toString()));
-            s.setEstado(false); 
-            System.out.println(s.toString());
-            sd.resolverSiniestro(s);
-           
+            s.setEstado(false);             
+            sd.resolverSiniestro(s);           
             int c = s.getBrigada().getCodigo();
             Brigada b = bd.buscarBrigada(c);
             b.setLibre(true);
-            bd.modificarBrigada(b);
-            
+            bd.modificarBrigada(b);            
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(this, "Complete todos los campos");
         }
         
         LimpiarCampos();

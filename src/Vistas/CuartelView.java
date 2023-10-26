@@ -280,12 +280,10 @@ public class CuartelView extends javax.swing.JInternalFrame {
          if (jtID.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Complete el campo ID correctamente");
         } else {
-
             CuartelData cd = new CuartelData();
             Cuartel c = cd.buscarCuartel(Integer.parseInt(jtID.getText()));
 
             if (c.getNombre() != null) {
-
                 jtID.setText(c.getCodigo()+"");
                 jtCoordenadasX.setText(c.getCoordX()+"");
                 jtCoordenadasY.setText(c.getCoordY()+"");
@@ -302,22 +300,18 @@ public class CuartelView extends javax.swing.JInternalFrame {
 
             }
         }
-
-        
-        
-        
-        
-        
         
     }//GEN-LAST:event_jbBuscar1ActionPerformed
 
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
         // TODO add your handling code here:
-        
         Cuartel c = new Cuartel();
         CuartelData cd = new CuartelData();
+        Cuartel c2 = new Cuartel();
+        c2 = cd.buscarCuartel(Integer.parseInt(jtID.getText()));
+        
         if(jtNombre.getText().length()>0 && jtDireccion.getText().length()>0 && jtCoordenadasX.getText().length()>0 && jtCoordenadasY.getText().length()>0 &&
-                jtCorreo.getText().length()>0 && jtTelefono.getText().length()>0){
+                jtCorreo.getText().length()>0 && jtTelefono.getText().length()>0 && c2.getCodigo()!= Integer.parseInt(jtID.getText())){
         c.setNombre(jtNombre.getText());
         c.setDireccion(jtDireccion.getText());
         c.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
@@ -325,17 +319,12 @@ public class CuartelView extends javax.swing.JInternalFrame {
         c.setCorreo(jtCorreo.getText());
         c.setEstado(true);
         c.setTelefono(jtTelefono.getText());
-        
         cd.guardarCuartel(c);
         limpiarCampos();
-        
         }else{
-            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+            JOptionPane.showMessageDialog(null, "Complete los campos correctamente");
                     
         }
-        
-        
-        
     }//GEN-LAST:event_jbCrearActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed

@@ -297,27 +297,24 @@ public class BrigadasView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-if (jtNombreBrigada.getText().length() > 0 && jcEspecialidad.getSelectedIndex() != 0 && jcCuartel.getSelectedIndex() != 0) {
-        BrigadaData brd = new BrigadaData();
-        Brigada b = new Brigada();
-        b.setNombre(jtNombreBrigada.getText());
-        b.setEspecialidad((String) jcEspecialidad.getSelectedItem());
-        b.setEstado(true);
-        b.setLibre(true);
-        CuartelData cd = new CuartelData();
-        ArrayList<Cuartel> cuarteles = cd.listarCuartel();
-    
-        b.setCuartel(cuarteles.get(jcCuartel.getSelectedIndex()-1));
-        
-        Brigada br = (Brigada)brd.buscarBrigada(Integer.parseInt(jtId.getText()));
-        b.setCodigo(br.getCodigo());
-        
-        brd.modificarBrigada(b);
-
-        limpiarCampos();
-}else{
-JOptionPane.showMessageDialog(null, "Complete todos los campos");
-}
+        if (jtNombreBrigada.getText().length() > 0 && jcEspecialidad.getSelectedIndex() != 0 && jcCuartel.getSelectedIndex() != 0) {
+            BrigadaData brd = new BrigadaData();
+            Brigada b = new Brigada();
+            b.setNombre(jtNombreBrigada.getText());
+            b.setEspecialidad((String) jcEspecialidad.getSelectedItem());
+            b.setEstado(true);
+            b.setLibre(true);
+            CuartelData cd = new CuartelData();
+            ArrayList<Cuartel> cuarteles = cd.listarCuartel();
+            b.setCuartel(cuarteles.get(jcCuartel.getSelectedIndex() - 1));
+            Brigada br = (Brigada) brd.buscarBrigada(Integer.parseInt(jtId.getText()));
+            b.setCodigo(br.getCodigo());
+            brd.modificarBrigada(b);
+            limpiarCampos();
+            JOptionPane.showMessageDialog(null, "Brigada Modificada");
+        } else {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+        }
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed

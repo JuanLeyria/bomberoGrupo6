@@ -64,11 +64,8 @@ public class BrigadaData {
                 br.setEspecialidad(rs.getString("especialidad"));
                 br.setLibre(rs.getBoolean("libre"));
                 br.setCuartel(cd.buscarCuartel(rs.getInt("nro_cuartel")));
-                br.setEstado(rs.getBoolean("estado"));
-            ///    JOptionPane.showMessageDialog(null, "Brigada encontrada.");
-            } else {
-               /// JOptionPane.showMessageDialog(null, "No se encontro la brigada con el id:" + id);
-            }
+                br.setEstado(rs.getBoolean("estado"));        
+            } 
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al buscar la brigada.");
@@ -79,7 +76,6 @@ public class BrigadaData {
     public void modificarBrigada(Brigada brigada) {
 
         String sql = "UPDATE brigada SET nombre_br=?, especialidad=?, libre=?, nro_cuartel=?, estado=? WHERE cod_brigada=?";
-
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -89,11 +85,9 @@ public class BrigadaData {
             ps.setInt(4, brigada.getCuartel().getCodigo());
             ps.setBoolean(5, brigada.isEstado());
             ps.setInt(6, brigada.getCodigo());
- 
             int resultado = ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (resultado == 1) {
-                JOptionPane.showMessageDialog(null, "Brigada modificado.");
             } else {
                 JOptionPane.showMessageDialog(null, "La brigada no se pudo modificar.");
             }
@@ -134,12 +128,9 @@ public class BrigadaData {
     public ArrayList listarBrigadasPorCuartel(int idCuartel){
       ArrayList<Brigada> aux = listarBrigada();
        ArrayList<Brigada> brigadasPorCuartel= new ArrayList<>();
-       
             for(Brigada brigada:aux){
-             if (brigada.getCuartel().getCodigo()== idCuartel && brigada.isLibre()){
-               
+             if (brigada.getCuartel().getCodigo()== idCuartel && brigada.isEstado()){
              brigadasPorCuartel.add(brigada);
-             
              }
           }
     return  brigadasPorCuartel;

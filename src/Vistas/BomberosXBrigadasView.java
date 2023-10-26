@@ -26,9 +26,8 @@ private DefaultTableModel modelo = new DefaultTableModel() {
      */
     public BomberosXBrigadasView() {
         initComponents();
+        armarCabecera();
         llenarCombobox();
-       armarCabecera();
-        
     }
 
     /**
@@ -145,63 +144,53 @@ private DefaultTableModel modelo = new DefaultTableModel() {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jcBrigadasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcBrigadasItemStateChanged
-     
-        ArrayList<Brigada> brigadas = new ArrayList<>();        
+        limpiarTabla();
+        ArrayList<Brigada> brigadas = new ArrayList<>();
         BrigadaData bd = new BrigadaData();
         brigadas = bd.listarBrigada();
-        
-        
-        
-        if (jcBrigadas.getSelectedIndex()==0) {
-            jcBrigadas.removeAllItems();
-            jcBrigadas.addItem("Seleccione la Brigada");
-        }
-        if(jcBrigadas.getSelectedIndex()!=0){
-        int num = jcBrigadas.getSelectedIndex();
-         Brigada b= brigadas.get(num);
-         BomberoData bomd=new BomberoData();
-         
-         ArrayList<Bombero> bomberos = bomd.listarBomberosPorBrigadas(b.getCodigo());
-         
+        if (jcBrigadas.getSelectedIndex() != 0) {
+            int num = jcBrigadas.getSelectedIndex();
+            Brigada b = brigadas.get(num - 1);
+            BomberoData bomd = new BomberoData();
+            ArrayList<Bombero> bomberos = bomd.listarBomberosPorBrigadas(b.getCodigo());
             for (Bombero bb : bomberos) {
-                 modelo.addRow(new Object[]{bb.getDni(), bb.getNombre(), bb.getApellido(), bb.getFechaNac(), bb.getCelular(), bb.getGrupoSanguineo(), bb.isEstado()});
+                if (bb.isEstado()) {
+                    modelo.addRow(new Object[]{bb.getDni(), bb.getNombre(), bb.getApellido(), bb.getFechaNac(), bb.getCelular(), bb.getGrupoSanguineo(),"Activo"});
+                } else {
+                    modelo.addRow(new Object[]{bb.getDni(), bb.getNombre(), bb.getApellido(), bb.getFechaNac(), bb.getCelular(), bb.getGrupoSanguineo(), "Inactivo"});
+                }
             }
-         
-         
-        
         }
-        
-        
-        
-        
+
     }//GEN-LAST:event_jcBrigadasItemStateChanged
 
-private void armarCabecera() {
-    modelo.addColumn("DNI");
-    modelo.addColumn("Nombre");
-    modelo.addColumn("Apellido");
-    modelo.addColumn("Fecha Nacimiento");
-    modelo.addColumn("Celular");
-    modelo.addColumn("Grupo Sanguìneo");
-    modelo.addColumn("Estado");
-
-    tablaBomberos.setModel(modelo);
-    } 
-public void llenarCombobox(){
-Brigada b= new Brigada();
-        ArrayList<Brigada> brigadas = new ArrayList<>();        
-        BrigadaData bd= new BrigadaData();
+    private void armarCabecera() {
+        modelo.addColumn("DNI");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Fecha Nacimiento");
+        modelo.addColumn("Celular");
+        modelo.addColumn("Grupo Sanguìneo");
+        modelo.addColumn("Estado");
+        tablaBomberos.setModel(modelo);
+    }
+    public void llenarCombobox() {
+        Brigada b = new Brigada();
+        ArrayList<Brigada> brigadas = new ArrayList<>();
+        BrigadaData bd = new BrigadaData();
         brigadas = bd.listarBrigada();
-        
-       
-          jcBrigadas.addItem("Seleccione la Brigada");
+        jcBrigadas.addItem("Seleccione la Brigada");
         for (Brigada brigada : brigadas) {
             jcBrigadas.addItem(brigada.toString());
         }
-        
-        
-      
-}
+    }
+
+    private void limpiarTabla() {
+        for (int i = 0; i < tablaBomberos.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i -= 1;
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
