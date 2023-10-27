@@ -203,14 +203,14 @@ public class SiniestroView extends javax.swing.JInternalFrame {
 
     private void jtCoordenadasXKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCoordenadasXKeyTyped
        char caracter=evt.getKeyChar();
-        if ((caracter < '0' || caracter > '9') && (caracter != '.'||jtCoordenadasX.getText().contains(".")) && (caracter != '-'||jtCoordenadasX.getText().contains("."))) {
+        if ((caracter < '0' || caracter > '9') && (caracter != '.'||jtCoordenadasX.getText().contains(".")) && (caracter != '-'||jtCoordenadasX.getText().contains("-"))) {
            evt.consume();
         }
     }//GEN-LAST:event_jtCoordenadasXKeyTyped
 
     private void jtCoordenadasYKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCoordenadasYKeyTyped
         char caracter=evt.getKeyChar();
-        if ((caracter < '0' || caracter > '9') && (caracter != '.'||jtCoordenadasY.getText().contains(".")) && (caracter != '-'||jtCoordenadasY.getText().contains("."))) {
+        if ((caracter < '0' || caracter > '9') && (caracter != '.'||jtCoordenadasY.getText().contains(".")) && (caracter != '-'||jtCoordenadasY.getText().contains("-"))) {
            evt.consume();
         }
     }//GEN-LAST:event_jtCoordenadasYKeyTyped

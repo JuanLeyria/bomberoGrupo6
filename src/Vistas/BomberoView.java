@@ -21,13 +21,17 @@ import javax.swing.JOptionPane;
  * @author Juan
  */
 public class BomberoView extends javax.swing.JInternalFrame {
-    
+
     /**
      * Creates new form BomberoView
      */
     public BomberoView() {
         initComponents();
-       LlenarCBCuarteles();
+        LlenarCBCuarteles();
+        jtApellido.setTransferHandler(null);
+        jtNombre.setTransferHandler(null);
+        jtCelular.setTransferHandler(null);
+        jtDNI.setTransferHandler(null);
     }
 
     /**
@@ -77,6 +81,11 @@ public class BomberoView extends javax.swing.JInternalFrame {
                 jtNombreActionPerformed(evt);
             }
         });
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Apellido");
@@ -96,15 +105,33 @@ public class BomberoView extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setText("Estado");
 
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyTyped(evt);
+            }
+        });
+
+        jtDNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtDNIActionPerformed(evt);
+            }
+        });
         jtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtDNIKeyTyped(evt);
             }
         });
 
+        jtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCelularKeyTyped(evt);
+            }
+        });
+
         jdFechaNacimiento.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("BOMBERO");
 
         jbAgregar.setBackground(new java.awt.Color(153, 153, 153));
@@ -191,68 +218,69 @@ public class BomberoView extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(312, 312, 312)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jdFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jcGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(cbCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(cbBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116)
-                .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jdFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jcGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(cbCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(cbBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116)
+                        .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,44 +368,44 @@ public class BomberoView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreActionPerformed
-        
+
     }//GEN-LAST:event_jtNombreActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-   
-          this.dispose();
+
+        this.dispose();
 
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        BomberoData bd = new BomberoData();       
-        Bombero b= new Bombero();
-        BrigadaData brd= new BrigadaData();
-        Brigada bb= new Brigada();
+        BomberoData bd = new BomberoData();
+        Bombero b = new Bombero();
+        BrigadaData brd = new BrigadaData();
+        Brigada bb = new Brigada();
         //b = bd.buscarBomberoPorDni(jtDNI.getText());
-        if ( jtDNI.getText().length()!=0) {
+        if (jtDNI.getText().length() != 0) {
             b = bd.buscarBomberoPorDni(jtDNI.getText());
-        }else{
-            JOptionPane.showMessageDialog(null,"Complete el campo DNI");
+        } else {
+            JOptionPane.showMessageDialog(null, "Complete el campo DNI");
         }
-        if (b.getIdBombero()!=0 ) {
+        if (b.getIdBombero() != 0) {
             jtNombre.setText(b.getNombre());
             jtApellido.setText(b.getApellido());
             jtCelular.setText(b.getCelular());
             jcGrupoSanguineo.setSelectedItem(b.getGrupoSanguineo() + "");
             jdFechaNacimiento.setDate(Date.valueOf(b.getFechaNac()));
             if (b.isEstado()) {
-                jtEstado.setText("Activo"); 
-            }else{
+                jtEstado.setText("Activo");
+            } else {
                 jtEstado.setText("Inactivo");
             }
             if (b.getBrigada() != null) {
                 cbCuartel.removeAllItems();
                 LlenarCBCuarteles();
-              
+
                 cbCuartel.setSelectedItem(b.getBrigada().getCuartel().toString());
                 cbBrigada.removeAllItems();
-             
+
                 LlenarCBBrigadas(b.getBrigada().getCuartel(), 2);
                 cbBrigada.setSelectedItem(b.getBrigada().toString());
             }
@@ -385,155 +413,168 @@ public class BomberoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
+        try {
+            
+       
         Bombero b = new Bombero();
-        BomberoData bd = new BomberoData(); 
-        
-        if (jtDNI.getText().length()!=0) {
+        BomberoData bd = new BomberoData();
+
+        if (jtDNI.getText().length() != 0) {
             b = bd.buscarBomberoPorDni(jtDNI.getText());
-            if (b.getDni()!=null) {              
-                 bd.darDeBajaBombero(b.getIdBombero());
-                 jtEstado.setText("Inactivo");
-            }                  
-        }else{
-            JOptionPane.showMessageDialog(null,"complete el campo el DNI");
+            if (b.getDni() != null) {
+                bd.darDeBajaBombero(b.getIdBombero());
+                jtEstado.setText("Inactivo");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "complete el campo el DNI");
         }
         limpiarCampos();
+         } catch (Exception e) {
+        }
     }//GEN-LAST:event_jbBajaActionPerformed
 
     private void jtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDNIKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter <'0' || caracter >'9')) {
+        char caracter = evt.getKeyChar();
+        if ((caracter < '0' || caracter > '9')) {
             evt.consume();
         }
     }//GEN-LAST:event_jtDNIKeyTyped
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
-        // TODO add your handling code here:
-        ////CONFIRMAR VACANTES DE BRIGADAS
-        BrigadaData brd = new BrigadaData(); 
-        Bombero b = new Bombero();
-        BomberoData bd = new BomberoData(); 
-       
-        b.setApellido(jtApellido.getText());
-        b.setNombre(jtNombre.getText());
-        b.setCelular(jtCelular.getText());
-        b.setEstado(true);
-        b.setDni(jtDNI.getText());
-        b.setGrupoSanguineo((String) jcGrupoSanguineo.getSelectedItem());
-        b.setFechaNac(jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        if (cbBrigada.getSelectedItem()!=null) {
-             ArrayList<Cuartel> cuarteles = new ArrayList<>();        
-        CuartelData cd= new CuartelData();
-        cuarteles = cd.listarCuartel();
-        if (cbCuartel.getSelectedIndex()==0) {
-            cbBrigada.removeAllItems();
-            cbBrigada.addItem("Seleccione la Brigada");
-        }
-        if(cbCuartel.getSelectedIndex()!=0){
-        int num = cbCuartel.getSelectedIndex()-1;
-         Cuartel c= cuarteles.get(num);
-            ArrayList<Brigada> brigadas = brd.listarBrigadasPorCuartel(c.getCodigo());   
-            
-            for (int i = 0; i < brigadas.size(); i++) {
-                System.out.println(brigadas.get(i));
-            }
-            if(brigadas!=null){
-              b.setBrigada(brigadas.get(cbBrigada.getSelectedIndex()));
-              if (brd.comprobarCapacidadBrigada(brigadas.get(cbBrigada.getSelectedIndex()).getCodigo())) {
-                 bd.guardarBombero(b);
-                 limpiarCampos();
-            }
-            }else{
-               JOptionPane.showMessageDialog(null,"La Brigada está completa. Elija otra Brigada");
-               }    
-        }else{
-        JOptionPane.showMessageDialog(null,"Es necesario agregar al bombero en una Brigada");
-        }
-     
+        try {
+
+            if (jtApellido.getText().length() > 0 && jtCelular.getText().length() > 0 && jtDNI.getText().length() > 0 && jtNombre.getText().length() > 0 && jcGrupoSanguineo.getSelectedItem().toString().isEmpty()
+                    && cbBrigada.getSelectedItem().toString().isEmpty() && cbCuartel.getSelectedItem().toString().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "La Brigada está completa. Elija otra Brigada");
+            } else {
+                BrigadaData brd = new BrigadaData();
+                Bombero b = new Bombero();
+                BomberoData bd = new BomberoData();
+
+                b.setApellido(jtApellido.getText());
+                b.setNombre(jtNombre.getText());
+                b.setCelular(jtCelular.getText());
+                b.setEstado(true);
+                b.setDni(jtDNI.getText());
+                b.setGrupoSanguineo((String) jcGrupoSanguineo.getSelectedItem());
+                b.setFechaNac(jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                if (cbBrigada.getSelectedItem() != null) {
+                    ArrayList<Cuartel> cuarteles = new ArrayList<>();
+                    CuartelData cd = new CuartelData();
+                    cuarteles = cd.listarCuartel();
+                    if (cbCuartel.getSelectedIndex() == 0) {
+                        cbBrigada.removeAllItems();
+                        cbBrigada.addItem("Seleccione la Brigada");
+                    }
+                    if (cbCuartel.getSelectedIndex() != 0) {
+                        int num = cbCuartel.getSelectedIndex() - 1;
+                        Cuartel c = cuarteles.get(num);
+                        ArrayList<Brigada> brigadas = brd.listarBrigadasPorCuartel(c.getCodigo());
+
+                        for (int i = 0; i < brigadas.size(); i++) {
+                            System.out.println(brigadas.get(i));
+                        }
+                        if (brigadas != null) {
+                            b.setBrigada(brigadas.get(cbBrigada.getSelectedIndex()));
+                            if (brd.comprobarCapacidadBrigada(brigadas.get(cbBrigada.getSelectedIndex()).getCodigo())) {
+                                bd.guardarBombero(b);
+                                limpiarCampos();
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La Brigada está completa. Elija otra Brigada");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Es necesario agregar al bombero en una Brigada");
+                    }
+                }
+
+
     }//GEN-LAST:event_jbAgregarActionPerformed
+
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Complete todos los campos");
+        }
     }
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         // TODO add your handling code here:
-      limpiarCampos();
-        
+        limpiarCampos();
+
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
-       Bombero b = new Bombero();
-       BomberoData bd = new BomberoData();    
-       BrigadaData brd = new BrigadaData(); 
-        if (jtDNI.getText().length()!=0) {
+        try {
+            
+        Bombero b = new Bombero();
+        BomberoData bd = new BomberoData();
+        BrigadaData brd = new BrigadaData();
+        if (jtDNI.getText().length() != 0) {
             b = bd.buscarBomberoPorDni(jtDNI.getText());
-            if (b.getDni()!=null) {   
-                
-                if (brd.comprobarCapacidadBrigada(b.getBrigada().getCodigo())){
-                 bd.darDeAltaBombero(b.getIdBombero());
-                 jtEstado.setText("Activo");
-                }else{
-                JOptionPane.showMessageDialog(null,"La Brigada ya está completa. Elija otra.");
+            if (b.getDni() != null) {
+
+                if (brd.comprobarCapacidadBrigada(b.getBrigada().getCodigo())) {
+                    bd.darDeAltaBombero(b.getIdBombero());
+                    jtEstado.setText("Activo");
+                } else {
+                    JOptionPane.showMessageDialog(null, "La Brigada ya está completa. Elija otra.");
                 }
-                
-                
-            }                  
-        }else{
-            JOptionPane.showMessageDialog(null,"complete el campo del DNI");
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "complete el campo del DNI");
         }
         limpiarCampos();
+                } catch (Exception e) {
+        }
     }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        
+
         //No Muestra el cuartel requerido
-        
         Bombero b = new Bombero();
         BomberoData bd = new BomberoData();
-        BrigadaData brd = new BrigadaData(); 
+        BrigadaData brd = new BrigadaData();
         if (jtDNI.getText().length() != 0) {
-            if (jtNombre.getText().equals("") || jtApellido.getText().equals("") || jdFechaNacimiento == null || jtCelular.getText().equals("")||jcGrupoSanguineo.getSelectedIndex()==0){
-            JOptionPane.showMessageDialog(null,"Busque el bombero correspondiente");
-            }else {
-            b.setNombre(jtNombre.getText());
-            b.setApellido(jtApellido.getText());
-            b.setFechaNac(jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            b.setCelular(jtCelular.getText());
-            b.setGrupoSanguineo(jcGrupoSanguineo.getSelectedItem().toString());
-            
-            
-            CuartelData cd = new CuartelData();
-            ArrayList<Cuartel> cuarteles = new ArrayList<>();
-            cuarteles= cd.listarCuartel();
-            Cuartel c = cuarteles.get(cbCuartel.getSelectedIndex()-1);
-            ArrayList<Brigada>  brigadas = brd.listarBrigadasPorCuartel(c.getCodigo()); 
-            
-            b.setBrigada(brigadas.get(cbBrigada.getSelectedIndex()));
-            
-            
-            
-            b.setIdBombero(bd.buscarBomberoPorDni(jtDNI.getText()).getIdBombero());
-            b.setDni(jtDNI.getText());
-            b.setEstado(bd.buscarBomberoPorDni(jtDNI.getText()).isEstado());
-            
-             if (brd.comprobarCapacidadBrigada(b.getBrigada().getCodigo())){
-            bd.modificarBombero(b);
-            limpiarCampos();           
-             }else{
-               JOptionPane.showMessageDialog(null,"La Brigada está completa. Elija otra Brigada");
-               }
-             
+            if (jtNombre.getText().equals("") || jtApellido.getText().equals("") || jdFechaNacimiento == null || jtCelular.getText().equals("") || jcGrupoSanguineo.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(null, "Busque el bombero correspondiente");
+            } else {
+                b.setNombre(jtNombre.getText());
+                b.setApellido(jtApellido.getText());
+                b.setFechaNac(jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                b.setCelular(jtCelular.getText());
+                b.setGrupoSanguineo(jcGrupoSanguineo.getSelectedItem().toString());
+
+                CuartelData cd = new CuartelData();
+                ArrayList<Cuartel> cuarteles = new ArrayList<>();
+                cuarteles = cd.listarCuartel();
+                Cuartel c = cuarteles.get(cbCuartel.getSelectedIndex() - 1);
+                ArrayList<Brigada> brigadas = brd.listarBrigadasPorCuartel(c.getCodigo());
+
+                b.setBrigada(brigadas.get(cbBrigada.getSelectedIndex()));
+
+                b.setIdBombero(bd.buscarBomberoPorDni(jtDNI.getText()).getIdBombero());
+                b.setDni(jtDNI.getText());
+                b.setEstado(bd.buscarBomberoPorDni(jtDNI.getText()).isEstado());
+
+                if (brd.comprobarCapacidadBrigada(b.getBrigada().getCodigo())) {
+                    bd.modificarBombero(b);
+                    limpiarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "La Brigada está completa. Elija otra Brigada");
+                }
+
             }
-              
-        }else{
-             JOptionPane.showMessageDialog(null,"complete el campo del DNI");
-        
+
+        } else {
+            JOptionPane.showMessageDialog(null, "complete el campo del DNI");
+
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void cbCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCuartelActionPerformed
-       
-       /*
+
+        /*
         ArrayList<Cuartel> cuarteles = new ArrayList<>();        
         CuartelData cd= new CuartelData();
         cuarteles = cd.listarCuartel();
@@ -544,57 +585,86 @@ public class BomberoView extends javax.swing.JInternalFrame {
         
         LlenarCBBrigadas(c);
      
-     */
+         */
     }//GEN-LAST:event_cbCuartelActionPerformed
 
     private void cbCuartelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCuartelItemStateChanged
-        ArrayList<Cuartel> cuarteles = new ArrayList<>();        
-        CuartelData cd= new CuartelData();
+
+            
+
+        ArrayList<Cuartel> cuarteles = new ArrayList<>();
+        CuartelData cd = new CuartelData();
         cuarteles = cd.listarCuartel();
-        if (cbCuartel.getSelectedIndex()==0) {
+        if (cbCuartel.getSelectedIndex() == 0) {
             cbBrigada.removeAllItems();
             cbBrigada.addItem("Seleccione la Brigada");
         }
-        if(cbCuartel.getSelectedIndex()!=0){
-        int num = cbCuartel.getSelectedIndex()-1;
-         Cuartel c= cuarteles.get(num);
- 
-        cbBrigada.removeAllItems();
-        
-        LlenarCBBrigadas(c, 2);
-        
+        if (cbCuartel.getSelectedIndex() != 0) {
+            int num = cbCuartel.getSelectedIndex() - 1;
+            Cuartel c = cuarteles.get(num);
+
+            cbBrigada.removeAllItems();
+
+            LlenarCBBrigadas(c, 2);
+
         }
+        
     }//GEN-LAST:event_cbCuartelItemStateChanged
 
     private void cbCuartelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbCuartelMousePressed
         // TODO add your handling code here:
-       
-        
+
+
     }//GEN-LAST:event_cbCuartelMousePressed
-    
-    private void LlenarCBCuarteles(){
-      
-        Cuartel c= new Cuartel();
-        ArrayList<Cuartel> cuarteles = new ArrayList<>();        
-        CuartelData cd= new CuartelData();
+
+    private void jtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCelularKeyTyped
+        char caracter = evt.getKeyChar();
+        if ((caracter < '0' || caracter > '9') && (caracter != '+' || jtCelular.getText().contains("+"))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtCelularKeyTyped
+
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+        char caracter = evt.getKeyChar();
+        if ((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z') && (caracter != ' ' || jtNombre.getText().contains(" "))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtNombreKeyTyped
+
+    private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
+        char caracter = evt.getKeyChar();
+        if ((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z') && (caracter != ' ' || jtApellido.getText().contains(" "))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtApellidoKeyTyped
+
+    private void jtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDNIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtDNIActionPerformed
+
+    private void LlenarCBCuarteles() {
+
+        Cuartel c = new Cuartel();
+        ArrayList<Cuartel> cuarteles = new ArrayList<>();
+        CuartelData cd = new CuartelData();
         cuarteles = cd.listarCuartel();
-  
-       cbCuartel.addItem("Seleccione el Cuartel");
+
+        cbCuartel.addItem("Seleccione el Cuartel");
         for (Cuartel cuartel : cuarteles) {
             cbCuartel.addItem(cuartel.toString());
         }
         cbBrigada.addItem("Seleccione la Brigada");
     }
-    private void LlenarCBBrigadas(Cuartel cuartel, int f){
-        Brigada b= new Brigada();
-        ArrayList<Brigada> brigadas = new ArrayList<>();        
-        BrigadaData bd= new BrigadaData();
+
+    private void LlenarCBBrigadas(Cuartel cuartel, int f) {
+        Brigada b = new Brigada();
+        ArrayList<Brigada> brigadas = new ArrayList<>();
+        BrigadaData bd = new BrigadaData();
         brigadas = bd.listarBrigadasPorCuartel(cuartel.getCodigo());
-        if (f==1){
-          cbBrigada.addItem("Seleccione la Brigada");
+        if (f == 1) {
+            cbBrigada.addItem("Seleccione la Brigada");
         }
-      
-        
+
         for (Brigada brigada : brigadas) {
             cbBrigada.addItem(brigada.toString());
         }
@@ -629,7 +699,7 @@ public class BomberoView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtEstado;
     private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
-public void limpiarCampos(){
+public void limpiarCampos() {
         jtNombre.setText("");
         jtDNI.setText("");
         jtApellido.setText("");
@@ -638,11 +708,9 @@ public void limpiarCampos(){
         jdFechaNacimiento.setDate(null);
         jtEstado.setText("");
         cbBrigada.removeAllItems();
-        cbCuartel.removeAllItems();        
+        cbCuartel.removeAllItems();
         LlenarCBCuarteles();
-        
 
-
-}
+    }
 
 }

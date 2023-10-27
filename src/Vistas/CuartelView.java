@@ -5,9 +5,7 @@
  */
 package Vistas;
 
-import AccesoADatos.BrigadaData;
 import AccesoADatos.CuartelData;
-import Entidades.Brigada;
 import Entidades.Cuartel;
 import javax.swing.JOptionPane;
 
@@ -116,6 +114,26 @@ public class CuartelView extends javax.swing.JInternalFrame {
                 jtDireccionActionPerformed(evt);
             }
         });
+
+        jtCoordenadasX.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCoordenadasXKeyTyped(evt);
+            }
+        });
+
+        jtCoordenadasY.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCoordenadasYKeyTyped(evt);
+            }
+        });
+
+        jtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtTelefonoKeyTyped(evt);
+            }
+        });
+
+        jtEstado.setEditable(false);
 
         jbBuscar1.setText("Buscar");
         jbBuscar1.addActionListener(new java.awt.event.ActionListener() {
@@ -277,21 +295,21 @@ public class CuartelView extends javax.swing.JInternalFrame {
 
     private void jbBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscar1ActionPerformed
 
-         if (jtID.getText().length() == 0) {
+        if (jtID.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Complete el campo ID correctamente");
         } else {
             CuartelData cd = new CuartelData();
             Cuartel c = cd.buscarCuartel(Integer.parseInt(jtID.getText()));
 
             if (c.getNombre() != null) {
-                jtID.setText(c.getCodigo()+"");
-                jtCoordenadasX.setText(c.getCoordX()+"");
-                jtCoordenadasY.setText(c.getCoordY()+"");
+                jtID.setText(c.getCodigo() + "");
+                jtCoordenadasX.setText(c.getCoordX() + "");
+                jtCoordenadasY.setText(c.getCoordY() + "");
                 jtCorreo.setText(c.getCorreo());
                 jtDireccion.setText(c.getDireccion());
                 jtTelefono.setText(c.getTelefono());
                 jtNombre.setText(c.getNombre());
-                
+
                 if (c.isEstado() == true) {
                     jtEstado.setText("Activo");
                 } else {
@@ -300,7 +318,7 @@ public class CuartelView extends javax.swing.JInternalFrame {
 
             }
         }
-        
+
     }//GEN-LAST:event_jbBuscar1ActionPerformed
 
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
@@ -308,56 +326,79 @@ public class CuartelView extends javax.swing.JInternalFrame {
         Cuartel c = new Cuartel();
         CuartelData cd = new CuartelData();
         Cuartel c2 = new Cuartel();
-        c2 = cd.buscarCuartel(Integer.parseInt(jtID.getText()));
-        
-        if(jtNombre.getText().length()>0 && jtDireccion.getText().length()>0 && jtCoordenadasX.getText().length()>0 && jtCoordenadasY.getText().length()>0 &&
-                jtCorreo.getText().length()>0 && jtTelefono.getText().length()>0 && c2.getCodigo()!= Integer.parseInt(jtID.getText())){
-        c.setNombre(jtNombre.getText());
-        c.setDireccion(jtDireccion.getText());
-        c.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
-        c.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
-        c.setCorreo(jtCorreo.getText());
-        c.setEstado(true);
-        c.setTelefono(jtTelefono.getText());
-        cd.guardarCuartel(c);
-        limpiarCampos();
-        }else{
-            JOptionPane.showMessageDialog(null, "Complete los campos correctamente");
-                    
+        if (jtID.getText().length() > 0) {
+            c2 = cd.buscarCuartel(Integer.parseInt(jtID.getText()));
+
+            if (jtNombre.getText().length() > 0 && jtDireccion.getText().length() > 0 && jtCoordenadasX.getText().length() > 0 && jtCoordenadasY.getText().length() > 0
+                    && jtCorreo.getText().length() > 0 && jtTelefono.getText().length() > 0 && c2.getCodigo() != Integer.parseInt(jtID.getText())) {
+                c.setNombre(jtNombre.getText());
+                c.setDireccion(jtDireccion.getText());
+                c.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
+                c.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
+                c.setCorreo(jtCorreo.getText());
+                c.setEstado(true);
+                c.setTelefono(jtTelefono.getText());
+                cd.guardarCuartel(c);
+                limpiarCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede crear uno ya existente");
+
+            }
+        } else {
+            if (jtNombre.getText().length() > 0 && jtDireccion.getText().length() > 0 && jtCoordenadasX.getText().length() > 0 && jtCoordenadasY.getText().length() > 0
+                    && jtCorreo.getText().length() > 0 && jtTelefono.getText().length() > 0) {
+                c.setNombre(jtNombre.getText());
+                c.setDireccion(jtDireccion.getText());
+                c.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
+                c.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
+                c.setCorreo(jtCorreo.getText());
+                c.setEstado(true);
+                c.setTelefono(jtTelefono.getText());
+                cd.guardarCuartel(c);
+                limpiarCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Complete los campos correctamente");
+
+            }
+
         }
+
     }//GEN-LAST:event_jbCrearActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         // TODO add your handling code here:
-        Cuartel c = new Cuartel();
-        CuartelData cd = new CuartelData();
-        if (jtNombre.getText().length() > 0 && jtDireccion.getText().length() > 0 && jtCoordenadasX.getText().length() > 0 && jtCoordenadasY.getText().length() > 0
-                && jtCorreo.getText().length() > 0 && jtTelefono.getText().length() > 0) {
-            
-            c.setCodigo(Integer.parseInt(jtID.getText()));
-            c.setNombre(jtNombre.getText());
-            c.setDireccion(jtDireccion.getText());
-            c.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
-            c.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
-            c.setCorreo(jtCorreo.getText());
-            c.setEstado(true);
-            c.setTelefono(jtTelefono.getText());
+        try {
+            Cuartel c = new Cuartel();
+            CuartelData cd = new CuartelData();
+            if (jtNombre.getText().length() > 0 && jtDireccion.getText().length() > 0 && jtCoordenadasX.getText().length() > 0 && jtCoordenadasY.getText().length() > 0
+                    && jtCorreo.getText().length() > 0 && jtTelefono.getText().length() > 0) {
 
-            cd.modificarCuartel(c);
-            limpiarCampos();
+                c.setCodigo(Integer.parseInt(jtID.getText()));
+                c.setNombre(jtNombre.getText());
+                c.setDireccion(jtDireccion.getText());
+                c.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
+                c.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
+                c.setCorreo(jtCorreo.getText());
+                c.setEstado(true);
+                c.setTelefono(jtTelefono.getText());
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+                cd.modificarCuartel(c);
+                limpiarCampos();
 
+            } else {
+                JOptionPane.showMessageDialog(null, "Complete todos los campos");
+
+            }
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Se requiere todos los campos completos");
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbDarBajasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarBajasActionPerformed
-    
-              CuartelData cd = new CuartelData();
+
+        CuartelData cd = new CuartelData();
         cd.darDeBajaCuartel(Integer.parseInt(jtID.getText()));
         limpiarCampos();
 
@@ -370,10 +411,30 @@ public class CuartelView extends javax.swing.JInternalFrame {
         cd.darDeAltaCuartel(Integer.parseInt(jtID.getText()));
         limpiarCampos();
 
-        
-        
+
     }//GEN-LAST:event_jbDarAltasActionPerformed
-    private void limpiarCampos(){
+
+    private void jtCoordenadasXKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCoordenadasXKeyTyped
+        char caracter = evt.getKeyChar();
+        if ((caracter < '0' || caracter > '9') && (caracter != '.' || jtCoordenadasX.getText().contains(".")) && (caracter != '-' || jtCoordenadasX.getText().contains("-"))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtCoordenadasXKeyTyped
+
+    private void jtCoordenadasYKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCoordenadasYKeyTyped
+        char caracter = evt.getKeyChar();
+        if ((caracter < '0' || caracter > '9') && (caracter != '.' || jtCoordenadasY.getText().contains(".")) && (caracter != '-' || jtCoordenadasY.getText().contains("-"))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtCoordenadasYKeyTyped
+
+    private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
+        char caracter = evt.getKeyChar();
+        if ((caracter < '0' || caracter > '9') && (caracter != '+' || jtTelefono.getText().contains("+"))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtTelefonoKeyTyped
+    private void limpiarCampos() {
         jtID.setText("");
         jtEstado.setText("");
         jtCoordenadasX.setText("");
@@ -382,7 +443,7 @@ public class CuartelView extends javax.swing.JInternalFrame {
         jtDireccion.setText("");
         jtTelefono.setText("");
         jtNombre.setText("");
-    
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
