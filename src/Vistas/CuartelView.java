@@ -294,7 +294,19 @@ public class CuartelView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscar1ActionPerformed
-
+        Cuartel a = new Cuartel();
+         boolean h = true;
+         
+         try {
+        a.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
+        a.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
+            } catch (Exception e) {
+                h = false;
+            }
+        
+        
+        
+       
         if (jtID.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Complete el campo ID correctamente");
         } else {
@@ -315,14 +327,27 @@ public class CuartelView extends javax.swing.JInternalFrame {
                 } else {
                     jtEstado.setText("Inactivo");
                 }
-
-            }
+            }  
         }
+        
+        
 
     }//GEN-LAST:event_jbBuscar1ActionPerformed
 
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
         // TODO add your handling code here:
+          Cuartel a = new Cuartel();
+         boolean h = true;
+         
+         try {
+        a.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
+        a.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
+            } catch (Exception e) {
+                h = false;
+            }
+        
+        if(h==true){
+        
         Cuartel c = new Cuartel();
         CuartelData cd = new CuartelData();
         Cuartel c2 = new Cuartel();
@@ -362,7 +387,10 @@ public class CuartelView extends javax.swing.JInternalFrame {
             }
 
         }
-
+        }else{
+        
+        JOptionPane.showMessageDialog(this, "Complete las coordenadas correctamente");
+        }
     }//GEN-LAST:event_jbCrearActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed

@@ -15,7 +15,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class ListadoDeBrigadaView extends javax.swing.JInternalFrame {
-private DefaultTableModel modelo = new DefaultTableModel(){        
+private DefaultTableModel modelo = new DefaultTableModel(){  
+     @Override
+    public boolean isCellEditable(int fila, int columna){
+    return false;
+    }
     };
     /**
      * Creates new form ListadoDeBrigadaView

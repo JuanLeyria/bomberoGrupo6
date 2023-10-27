@@ -591,8 +591,8 @@ public class BomberoView extends javax.swing.JInternalFrame {
     private void cbCuartelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCuartelItemStateChanged
 
             
-
-        ArrayList<Cuartel> cuarteles = new ArrayList<>();
+        try {
+             ArrayList<Cuartel> cuarteles = new ArrayList<>();
         CuartelData cd = new CuartelData();
         cuarteles = cd.listarCuartel();
         if (cbCuartel.getSelectedIndex() == 0) {
@@ -608,6 +608,9 @@ public class BomberoView extends javax.swing.JInternalFrame {
             LlenarCBBrigadas(c, 2);
 
         }
+        } catch (Exception e) {
+        }
+       
         
     }//GEN-LAST:event_cbCuartelItemStateChanged
 

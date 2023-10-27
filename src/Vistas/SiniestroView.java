@@ -178,21 +178,33 @@ public class SiniestroView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
+        Siniestro a = new Siniestro();
+        boolean h = true;
+         try {
+                 a.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
+        a.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
+            } catch (Exception e) {
+                h = false;
+            }
         
-        if(jcTipoSiniestro.getSelectedIndex()!=0 && jtCoordenadasX.getText().length()>0 && jtCoordenadasY.getText().length()>0 && jtDetalles.getText().length()>0){
-        Siniestro s = new Siniestro();
-        SiniestroData sd = new SiniestroData(); 
-        s.setTipo((String) jcTipoSiniestro.getSelectedItem());
-        s.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
-        s.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
-        s.setDetalles(jtDetalles.getText());
-        s.setEstado(true);
-        s.setFechaSiniestro(LocalDate.now());
-        s.setHoraSiniestro(Time.valueOf(LocalTime.now()));
-        sd.guardarSiniestro(s);
-        limpiarCampos();
+        if(h==true){
+        if (jcTipoSiniestro.getSelectedIndex() != 0 && jtCoordenadasX.getText().length() > 0 && jtCoordenadasY.getText().length() > 0 && jtDetalles.getText().length() > 0) {
+            Siniestro s = new Siniestro();
+            SiniestroData sd = new SiniestroData();
+            s.setTipo((String) jcTipoSiniestro.getSelectedItem());
+            s.setCoordX(Double.parseDouble(jtCoordenadasX.getText()));
+            s.setCoordY(Double.parseDouble(jtCoordenadasY.getText()));
+            s.setDetalles(jtDetalles.getText());
+            s.setEstado(true);
+            s.setFechaSiniestro(LocalDate.now());
+            s.setHoraSiniestro(Time.valueOf(LocalTime.now()));
+            sd.guardarSiniestro(s);
+            limpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, "Complete todos los campos");
+        }
         }else{
-             JOptionPane.showMessageDialog(this, "Complte todos los campos");
+        JOptionPane.showMessageDialog(this, "Complete correctamente las coordenadas");
         }
   
     }//GEN-LAST:event_jbCrearActionPerformed

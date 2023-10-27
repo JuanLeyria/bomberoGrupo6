@@ -20,6 +20,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BomberosXBrigadasView extends javax.swing.JInternalFrame {
 private DefaultTableModel modelo = new DefaultTableModel() {
+    
+    @Override
+    public boolean isCellEditable(int fila, int columna){
+    return false;
+    }
     };
     /**
      * Creates new form BomberosXBrigadas
